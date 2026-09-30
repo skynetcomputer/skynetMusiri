@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SKYNET E-Sevai Maiyam - Government and digital service assistance.">
+<title>SKYNET E-Sevai Maiyam</title>
+<style>
+:root{/* [EDIT-COLORS] main colours of the website */--primary:#155eef;--primary2:#0b4acb;--dark:#0f172a;--muted:#64748b;--light:#f8fafc;--green:#16a34a;--border:#e2e8f0}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+.container{width:min(1180px,92%);margin:auto}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);box-shadow:0 2px 15px rgba(15,23,42,.08)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:22px;font-weight:900;color:var(--primary)}.logo-image{display:flex;align-items:center;width:185px;height:58px;overflow:hidden}.logo-image img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
+.navlinks{display:flex;align-items:center;gap:28px;font-weight:600;color:#334155}
+.navlinks a:hover{color:var(--primary)}
+.whatsapp{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:11px 17px;border-radius:999px;font-weight:800}
+.menu{display:none;border:0;background:none;font-size:28px;cursor:pointer}
+.hero{padding-top:74px;min-height:720px;color:#fff;background:linear-gradient(135deg,#155eef 0%,#1749b7 50%,#312e81 100%);overflow:hidden}
+.hero-inner{min-height:646px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:60px}
+.eyebrow{text-transform:uppercase;letter-spacing:3px;color:#bfdbfe;font-weight:800;font-size:13px}
+.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:14px 0 20px;font-weight:900}
+.hero h2{font-size:clamp(23px,3vw,34px);margin-bottom:18px}
+.hero p{font-size:18px;color:#dbeafe;max-width:650px}
+.buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 23px;border-radius:9px;font-weight:800;border:2px solid transparent}
+.btn-white{background:#fff;color:var(--primary)}
+.btn-green{background:var(--green);color:#fff}
+.visual{display:flex;justify-content:center}
+.card-visual{background:rgba(255,255,255,.12);padding:25px;border-radius:30px;backdrop-filter:blur(8px)}
+.card-inner{background:#fff;color:var(--dark);border-radius:22px;padding:60px 40px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.25)}
+.card-inner .icon{font-size:75px}.card-inner h3{font-size:25px;margin-top:18px}.card-inner p{color:var(--muted);font-size:15px;margin-top:8px}
+section{padding:90px 0}.center{text-align:center}.label{color:var(--primary);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px}.section-title{font-size:42px;line-height:1.15;margin-top:10px}.section-text{color:var(--muted);max-width:760px;margin:16px auto 0;font-size:17px}
+.about{background:#fff}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}.stat{background:#eff6ff;border-radius:18px;padding:25px;text-align:center}.stat strong{font-size:32px;color:var(--primary)}.stat span{display:block;color:var(--muted)}
+.services{background:#f8fafc}.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}.service{background:#fff;border:1px solid var(--border);border-radius:18px;padding:23px;transition:.25s;box-shadow:0 4px 16px rgba(15,23,42,.03)}
+.service-image{width:100%;height:105px;overflow:hidden;border-radius:10px;margin-bottom:10px;background:#f1f5f9}.service-image img{width:100%;height:100%;object-fit:contain;display:block}.service:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(15,23,42,.09);border-color:#bfdbfe}.service-icon{font-size:42px}.service h3{font-size:20px;margin-top:12px}.service p{color:var(--muted);font-size:14px;margin-top:6px}.enquire{display:inline-flex;margin-top:14px;color:var(--primary);font-weight:800}.more{text-align:center;margin-top:35px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:50px}.step{text-align:center}.step-num{height:62px;width:62px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;margin:auto}.step h3{margin-top:17px;font-size:20px}.step p{margin-top:7px;color:var(--muted)}
+.why{background:#eff6ff}.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}.feature{background:#fff;border-radius:18px;padding:28px;text-align:center}.feature-icon{font-size:45px}.feature h3{margin-top:12px}.feature p{color:var(--muted);margin-top:7px;font-size:14px}
+.contact{background:#0f172a;color:#fff}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact .label{color:#60a5fa}.contact h2{font-size:44px;margin-top:10px}.contact-copy{color:#cbd5e1;margin-top:17px;max-width:560px}.contact-list{display:grid;gap:15px}.contact-item{display:block;background:rgba(255,255,255,.07);padding:20px;border-radius:15px}.contact-item.green{background:#16a34a}.contact-item small{display:block;color:#cbd5e1;margin-top:3px}
+/* Instagram */
+.hero-visual-col{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
+.insta-top{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);color:#fff;padding:10px 20px;border-radius:999px;font-weight:800;font-size:15px;box-shadow:0 8px 20px rgba(0,0,0,.25);text-align:center}
+.insta-top svg{width:20px;height:20px;fill:#fff;flex:0 0 auto}
+.contact-item.insta{background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)}
+.contact-item.insta small{color:#fff}
+/* Our Authorized Agency - running logo strip */
+.agency-strip{
+  background:#4b2edb;
+  color:#fff;
+  min-height:225px;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+.agency-strip-inner{
+  width:min(100%,1200px);
+  margin:0 auto;
+  padding:35px 25px;
+  display:grid;
+  grid-template-columns:230px 1fr;
+  align-items:center;
+  gap:28px;
+}
+.agency-strip-title{
+  font-size:25px;
+  line-height:1.35;
+  font-weight:800;
+  color:#fff;
+}
+.agency-marquee{
+  overflow:hidden;
+  width:100%;
+  position:relative;
+}
+.agency-track{
+  display:flex;
+  width:max-content;
+  align-items:center;
+  animation:agencyScroll 28s linear infinite; /* [EDIT-AGENCY] 28s = scroll speed, bigger = slower */
+}
+.agency-logo{
+  width:155px;
+  height:82px;
+  margin-right:52px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+}
+.agency-logo img{
+  max-width:145px;
+  max-height:62px;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  display:block;
+}
+@keyframes agencyScroll{
+  from{transform:translateX(0)}
+  to{transform:translateX(-50%)}
+}
+@media (max-width:800px){
+  .agency-strip{min-height:190px}
+  .agency-strip-inner{
+    grid-template-columns:1fr;
+    gap:18px;
+    padding:28px 18px;
+  }
+  .agency-strip-title{
+    font-size:21px;
+    text-align:left;
+  }
+  .agency-logo{
+    width:125px;
+    margin-right:35px;
+  }
+  .agency-logo img{max-width:120px;max-height:55px}
+}
+footer{background:#020617;color:#94a3b8;text-align:center;padding:32px 15px}.footer-title{font-weight:900;color:#fff;font-size:19px}.copyright{border-top:1px solid #1e293b;margin-top:18px;padding-top:18px;font-size:13px}
+.floating{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;font-size:27px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:999}
+.mobile-nav{display:none;padding:10px 4%;border-top:1px solid var(--border);background:#fff}.mobile-nav a{display:block;padding:12px 0;font-weight:700}
+.hero-slider{position:relative;width:100%;max-width:620px;aspect-ratio:4/3;border-radius:22px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.25);background:#0b4acb}
+.hero-slider .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
+.hero-slider .slide.active{opacity:1}
+.hero-slider .slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.lightbox{position:fixed;inset:0;background:rgba(2,6,23,.92);display:none;align-items:center;justify-content:center;z-index:3000;padding:28px}
+.lightbox.show{display:flex}
+.lightbox img{max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lightbox-close{position:absolute;top:18px;right:22px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-close:hover{background:rgba(255,255,255,.28)}
+.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-nav:hover{background:rgba(255,255,255,.28)}
+.lightbox-prev{left:18px}
+.lightbox-next{right:18px}
+.lightbox-caption{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:#fff;font-weight:700;font-size:15px;padding:0 70px}
+@media(max-width:700px){.lightbox{padding:14px}.lightbox-close{top:10px;right:10px}.lightbox-nav{width:42px;height:42px;font-size:20px}.lightbox-prev{left:8px}.lightbox-next{right:8px}.lightbox-caption{padding:0 55px;font-size:13px}}
+.hero-slider .slide-caption{position:absolute;left:0;right:0;bottom:0;padding:16px 18px 34px;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);color:#fff;font-weight:800;font-size:15px}
+.hero-slider .dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+.hero-slider .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;border:0;padding:0}
+.hero-slider .dot.active{background:#fff}
+@media(max-width:700px){.hero-slider{max-width:100%}.insta-top{font-size:13px;padding:9px 16px}}
+@media(max-width:950px){.service-grid{grid-template-columns:repeat(3,1fr)}.feature-grid{grid-template-columns:repeat(2,1fr)}.hero-inner{grid-template-columns:1fr}.visual{display:flex;justify-content:center;margin-top:20px}.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:700px){.logo-image{width:155px;height:52px}.navlinks,.nav>.whatsapp{display:none}.menu{display:block}.mobile-nav.show{display:block}.hero{min-height:auto}.hero-inner{min-height:auto;padding:80px 0 100px}.stats,.contact-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.section-title,.contact h2{font-size:34px}}
+@media(max-width:470px){.service-grid,.feature-grid{grid-template-columns:1fr}.hero h1{font-size:42px}.buttons .btn{width:100%}}
+
+/* =====================================================================
+   [EDIT-ANIMATION] ANIMATIONS (smooth, light, no lag)
+   Only "transform" and "opacity" are animated - these run on the graphics
+   card, so the page stays smooth even on low-end phones.
+   TO TURN OFF ALL ANIMATION: delete everything from this comment down to
+   the line "END OF ANIMATIONS". Speed: change the seconds, e.g. .6s -> .4s
+   ===================================================================== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+@keyframes zoomIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
+@keyframes pulseRing{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.7);opacity:0}}
+@keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+
+/* Hero: text slides up one by one, slider zooms in */
+.hero-inner>div:first-child>*{animation:fadeUp .7s ease-out backwards}
+.hero-inner>div:first-child>*:nth-child(1){animation-delay:.05s}
+.hero-inner>div:first-child>*:nth-child(2){animation-delay:.15s}
+.hero-inner>div:first-child>*:nth-child(3){animation-delay:.25s}
+.hero-inner>div:first-child>*:nth-child(4){animation-delay:.35s}
+.hero-inner>div:first-child>*:nth-child(5){animation-delay:.45s}
+.hero-inner>div:first-child>*:nth-child(6){animation-delay:.55s}
+.visual{animation:zoomIn .8s ease-out .25s backwards}
+
+/* Slider: slow zoom on the active photo (stays zoomed while fading out - no jump) */
+.hero-slider .slide img{transform:scale(1);transition:transform 0s linear 1s}
+.hero-slider .slide.active img{transform:scale(1.07);transition:transform 4.5s ease-out 0s}
+
+/* Instagram button: gentle pulse; WhatsApp floating button: soft ring */
+.insta-top{animation:softPulse 3s ease-in-out 1.2s infinite}
+.floating::before{content:"";position:absolute;inset:0;border-radius:50%;background:#16a34a;z-index:-1;animation:pulseRing 2.2s ease-out infinite}
+
+/* Buttons and contact cards: small lift on hover */
+.btn,.whatsapp,.detail-wa,.back-btn,.contact-item{transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover,.whatsapp:hover,.detail-wa:hover,.back-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.18)}
+a.contact-item:hover{transform:translateX(6px)}
+
+/* Scroll reveal: elements fade up when they come into view (class added by script at the bottom) */
+.reveal{opacity:0}
+.reveal.in{opacity:1;animation:fadeUp .6s ease-out backwards;animation-delay:var(--d,0ms)}
+
+/* Service detail cards: fade up when a category is opened */
+.detail-card{animation:fadeUp .45s ease-out backwards}
+
+/* People who turned on "reduce motion" on their phone get no animation */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1}
+}
+/* END OF ANIMATIONS */
+
+/* Service detail pages */
+.service{cursor:pointer}
+.service .enquire{cursor:pointer}
+#servicePage{display:none;min-height:100vh;padding:125px 0 80px;background:linear-gradient(180deg,#f8fafc,#fff)}
+#servicePage.show{display:block}
+.service-page-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:30px}
+.back-btn{border:0;background:#e2e8f0;color:#0f172a;padding:11px 17px;border-radius:10px;font-weight:800;cursor:pointer}
+.service-page-title{display:flex;align-items:center;gap:15px}
+.service-page-icon{font-size:48px}
+.service-page-title h1{font-size:clamp(30px,5vw,48px);line-height:1.1}
+.service-page-title p{color:#64748b;margin-top:5px}
+.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.detail-card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
+.detail-card h3{font-size:20px;margin-bottom:8px}
+.detail-card p{color:#64748b}
+.detail-card ul{padding-left:20px;color:#475569}
+.detail-card li{margin:7px 0}
+.doc-title{margin-top:16px;font-weight:800;font-size:14px;color:#1749b7}
+.doc-list{padding-left:20px;color:#334155;margin-top:8px;background:#f0f6ff;border-radius:10px;padding:12px 12px 12px 30px;list-style:disc}
+.doc-list li{margin:5px 0;font-size:14.5px}
+.detail-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
+.detail-wa{display:inline-flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;padding:13px 20px;border-radius:10px;font-weight:900}
+.detail-call{display:inline-flex;align-items:center;justify-content:center;background:#155eef;color:#fff;padding:13px 20px;border-radius:10px;font-weight:900}
+.category-note{background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:18px;margin-bottom:22px;color:#1e3a8a}
+@media(max-width:700px){.detail-grid{grid-template-columns:1fr}.service-page-head{align-items:flex-start;flex-direction:column}.service-page-title{align-items:flex-start}}
+
+</style>
+</head>
+<body>
+<!--
+=====================================================================
+  EASY EDIT GUIDE - SKYNET E-SEVAI MAIYAM WEBSITE
+  Tip: Press Ctrl+F in your editor and search for the tag shown
+  (like  [EDIT-PHONE] ) to jump straight to that part.
+=====================================================================
+
+  [EDIT-PHONE]     Phone / WhatsApp number
+      Current number: 918973310128  (WhatsApp links)  and  +918973310128 (call link)
+      -> Use Find & Replace (Ctrl+H): replace 918973310128 with your new number.
+         (Use country code 91 first, no + and no spaces for WhatsApp links.)
+      -> Also change the visible text "+91 89733 10128" in the Contact section.
+
+  [EDIT-INSTAGRAM] Instagram link
+      Current link: https://www.instagram.com/skynete_sevai
+      -> Find & Replace this link to change it everywhere.
+      -> It appears in 2 places: above the hero slider and in the Contact section.
+      -> To REMOVE it from one place, delete that block (each block has a comment).
+
+  [EDIT-LOGO]      Logo:  replace the file  images/logo.jpeg  (keep the same name).
+
+  [EDIT-HERO]      Hero slider photos + captions (top of page):
+      -> Search "heroPhotos" near the bottom of this file.
+      -> Each line is one photo:  {img:"images/1.jpg", caption:'Your text'},
+      -> To add a photo: copy one line, change the file name and caption.
+      -> To remove a photo: delete its line.
+      -> Slide speed: search "3500" (3500 = 3.5 seconds).
+
+  [EDIT-SERVICES]  Services, sub-services and required documents:
+      -> Search "const services" near the bottom of this file.
+      -> Structure:
+           ["Category Name","Tamil description","emoji",[
+              ["Sub-service name","Tamil description",["Document 1","Document 2"]],
+           ]],
+      -> To add a document: add "New Document" inside the last [ ] list.
+      -> To add a sub-service: copy one ["..","..",[..]], line and edit it.
+      -> Keep every quote " and comma , exactly as in the examples.
+
+  [EDIT-SERVICE-IMAGES] Service card pictures:
+      -> Search "serviceImages". Pictures are in the SAME ORDER as the services list.
+      -> New exam services need these pictures: images/rrb.png , images/ssc.png , images/postoffice.png
+         (if a picture is missing, the card still works, just without a picture).
+      -> If you add a NEW category in the middle of the list, add its picture at the same position.
+
+  [EDIT-AGENCY]    "Our Authorized Agency" running logos:
+      -> Search "agency-track". Each logo is one line:
+         <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
+      -> The list is written TWICE for smooth scrolling. Whatever you add or
+         remove in the first half, do the same in the second half.
+      -> Scroll speed: search "28s" (bigger number = slower).
+
+  [EDIT-ANIMATION] Animations (smooth, light, no lag)
+      -> Search "ANIMATIONS" in the <style> part. Delete that block to turn all animation off.
+      -> Make it faster/slower: change the seconds (.6s, .7s, .8s, 4.5s).
+      -> Also delete the "Scroll reveal" block at the very bottom of the script to fully remove it.
+
+  [EDIT-TEXT]      Headings and paragraphs: just change the text between the tags,
+                   e.g.  <h2>Thottiyam & Musiri</h2>
+
+  [EDIT-ADDRESS]   Address: in the Contact section, change the first line of text under
+                   📍 Address to your full street address. Tapping the card opens the
+                   Google Maps link (search "maps.app.goo.gl" to change the map link).
+
+  [EDIT-COLORS]    Colours: at the top of the <style> part, see  :root{--primary:...}
+      --primary = main blue,  --green = WhatsApp green,  --dark = dark text/background.
+
+
+  ---------------------------------------------------------------
+  EXAMPLES WITH PHOTOS (copy and paste these)
+  ---------------------------------------------------------------
+
+  EXAMPLE 1 - Add a NEW HERO SLIDER PHOTO
+    Step 1: Copy your photo into the images folder and name it  12.jpg
+            Folder look:   website/
+                             index.html
+                             images/
+                               logo.jpeg
+                               1.jpg  2.jpg ... 11.jpg
+                               12.jpg      <-- your new photo
+    Step 2: Search "heroPhotos", and after the last photo line add:
+            {img:"images/12.jpg",caption:'Passport சேவைகள் – விண்ணப்ப உதவி.'},
+    Step 3: Save and refresh the page. The photo now shows in the slider.
+
+  EXAMPLE 2 - Add a NEW AUTHORIZED AGENCY LOGO
+    Step 1: Put the logo in images folder, for example  images/bsnl.png
+    Step 2: Search "agency-track" and add this line in BOTH halves:
+            <div class="agency-logo"><img src="images/bsnl.png" alt="BSNL"></div>
+
+  EXAMPLE 3 - Change a SERVICE CARD PICTURE
+    Step 1: Put the picture in images folder, for example  images/newpan.png
+    Step 2: Search "serviceImages" and replace the file name of that service.
+            (PAN Card is the 5th picture: "images/pan.png" -> "images/newpan.png")
+
+  EXAMPLE 4 - Add a NEW DOCUMENT to a service
+    Find:    ["New PAN Application","...",["Aadhar Card","Photo","Signature"]],
+    Change:  ["New PAN Application","...",["Aadhar Card","Photo","Signature","Address Proof"]],
+
+  Photo tips: use .jpg or .png, keep file names simple (no spaces if possible),
+  and keep hero photos around 1200 x 900 px (4:3 shape) so they fit well.
+
+  IMPORTANT: Keep this file in the same folder as the  images  folder.
+=====================================================================
+-->
+<header>
+  <div class="container nav">
+    <!-- [EDIT-LOGO] Logo file: images/logo.jpeg -->
+    <a class="logo logo-image" href="#home" aria-label="SKYNET E-Sevai Maiyam"><img src="images/logo.jpeg" alt="SKYNET E-Sevai Maiyam logo"></a>
+    <nav class="navlinks">
+      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#how">How It Works</a><a href="#why">Why Choose Us</a><a href="#contact">Contact</a>
+    </nav>
+    <!-- [EDIT-PHONE] WhatsApp number in the link (918973310128) -->
+    <a class="whatsapp" href="https://wa.me/918973310128" target="_blank">💬 WhatsApp</a>
+    <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  </div>
+  <nav id="mobileNav" class="mobile-nav">
+    <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="#how" onclick="closeMenu()">How It Works</a><a href="#why" onclick="closeMenu()">Why Choose Us</a><a href="#contact" onclick="closeMenu()">Contact</a>
+    <a class="whatsapp" href="https://wa.me/918973310128" target="_blank">💬 WhatsApp</a>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="container hero-inner">
+    <div>
+      <!-- [EDIT-TEXT] Hero heading and description -->
+      <div class="eyebrow">Welcome to</div>
+      <h1>Skynet E-sevai </h1>
+<h2>Thottiyam & Musiri</h2>
+      <h2>உங்கள் அரசு சேவைகள் அனைத்தும் ஒரே இடத்தில்</h2>
+      <p>Government and digital services made simple, convenient and accessible. Get assistance for various online government services from one place.</p>
+      <div class="buttons"><a class="btn btn-white" href="#services">சேவைகளை காண்க</a><a class="btn btn-green" href="https://wa.me/918973310128" target="_blank">WhatsApp Us</a></div>
+    </div>
+    <div class="visual">
+      <div class="hero-visual-col">
+        <!-- [EDIT-INSTAGRAM] INSTAGRAM BUTTON ABOVE SLIDER: change the link in href="", or delete this whole <a> ... </a> block to remove it -->
+        <a class="insta-top" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 17.3 6z"/></svg>
+          Follow us on Instagram @skynete_sevai
+        </a>
+        <!-- [EDIT-HERO] Slider photos are set in the script at the bottom: search "heroPhotos" -->
+        <div class="hero-slider" id="heroSlider"><div class="dots" id="heroDots"></div></div>
+      </div>
+    </div>
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+      <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">✕</button>
+      <button class="lightbox-nav lightbox-prev" onclick="lightboxStep(-1,event)" aria-label="Previous image">‹</button>
+      <img id="lightboxImg" src="" alt="">
+      <button class="lightbox-nav lightbox-next" onclick="lightboxStep(1,event)" aria-label="Next image">›</button>
+      <div class="lightbox-caption" id="lightboxCaption"></div>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about">
+  <div class="container center">
+    <div class="label">About Us</div><h2 class="section-title">Your Local Digital Service Centre</h2>
+    <p class="section-text">SKYNET E-Sevai Maiyam helps people access government and digital services with clear guidance and convenient local support.</p>
+    <!-- [EDIT-TEXT] Numbers/labels in the About section (20+, Easy, Local) -->
+    <div class="stats"><div class="stat"><strong>20+</strong><span>Service Categories</span></div><div class="stat"><strong>Easy</strong><span>Service Assistance</span></div><div class="stat"><strong>Local</strong><span>Customer Support</span></div></div>
+  </div>
+</section>
+
+<section id="services" class="services">
+  <div class="container">
+    <div class="center"><div class="label">Our Services</div><h2 class="section-title">Government & Digital Services</h2><p class="section-text">Assistance for a wide range of government and digital services.</p></div>
+    <!-- [EDIT-SERVICES] Service cards are created automatically from the script at the bottom: search "const services" -->
+    <div id="serviceGrid" class="service-grid"></div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="container center">
+    <div class="label">Simple Process</div><h2 class="section-title">How It Works</h2>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h3>Choose Service</h3><p>Select the government or digital service you need.</p></div>
+      <div class="step"><div class="step-num">02</div><h3>Contact Us</h3><p>Contact us through WhatsApp or phone.</p></div>
+      <div class="step"><div class="step-num">03</div><h3>Submit Documents</h3><p>Provide the required documents for your service.</p></div>
+      <div class="step"><div class="step-num">04</div><h3>Get Your Service</h3><p>We assist you through the application process.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="why" class="why">
+  <div class="container center">
+    <div class="label">Why SKYNET</div><h2 class="section-title">Why Choose SKYNET E-Sevai Maiyam?</h2>
+    <div class="feature-grid">
+      <div class="feature"><div class="feature-icon">⚡</div><h3>Quick Service</h3><p>Efficient assistance with government and digital services.</p></div>
+      <div class="feature"><div class="feature-icon">🤝</div><h3>Friendly Support</h3><p>Guidance throughout the service process.</p></div>
+      <div class="feature"><div class="feature-icon">🔒</div><h3>Reliable</h3><p>Your service requirements handled carefully.</p></div>
+      <div class="feature"><div class="feature-icon">📱</div><h3>Easy Access</h3><p>Reach us easily by phone or WhatsApp.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="container contact-grid">
+    <div><div class="label">Contact Us</div><h2>Need Help With a Service?</h2><p class="contact-copy">Contact SKYNET E-Sevai Maiyam for assistance with government and digital services.</p></div>
+    <div class="contact-list">
+      <!-- [EDIT-PHONE] CALL: change the number in href="tel:..." and the visible text below -->
+      <a class="contact-item" href="tel:+918973310128">📞 <b>Call Us</b><small>+91 89733 10128</small></a>
+      <!-- [EDIT-PHONE] WHATSAPP: change the number inside the wa.me link -->
+      <a class="contact-item green" href="https://wa.me/918973310128" target="_blank">💬 <b>WhatsApp</b><small>Chat with us on WhatsApp</small></a>
+      <!-- [EDIT-INSTAGRAM] INSTAGRAM IN CONTACT: change href="", or delete this whole <a> ... </a> block to remove it -->
+      <a class="contact-item insta" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">📸 <b>Instagram</b><small>@skynete_sevai</small></a>
+      <!-- [EDIT-ADDRESS] ADDRESS: change the text in the first <small> to your full street address. The href is your Google Maps link (change it if the shop moves). -->
+      <a class="contact-item" href="https://maps.app.goo.gl/DMGJ63suAZ1Zhvku6" target="_blank" rel="noopener">📍 <b>Address</b><small>SKYNET E-Sevai Maiyam, Thottiyam, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
+    </div>
+  </div>
+</section>
+
+<section id="servicePage" aria-label="Service details">
+  <div class="container">
+    <div class="service-page-head">
+      <button class="back-btn" onclick="showAllServices()">← சேவைகளுக்கு திரும்பு</button>
+      <a class="whatsapp" href="https://wa.me/918973310128" target="_blank">💬 WhatsApp</a>
+    </div>
+    <div class="service-page-title">
+      <div class="service-page-icon" id="detailIcon">🪪</div>
+      <div>
+        <h1 id="detailTitle">Service</h1>
+        <p id="detailSubtitle">கீழே ஒரு சேவையை தேர்ந்தெடுக்கவும்</p>
+      </div>
+    </div>
+    <div class="category-note">
+      உங்களுக்கு தேவையான சேவையை தேர்ந்தெடுக்கவும். ஆவண தேவைகள், கட்டணம் மற்றும் தற்போதைய செயல்முறை விவரங்களுக்கு, முக்கியமான ஆவணங்களை அனுப்பும் முன் SKYNET E-Sevai Maiyam-ஐ WhatsApp மூலம் தொடர்பு கொள்ளவும்.
+    </div>
+    <div class="detail-grid" id="detailGrid"></div>
+  </div>
+</section>
+
+</main>
+
+<!-- [EDIT-AGENCY] Running logo strip. Logos are listed twice (needed for the loop) - edit both halves the same way. -->
+<section class="agency-strip" aria-label="Our Authorized Agency">
+  <div class="agency-strip-inner">
+    <div class="agency-strip-title">Our Authorized<br>Agency</div>
+    <div class="agency-marquee">
+      <div class="agency-track">
+           <div class="agency-logo"><img src="images/Aadhar.png" alt="Aadhaar"></div>
+        <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
+        <div class="agency-logo"><img src="images/Digital.png" alt="Digital"></div>
+        <div class="agency-logo"><img src="images/passport (1).png" alt="Passport Seva"></div>
+        <div class="agency-logo"><img src="images/irctc.png" alt="IRCTC"></div>
+        <div class="agency-logo"><img src="images/nsdl.png" alt="NSDL"></div>
+        <div class="agency-logo"><img src="images/tneGa.png" alt="TNEGA"></div>
+        <div class="agency-logo"><img src="images/uti.png" alt="UTI"></div>
+        <div class="agency-logo"><img src="images/Aadhar.png" alt="Aadhaar"></div>
+        <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
+        <div class="agency-logo"><img src="images/Digital.png" alt="Digital"></div>
+        <div class="agency-logo"><img src="images/passport (1).png" alt="Passport Seva"></div>
+        <div class="agency-logo"><img src="images/irctc.png" alt="IRCTC"></div>
+        <div class="agency-logo"><img src="images/nsdl.png" alt="NSDL"></div>
+        <div class="agency-logo"><img src="images/tneGa.png" alt="TNEGA"></div>
+        <div class="agency-logo"><img src="images/uti.png" alt="UTI"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="footer-title">SKYNET E-Sevai Maiyam</div><p>Your trusted digital and government service centre.</p><div class="copyright">© <span id="year"></span> SKYNET E-Sevai Maiyam. All rights reserved.</div></footer>
+<a class="floating" href="https://wa.me/918973310128" target="_blank" aria-label="WhatsApp">💬</a>
+
+<script>
+
+/* [EDIT-SERVICES] SERVICE LIST
+   Format: ["Category","Tamil description","emoji",[ ["Sub-service","Tamil description",["Doc 1","Doc 2"]], ... ]],
+   Add a document = add "Name" inside the last [ ].  Add a service = copy one whole line and edit it. */
+const services=[
+["E-Sevai","தமிழ்நாடு அரசு இ-சேவை சான்றிதழ்கள் மற்றும் சேவைகள்.","🏛️",[
+["Income Certificate","குடும்ப ஆண்டு வருமானத்தை உறுதி செய்யும் அரசு சான்றிதழ்.",["Photo","Aadhar Card","Ration Card","Signature","Payslip (if Govt Salary Person)","PAN Card (if Parents in Govt Job)","Mobile Number"]],
+["Community Certificate","சாதி / சமூக வகுப்பை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Parents Community Certificate","Transfer Certificate","Mobile Number"]],
+["Nativity Certificate","பிறப்பு மற்றும் சொந்த ஊரை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Birth Certificate","Mobile Number"]],
+["OBC Certificate","பிற்படுத்தப்பட்ட வகுப்பை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Community Certificate","Income Certificate","Mobile Number"]],
+["First Graduate Certificate","குடும்பத்தில் முதல் பட்டதாரி என்பதை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Transfer Certificate","Marksheet","Admission Form","Parents' TC","Parents' Signature","Siblings' TC / Bonafide","Affidavit (contact centre)","Mobile Number"]],
+["Residence Certificate","வசிப்பிடத்தை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Birth Certificate (Optional)","Mobile Number"]],
+["Widow Certificate","கணவரை இழந்தவர் என்பதை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Death Certificate (Husband)","Legal Heir Certificate","Date of Marriage","Mobile Number"]],
+["EWS Certificate","பொருளாதாரத்தில் பின்தங்கிய பிரிவு (EWS) சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Income Certificate","Affidavit"]],
+["Unmarried Certificate","திருமணமாகாதவர் என்பதை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Wedding Invitation","Education Proof","Mobile Number"]],
+["Unemployed Certificate","வேலையில்லாதவர் என்பதை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Education Proof","Employment Exchange Registration Certificate","Mobile Number"]],
+["Destitute Widow Certificate","ஆதரவற்ற விதவை சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Wedding Invitation","Divorce Certificate","Mobile Number"]],
+["Inter Caste Marriage Certificate","கலப்புத் திருமண சான்றிதழ்.",["Aadhar Card","Ration Card","Photo of Bride & Groom Together","Signature","Groom's Community Certificate","Bride's Community Certificate","Marriage Registration Certificate","Mobile Number"]],
+["No Male Child Certificate","ஆண் குழந்தை இல்லை என்பதை உறுதி செய்யும் சான்றிதழ்.",["Aadhar Card","Ration Card","Family Photo","Signature","Children's Aadhar & Birth Certificates","Family Planning (Sterilisation) Certificate","Mobile Number"]],
+["Legal Heir Certificate","வாரிசு சான்றிதழ்.",["Aadhar Card","Ration Card","Photo","Signature","Aadhar & Ration Card of All Legal Heirs","Death Certificate of the Deceased","Death Certificate of any deceased heir and of the deceased's parents (if applicable)","Affidavit","Mobile Number"]],
+["Deserted Woman Certificate","கணவரால் கைவிடப்பட்ட பெண் சான்றிதழ்.",["Photo","Aadhar Card","Ration Card","Signature","Mobile Number"]],
+["Other e-Sevai Services","உங்களுக்கு தேவையான சேவையைப் பற்றி எங்களிடம் கேளுங்கள்.",["Contact us for the exact document list for your service"]]
+]],
+["Aadhaar","ஆதார் விண்ணப்பம் மற்றும் திருத்த உதவி.","🪪",[
+["New Aadhaar Enrolment","ஆதார் பதிவு செயல்முறை மற்றும் அப்பாயிண்ட்மென்ட் வழிகாட்டுதலுக்கான உதவி.",["Original Identity Proof","Address Proof","Birth Certificate (for children)","Photo"]],
+["Aadhaar Update","தகுதியுள்ள விவர மற்றும் ஆவண திருத்தங்களுக்கான உதவி.",["Aadhaar Linked Mobile Number","PAN Card / Voter ID / Driving Licence (Any Govt ID Proof)"]],
+["Mobile Number Update","அனுமதிக்கப்பட்ட இடங்களில் ஆதார் இணைந்த மொபைல் எண் திருத்தத்திற்கான வழிகாட்டுதல்.",["Aadhaar Card","New Mobile Number"]],
+["Address Update","முகவரி திருத்தம் மற்றும் தேவையான ஆவணங்கள் தயாரிப்பதற்கான உதவி.",["Aadhaar Linked Mobile Number","Ration Card","Voter ID","Driving Licence","Bank Passbook"]],
+["Aadhaar Download / Print","ஆதார் ஆவணத்தை பதிவிறக்கம் மற்றும் பிரிண்ட் செய்வதற்கான உதவி.",["Aadhaar Linked Mobile Number","Aadhaar Number","Enrollment Slip"]],
+["Aadhaar Services – Other","உங்களுக்கு தேவையான குறிப்பிட்ட ஆதார் சேவையைப் பற்றி எங்களிடம் கேளுங்கள்.",["Contact us for the exact document list for your service"]]
+]],
+["Vote ID","வாக்காளர் அடையாள அட்டை விண்ணப்பம் மற்றும் திருத்த சேவைகள்.","🗳️",[
+["New Voter Registration","புதிய வாக்காளர் பதிவு விண்ணப்பத்திற்கான உதவி.",["Photo","Address Proof","Age Proof","Identity Proof"]],
+["Correction / Update","தகுதியுள்ள வாக்காளர் விவரங்கள் திருத்தம் அல்லது புதுப்பிப்புக்கான உதவி.",["Aadhar Card","Voter ID","Photo (for photo change)"]],
+["Address / Constituency Change","வாக்காளர் பதிவை மாற்றுவதற்கான வழிகாட்டுதல்.",["Aadhar Card","Voter ID","Mobile Number"]],
+["Voter ID Download / Status","விண்ணப்ப நிலையை சரிபார்க்க அல்லது வாக்காளர் ஆவணங்களை பெறுவதற்கான உதவி.",["Voter ID Number / EPIC Number","Registered Mobile Number"]]
+]],
+["Passport","பாஸ்போர்ட் விண்ணப்ப உதவி.","🛂",[
+["New Passport Application","விண்ணப்ப உதவி மற்றும் ஆவணம் தயாரிப்பு வழிகாட்டுதல்.",["Aadhar Card","10th / 12th Marksheet (DOB proof)","Photo"]],
+["Passport Renewal","புதுப்பிப்பு விண்ணப்பம் மற்றும் அப்பாயிண்ட்மென்ட் தயாரிப்புக்கான உதவி.",["Aadhar Card","Existing Passport"]],
+["Re-issue / Changes","தகுதியுள்ள மறுவழங்கல் அல்லது தனிப்பட்ட விவர மாற்றங்களுக்கான வழிகாட்டுதல்.",["Aadhar Card","Existing Passport (or FIR/Police Report if lost)","Voter ID / Driving Licence / Bank Passbook / PAN Card","School / College Certificate (if student)"]],
+["Appointment Assistance","ஆன்லைன் அப்பாயிண்ட்மென்ட் மற்றும் விண்ணப்ப படிகளுக்கான உதவி.",["Aadhar Card","Passport (for PCC / related appointments)"]]
+]],
+["PAN Card","பான் கார்டு விண்ணப்பம் மற்றும் தொடர்புடைய சேவைகள்.","💳",[
+["New PAN Application","ஆன்லைன் பான் விண்ணப்பத்திற்கான உதவி.",["Aadhar Card","Photo","Signature"]],
+["PAN Correction","தகுதியுள்ள பெயர், பிறந்த தேதி அல்லது பிற திருத்தங்களுக்கான உதவி.",["Aadhar Card","Photo","Signature"]],
+["PAN Reprint","மறுபிரிண்ட் / நகல் பான் சேவைகளுக்கான உதவி.",["Aadhar Card","Old PAN Card (if available)","Photo","Signature"]],
+["PAN Status","விண்ணப்ப நிலையை சரிபார்க்க உதவி.",["PAN Acknowledgement Number","Aadhar Card"]]
+]],
+["Employment","வேலைவாய்ப்பு பதிவு மற்றும் உதவி.","💼",[
+["New Registration","வேலைவாய்ப்பு பதிவுக்கான உதவி.",["Aadhar Card","Ration Card","Community Certificate","10th Marksheet"]],
+["Renewal","தற்போதுள்ள வேலைவாய்ப்பு பதிவை புதுப்பிப்பதற்கான வழிகாட்டுதல்.",["Existing Employment Certificate"]],
+["Profile Update","தகுதியுள்ள கல்வி மற்றும் தனிப்பட்ட விவரங்களை புதுப்பிக்க உதவி.",["Registration ID","UG / PG Marksheet or Provisional Certificate"]],
+["Certificate / Print","வேலைவாய்ப்பு பதிவுகள் மற்றும் பிரிண்ட் சேவைகளுக்கான உதவி.",["Registration ID","Aadhar Card"]]
+]],
+["Ration Card","குடும்ப அட்டை தொடர்பான சேவைகள்.","📋",[
+["New Smart Card Application","புதிய குடும்ப/ரேஷன் அட்டை விண்ணப்பத்திற்கான உதவி.",["Photo","Family Members' Aadhar Cards","Child Birth Certificate (if any)","House Tax Receipt / Rental Agreement","Gas Book"]],
+["Member Addition","தகுதியுள்ள குடும்ப உறுப்பினர்களை சேர்ப்பதற்கான வழிகாட்டுதல்.",["Aadhar Card","Birth Certificate","Marriage Proof (if applicable)"]],
+["Member Deletion","தகுதியுள்ள உறுப்பினர் நீக்கம் கோரிக்கைக்கான வழிகாட்டுதல்.",["Aadhar Card","Marriage Proof / Death Certificate"]],
+["Address / Family Details Update","தகுதியுள்ள திருத்தங்கள் மற்றும் புதுப்பிப்புகளுக்கான உதவி.",["Aadhar Card","House Tax Receipt / Rental Agreement"]],
+["Smart Card Status / Print","நிலையை சரிபார்க்க மற்றும் பிரிண்ட் சேவைகளுக்கான உதவி.",["Ration Card Number","Registered Mobile Number"]]
+]],
+["Education","கல்வி மற்றும் மாணவர் தொடர்பான சேவைகள்.","🎓",[
+["Scholarship Assistance","ஆன்லைன் ஸ்காலர்ஷிப் விண்ணப்பங்கள் மற்றும் ஆவணம் தயாரிப்புக்கான உதவி.",["Aadhar Card","Income Certificate","Last Year Mark Sheet","Bank Passbook","Photo"]],
+["Student Certificate Services","கல்வி சான்றிதழ் விண்ணப்பங்களுக்கான உதவி.",["Aadhar Card","Mark Sheets","Bonafide Certificate","Photo"]],
+["Online Admission Assistance","தகுதியுள்ள ஆன்லைன் சேர்க்கை செயல்முறைகளுக்கான வழிகாட்டுதல்.",["Aadhar Card","Mark Sheet / Transfer Certificate","Photo"]],
+["Exam / Application Forms","ஆன்லைன் கல்வி தொடர்பான படிவங்களை பூர்த்தி செய்ய உதவி.",["Aadhar Card","Mark Sheet","Photo","Signature"]]
+]],
+["EPFO","இபிஎஃப்ஓ மற்றும் பிஎஃப் தொடர்பான சேவைகள்.","🏦",[
+["UAN Assistance","யூஏஎன் தொடர்பான ஆன்லைன் சேவைகளுக்கான உதவி.",["Aadhar Card","UAN Number","Registered Mobile Number"]],
+["PF Claim Assistance","ஆன்லைன் பிஎஃப் கோரிக்கை சமர்ப்பிப்பதற்கான வழிகாட்டுதல்.",["Aadhar Card","Bank Passbook","Marriage / Death Proof (for marriage or death claims)"]],
+["KYC Update Assistance","தகுதியுள்ள கேஒய்சி புதுப்பிப்புகளை தயாரிக்க மற்றும் சமர்ப்பிக்க உதவி.",["Aadhar Card","PAN Card","Bank Passbook"]],
+["PF Passbook / Status","பிஎஃப் பதிவுகள் மற்றும் நிலையை பெற உதவி.",["UAN Number","Registered Mobile Number"]]
+]],
+["Booking","ஆன்லைன் முன்பதிவு மற்றும் அப்பாயிண்ட்மென்ட் உதவி.","📅",[
+["Government Appointment","அரசு அப்பாயிண்ட்மென்ட் முன்பதிவு செய்ய உதவி.",["Aadhar Card"]],
+["Service Centre Appointment","அப்பாயிண்ட்மென்ட் திட்டமிடலுக்கான உதவி.",["Aadhar Card"]],
+["Online Ticket / Booking","ஆதரிக்கப்படும் ஆன்லைன் முன்பதிவு சேவைகளுக்கான உதவி.",["Aadhar Card","Photo (for temple/darshan bookings)"]],
+["Status / Cancellation","முன்பதிவு நிலை அல்லது ரத்து விருப்பங்களுக்கான வழிகாட்டுதல்.",["Booking Reference Number"]]
+]],
+["Payments","டிஜிட்டல் பணம் செலுத்துதல் மற்றும் பில் பணம் செலுத்துதல் உதவி.","💰",[
+["EB Bill Payment","மின்சார பில் பணம் செலுத்துவதற்கான உதவி.",["Consumer Number"]],
+["Mobile / DTH Recharge","ஆதரிக்கப்படும் ரீசார்ஜ் சேவைகளுக்கான உதவி.",["Mobile / Customer Number"]],
+["Government Fee Payment","தகுதியுள்ள ஆன்லைன் அரசு கட்டணம் செலுத்துதலுக்கான வழிகாட்டுதல்.",["Application / Reference Number","Aadhar Card"]],
+["Payment Receipt / Status","பணம் செலுத்திய ரசீது அல்லது நிலையை சரிபார்க்க உதவி.",["Transaction / Reference Number"]]
+]],
+["PVC ID Card","பிவிசி அடையாள அட்டை பிரிண்ட் மற்றும் தொடர்புடைய உதவி.","🪪",[
+["PVC ID Card Design","பிவிசி அடையாள அட்டை வடிவமைப்பு தயாரிக்க உதவி.",["Original / Downloaded Copy of the ID Card","Photo"]],
+["PVC Card Printing","பிவிசி அட்டை பிரிண்ட் உதவி.",["Original / Downloaded Copy of the ID Card"]],
+["Photo / Text Update","பிரிண்ட் செய்வதற்கு முன் அட்டை தகவலை புதுப்பிக்க உதவி.",["Original ID Card","Updated Photo / Details"]],
+["Bulk / Family Cards","பல அட்டைகள் தேவைகள் குறித்து எங்களிடம் கேளுங்கள்.",["Aadhar Card of Each Family Member","Photo"]]
+]],
+["Land Services","நில மற்றும் சொத்து தொடர்பான சேவைகள்.","🏠",[
+["Patta / Chitta Assistance","நில பதிவு சேவைகளை பெற உதவி.",["Survey Number","Patta Number","Village, Taluk, District Details"]],
+["EC Assistance","பொறுப்பு சான்றிதழ் (இசி) சேவைகளுக்கான வழிகாட்டுதல்.",["Survey Number","Village, Taluk, District","Registration Number / Date","Owner Name"]],
+["Land Record Print","ஆன்லைன் நில பதிவுகளை பெற உதவி.",["Survey Number","Village, Taluk, District Details"]],
+["Property Service Guidance","சரியான ஆன்லைன் நில சேவையை கண்டறிய உதவி.",["Aadhar Card","Ration Card","Patta / Chitta","EC / Registered Document"]]
+]],
+["TN Police","தமிழ்நாடு காவல்துறை ஆன்லைன் சேவைகள்.","👮",[
+["Police Certificate Assistance","காவல்துறை சான்றிதழ் விண்ணப்பங்களுக்கான வழிகாட்டுதல்.",["Photo","Aadhar Card"]],
+["Online Complaint Guidance","ஆன்லைன் புகார் சேவைகளை பயன்படுத்த உதவி.",["Aadhar Card"]],
+["Status / Print Assistance","விண்ணப்ப நிலையை சரிபார்க்க உதவி.",["FIR Number / CSR Number","Aadhar Card"]],
+["Other Police Online Services","Ask us about the specific service you need.",["Aadhar Card (documents vary by service)"]]
+]],
+["Birth / Death","பிறப்பு மற்றும் இறப்பு சான்றிதழ் உதவி.","📜",[
+["Birth Certificate","பிறப்பு சான்றிதழ் சேவைகளுக்கான உதவி.",["Child's Name","District, Hospital Name","Date of Birth"]],
+["Death Certificate","இறப்பு சான்றிதழ் சேவைகளுக்கான உதவி.",["Deceased's Name","Place of Death","Date of Death"]],
+["Correction Guidance","சரியான திருத்த செயல்முறையை கண்டறிய உதவி.",["Existing Certificate","Aadhar Card","Supporting Proof for Correction"]],
+["Certificate Download / Print","பதிவிறக்கம் மற்றும் பிரிண்ட் விருப்பங்களுக்கான உதவி.",["Registration Number / Reference Number"]]
+]],
+["Printing / Colour Printing","பிடிஎஃப் மற்றும் ஆவண செயலாக்க சேவைகள்.","📄",[
+["PDF Merge","பல பிடிஎஃப் ஆவணங்களை இணைக்கவும்.",["The PDF Files to be Merged"]],
+["PDF Split","பிடிஎஃப்பிலிருந்து பக்கங்களை பிரிக்கவும்.",["The PDF File to be Split"]],
+["PDF to Image","பிடிஎஃப் பக்கங்களை படங்களாக மாற்றவும்.",["The PDF File"]],
+["Image to PDF","படங்களிலிருந்து பிடிஎஃப் உருவாக்கவும்.",["The Image Files"]],
+["Document Scan / Print","ஆன்லைன் சமர்ப்பிப்புக்காக ஆவணங்களை ஸ்கேன், பிரிண்ட் மற்றும் தயார் செய்யவும்.",["The Physical Document to be Scanned / Printed"]]
+]],
+["Disability","மாற்றுத்திறனாளி தொடர்பான சேவை உதவி.","♿",[
+["Disability Certificate Guidance","மாற்றுத்திறனாளி சான்றிதழ் செயல்முறைகளுக்கான உதவி.",["Photo","Aadhar Card","Signature","Medical Disability Certificate"]],
+["UDID Assistance","யூடிஐடி தொடர்பான ஆன்லைன் சேவைகளுக்கான வழிகாட்டுதல்.",["Aadhar Card","Disability Certificate"]],
+["Application Status","Help checking available application status.",["Application / Enrollment Number","Aadhar Number"]],
+["Document Preparation","தேவையான ஆவணங்களை தயார் செய்ய உதவி.",["Aadhar Card","Disability Certificate","Photo"]]
+]],
+["MSME","எம்எஸ்எம்இ பதிவு மற்றும் தொடர்புடைய சேவைகள்.","🏢",[
+["Udyam Registration","ஆன்லைன் எம்எஸ்எம்இ/உத்யம் பதிவுக்கான உதவி.",["Aadhar Card","PAN Card","Bank Passbook","Business / Visiting Card Details"]],
+["Udyam Certificate","சான்றிதழ் விவரங்களை பெற அல்லது பிரிண்ட் செய்ய உதவி.",["MSME Registration Number"]],
+["Update / Correction Guidance","தகுதியுள்ள புதுப்பிப்புகளுக்கான உதவி.",["MSME Registration Number","Registered Mobile Number"]],
+["Business Document Support","ஆன்லைன் சமர்ப்பிப்புக்கான ஆவணங்களை தயார் செய்ய உதவி.",["Aadhar Card","PAN Card","Bank Passbook"]]
+]],
+["E-Shram","இ-ஸ்ரம் பதிவு உதவி.","👷",[
+["New Registration","இ-ஸ்ரம் பதிவுக்கான உதவி.",["Aadhar Card","Spouse / Father's Aadhar Card","Bank Passbook"]],
+["Profile Update","சுயவிவரம் புதுப்பிப்புகளுக்கான வழிகாட்டுதல்.",["Aadhar Card","Registered Mobile Number"]],
+["Card Download / Print","அட்டை விவரங்களை பெற மற்றும் பிரிண்ட் செய்ய உதவி.",["e-Shram Registration Number","Registered Mobile Number"]],
+["Status Assistance","பதிவு தகவலை சரிபார்க்க உதவி.",["e-Shram Number","Registered Mobile Number"]]
+]],
+["Insurance","காப்பீடு விண்ணப்ப உதவி.","🛡️",[
+["Policy Service Assistance","ஆன்லைன் காப்பீட்டு சேவைகளை பயன்படுத்த உதவி.",["Aadhar Card","RC Book (for vehicle insurance)","Vehicle Photo (Front, Side, Engine Number)","Bank Passbook"]],
+["Premium / Payment Assistance","ஆன்லைன் பணம் செலுத்துதல் சேவைகளுக்கான வழிகாட்டுதல்.",["Policy Number","Aadhar Card"]],
+["Policy Document Print","பாலிசி ஆவணங்களை பெற உதவி.",["Policy Number"]],
+["Status / Service Request","ஆன்லைன் சேவை கோரிக்கைகளுக்கான உதவி.",["Policy Number","Aadhar Card"]]
+]],
+["TNPSC","டிஎன்பிஎஸ்சி விண்ணப்ப உதவி.","📝",[
+["New Application","டிஎன்பிஎஸ்சி ஆன்லைன் விண்ணப்பங்களை பூர்த்தி செய்ய உதவி.",["Aadhar Card","Photo","Signature","Educational Certificates","Mobile Number"]],
+["One Time Registration Guidance","தகுதியுள்ள பதிவு படிகளுக்கான உதவி.",["Aadhar Card","Photo","Educational Certificates"]],
+["Application Form Assistance","தகவலை உள்ளிட்டு ஆவணங்களை பதிவேற்ற உதவி.",["Aadhar Card","Photo","Signature","Educational Certificates"]],
+["Status / Hall Ticket Guidance","நிலை அல்லது ஹால் டிக்கெட் சேவைகளை பெற உதவி.",["Registration / Application Number"]]
+]],
+["Loan Service","கடன் விண்ணப்பம் மற்றும் டிஜிட்டல் உதவி.","💵",[
+["Loan Application Assistance","கடன் விண்ணப்ப செயல்முறைகளுக்கான வழிகாட்டுதல்.",["Aadhar Card","Income Certificate","Bank Passbook","Photo"]],
+["Document Preparation","விண்ணப்பத்திற்கான ஆவணங்களை தயார் செய்ய உதவி.",["Address Proof","Community Certificate (SC/ST if applicable)","Ration Card","Photo","Project Report"]],
+["Online Form Assistance","படிவங்களை பூர்த்தி செய்ய உதவி.",["Aadhar Card","Bank Passbook"]],
+["Status Guidance","விண்ணப்ப நிலையை சரிபார்க்க உதவி.",["Application Reference Number"]]
+]],
+["Farmer Service","விவசாயிகளுக்கான அரசு சேவைகள்.","🌾",[
+["Farmer Registration Assistance","விவசாயி பதிவுகளுக்கான உதவி.",["Aadhar Card","Patta / Chitta","Ration Card","Bank Passbook"]],
+["Certificate / Record Assistance","விவசாயி தொடர்பான ஆவணங்களுக்கான வழிகாட்டுதல்.",["Address Proof","Land Details Document","Bank Passbook"]],
+["Scheme Application Guidance","தகுதியுள்ள ஆன்லைன் திட்ட விண்ணப்பங்களுக்கான உதவி.",["Aadhar Card","Land Documents","Bank Passbook"]],
+["Status / Print","நிலை மற்றும் பிரிண்ட் சேவைகளுக்கான உதவி.",["Registration Number","Aadhar Card"]]
+]],
+["Driving Licence","ஓட்டுநர் உரிமம் விண்ணப்ப உதவி.","🚗",[
+["Learner Licence Guidance","ஆன்லைன் லேர்னர் உரிமம் விண்ணப்ப படிகளுக்கான உதவி.",["Aadhaar","Birth Certificate","School Certificate","Medical Certificate"]],
+["Driving Licence Services","ஓட்டுநர் உரிமம் சேவைகளை பயன்படுத்த உதவி.",["Learning Licence (LLR)","Identity Proof (Aadhaar / Voter ID / Passport)","Proof of Passing Driving Test","Medical Certificate"]],
+["Renewal Assistance","தகுதியுள்ள உரிம புதுப்பிப்புக்கான வழிகாட்டுதல்.",["Existing Driving Licence","Identity Proof","Medical Certificate"]],
+["Address / Details Update","மாற்றங்களுக்கான உதவி.",["Existing Driving Licence","Identity Proof","Address Proof"]],
+["Appointment Guidance","அப்பாயிண்ட்மென்ட் முன்பதிவுக்கான உதவி.",["Aadhar Card","Existing Licence / LLR"]]
+]],
+["EB Services","மின்சார வாரியம் தொடர்பான சேவைகள்.","⚡",[
+["EB Bill Payment","மின்சார பில் பணம் செலுத்துவதற்கான உதவி.",["Consumer Number"]],
+["Service Connection Guidance","ஆன்லைன் இணைப்பு சேவைகளை பயன்படுத்த உதவி.",["Identity Proof","Address Proof","Property Ownership Proof","Photo"]],
+["Name / Details Change Guidance","சரியான சேவையை கண்டறிய உதவி.",["Current Electricity Connection Details","Identity Proof of New Owner","Address Proof of New Owner","Consent / NOC from Existing Owner (if required)"]],
+["Payment Receipt / Status","பணம் செலுத்திய பதிவுகளை சரிபார்க்க உதவி.",["Consumer Number"]]
+]],
+["Food Licence","உணவு உரிமம் மற்றும் பதிவு உதவி.","🍽️",[
+["FSSAI Registration Guidance","உணவு வணிக பதிவுக்கான உதவி.",["Business Registration Deed","Identity Proof","Bank Account Details","Business Address Proof","Layout Plan / Kitchen Details"]],
+["Licence Renewal Guidance","தகுதியுள்ள புதுப்பிப்பு செயல்முறைகளுக்கான உதவி.",["Existing FSSAI Licence","Identity Proof","Business Address Proof","Bank Account Details"]],
+["Certificate / Document Print","ஆவணங்களை பெற உதவி.",["FSSAI Licence Number"]],
+["Application Status","Help checking available application status.",["Application / Reference Number"]]
+]],
+["RRB","ரயில்வே ஆட்சேர்ப்பு வாரிய (RRB) தேர்வு விண்ணப்ப உதவி.","🚆",[
+["New Registration","RRB ஆன்லைன் பதிவு செய்ய உதவி.",["Aadhar Card","Photo","Signature","Email ID","Mobile Number"]],
+["Exam Application Form","NTPC, Group D, ALP, JE போன்ற தேர்வுகளுக்கு விண்ணப்பிக்க உதவி.",["Aadhar Card","Photo","Signature","10th Marksheet","Education Certificates (12th / ITI / Diploma / Degree as per notification)","Community Certificate (if applicable)","Email ID","Mobile Number"]],
+["Fee Payment","விண்ணப்பக் கட்டணம் செலுத்த உதவி.",["Registration Number","Password / Registered Mobile Number"]],
+["Correction / Modification","விண்ணப்ப திருத்த வசதியை பயன்படுத்த உதவி.",["Registration Number","Password / Registered Mobile Number","Supporting Document for the Correction"]],
+["Admit Card / Result Download","ஹால் டிக்கெட், தேர்வு நகர சீட்டு மற்றும் முடிவுகளை பெற உதவி.",["Registration Number","Date of Birth / Password"]],
+["Other RRB Services","உங்களுக்கு தேவையான RRB சேவையைப் பற்றி எங்களிடம் கேளுங்கள்.",["Contact us for the exact document list for your service"]]
+]],
+["SSC","பணியாளர் தேர்வு ஆணையம் (SSC) தேர்வு விண்ணப்ப உதவி.","📚",[
+["One Time Registration (OTR)","SSC ஒருமுறை பதிவு (OTR) செய்ய உதவி.",["Aadhar Card","Photo","Signature","10th Marksheet","Email ID","Mobile Number"]],
+["Exam Application Form","CGL, CHSL, MTS, GD Constable, Stenographer போன்ற தேர்வுகளுக்கு விண்ணப்பிக்க உதவி.",["OTR Registration Number & Password","Aadhar Card","Photo","Signature","Education Certificates (as per notification)","Community Certificate (if applicable)","Mobile Number"]],
+["Fee Payment","விண்ணப்பக் கட்டணம் செலுத்த உதவி.",["Registration Number","Password / Registered Mobile Number"]],
+["Correction / Modification","விண்ணப்ப திருத்த வசதியை பயன்படுத்த உதவி.",["Registration Number","Password / Registered Mobile Number","Supporting Document for the Correction"]],
+["Admit Card / Result Download","அனுமதிச் சீட்டு மற்றும் முடிவுகளை பெற உதவி.",["Registration Number","Date of Birth / Password"]],
+["Other SSC Services","உங்களுக்கு தேவையான SSC சேவையைப் பற்றி எங்களிடம் கேளுங்கள்.",["Contact us for the exact document list for your service"]]
+]],
+["Post Office","அஞ்சல் துறை (Post Office) தேர்வு மற்றும் வேலை விண்ணப்ப உதவி.","📮",[
+["GDS Online Registration","கிராமின் டாக் சேவக் (GDS) ஆன்லைன் பதிவு செய்ய உதவி.",["Aadhar Card","Photo","Signature","10th Marksheet","Community Certificate (if applicable)","Email ID","Mobile Number"]],
+["GDS Application / Fee Payment","GDS விண்ணப்பம் பூர்த்தி செய்ய மற்றும் கட்டணம் செலுத்த உதவி.",["Registration Number","Mobile Number","10th Marksheet","Photo","Signature"]],
+["Postman / MTS / PA-SA Exam Application","அஞ்சல் துறை தேர்வுகளுக்கு விண்ணப்பிக்க உதவி.",["Aadhar Card","Photo","Signature","10th Marksheet","Education Certificates (12th / Degree as per notification)","Community Certificate (if applicable)","Email ID","Mobile Number"]],
+["Admit Card / Result / Status","ஹால் டிக்கெட், முடிவுகள் மற்றும் விண்ணப்ப நிலையை சரிபார்க்க உதவி.",["Registration / Roll Number","Date of Birth"]],
+["Other Post Office Services","உங்களுக்கு தேவையான அஞ்சல் துறை சேவையைப் பற்றி எங்களிடம் கேளுங்கள்.",["Contact us for the exact document list for your service"]]
+]]
+];
+
+const grid=document.getElementById("serviceGrid");
+/* [EDIT-SERVICE-IMAGES] One picture per category, in the SAME ORDER as the services list above */
+const serviceImages=[
+"images/eservice.png","images/adhaar.png","images/voter id.jpeg","images/passport.png","images/pan.png","images/Employment.png","images/ration.png","images/education.png","images/EPFO.png",
+"images/booking.png","images/payments.png","images/pvc.png","images/land.png","images/police.png","images/bd.png","images/pdf.png","images/dis.png","images/msme.png","images/esharm.png",
+"images/insurence.png","images/tnpsc.png","images/loan.png","images/farmer.png","images/driving.png","images/eb.png","images/food.png",
+
+
+/* NEW: RRB, SSC, Post Office pictures - add these 3 files to the images folder */
+"images/rrb.png","images/ssc.png","images/postoffice.png",
+
+"images/print.png","images/bank.png","images/insurance.png","images/certificate.png",
+
+];
+
+grid.innerHTML=services.map((s,i)=>`
+<article class="service" onclick="openService(${i})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openService(${i})}">
+  <div class="service-image"><img src="${serviceImages[i]||'images/adhaar.png'}" alt="${s[0]}" loading="lazy" onerror="this.style.display='none'"></div>
+  <h3>${s[0]}</h3><p>${s[1]}</p>
+  <span class="enquire">சேவைகளை காண →</span>
+</article>`).join("");
+
+function openService(index){
+  const s=services[index];
+  document.getElementById("detailIcon").textContent=s[2];
+  document.getElementById("detailTitle").textContent=s[0];
+  document.getElementById("detailSubtitle").textContent=s[1];
+  document.getElementById("detailGrid").innerHTML=s[3].map((item,k)=>`
+    <article class="detail-card" style="animation-delay:${Math.min(k,8)*60}ms">
+      <h3>${item[0]}</h3>
+      <p>${item[1]}</p>
+      ${item[2]?`<div class="doc-title">📑 தேவையான ஆவணங்கள் / Required Documents</div>
+      <ul class="doc-list">
+        ${item[2].map(doc=>`<li>${doc}</li>`).join("")}
+      </ul>`:""}
+      <div class="detail-actions">
+        <a class="detail-wa" href="https://wa.me/918973310128?text=${encodeURIComponent("Hello SKYNET E-Sevai Maiyam, I need help with "+s[0]+" - "+item[0])}" target="_blank">💬 விண்ணப்பிக்க / விசாரிக்க</a>
+      </div>
+    </article>`).join("");
+  document.getElementById("servicePage").classList.add("show");
+  document.querySelector("header").style.display="none";
+  document.querySelector("footer").style.display="none";
+  document.querySelector(".floating").style.display="none";
+  document.querySelector("main").querySelectorAll(":scope > section:not(#servicePage)").forEach(x=>x.style.display="none");
+  location.hash="service-"+encodeURIComponent(s[0]);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+function showAllServices(){
+  document.getElementById("servicePage").classList.remove("show");
+  document.querySelector("header").style.display="";
+  document.querySelector("footer").style.display="";
+  document.querySelector(".floating").style.display="";
+  document.querySelector("main").querySelectorAll(":scope > section:not(#servicePage)").forEach(x=>x.style.display="");
+  history.replaceState(null,"",location.pathname+location.search);
+  window.scrollTo({top:0,behavior:"smooth"});
+}
+
+document.getElementById("year").textContent=new Date().getFullYear();
+
+function toggleMenu(){document.getElementById("mobileNav").classList.toggle("show")}
+function closeMenu(){document.getElementById("mobileNav").classList.remove("show")}
+
+
+window.addEventListener("load",()=>{
+  if(location.hash.startsWith("#service-")){
+    const name=decodeURIComponent(location.hash.substring(9));
+    const idx=services.findIndex(x=>x[0]===name);
+    if(idx>=0) openService(idx);
+  }
+});
+
+/* ---- Hero running photo gallery ---- */
+/* [EDIT-HERO] EASY IMAGE CHANGE:
+   1. Put your photo in the images/ folder (example: images/12.jpg)
+   2. Add a line below:  {img:"images/12.jpg",caption:'Your caption'},
+   3. To remove a photo, delete its line. */
+const heroPhotos=[
+  
+  {img:"images/1.jpg",caption:'Aadhaar சேவைகள் – ஒரே நாளில் மொபைல் எண் இணைத்து தரப்படும்.'},
+  {img:"images/2.jpg",caption:'Domestic Money Transfer – பணம் அனுப்பும் சேவை.'},
+  {img:"images/3.jpg",caption:'Credit Card – மூலம் பணம் எடுத்து தரப்படும்.'},
+  {img:"images/4.jpg",caption:'A3+ Colour Laser Print – Xerox, Printout, Scanning & Lamination.'},
+  {img:"images/5.jpg",caption:'TNeGA இ-சேவை மையம் – தமிழ்நாடு அரசு அங்கீகாரம் பெற்ற சேவைகள்.'},
+  {img:"images/6.jpg",caption:'Mini ATM – Debit Card, Credit Card மூலம் பணம் எடுக்கும் வசதி.'},
+  {img:"images/7.jpg",caption:'Credit Card – மூலம் பணம் எடுத்து தரப்படும்.'},
+  {img:"images/8.jpg",caption:'A3+ Colour Laser Print – A3, A4 மற்றும் பல வகை Printout சேவைகள்.'},
+  {img:"images/9.jpg",caption:'Domestic Money Transfer – எந்த வங்கிக்கும் பணம் அனுப்பலாம்.'},
+  {img:"images/10.jpg",caption:'Credit Card – Unlimited withdrawal மற்றும் credit card சேவை.'},
+  {img:"images/11.jpg",caption:'இ-சேவை மையம் – பட்டா, சிட்டா, EC, FMB, A Register மற்றும் நில சேவைகள்.'}
+  // EXAMPLE - to add a new photo: put 12.jpg in the images folder,
+  // add a comma after the last photo line above, then add this line (without the // at the start):
+  // ,{img:"images/12.jpg",caption:'Passport சேவைகள் – விண்ணப்ப உதவி.'}
+  
+  
+  
+];
+const sliderEl=document.getElementById("heroSlider");
+const dotsEl=document.getElementById("heroDots");
+let heroIndex=0;
+let lightboxIndex=0;
+let heroTimer;
+
+heroPhotos.forEach((p,i)=>{
+  const slide=document.createElement("div");
+  slide.className="slide"+(i===0?" active":"");
+  slide.innerHTML=`<img src="${p.img}" alt="${p.caption}" loading="${i===0?"eager":"lazy"}" onclick="openLightbox(${i})"><div class="slide-caption">${p.caption}</div>`;
+  sliderEl.insertBefore(slide,dotsEl);
+
+  const dot=document.createElement("button");
+  dot.className="dot"+(i===0?" active":"");
+  dot.setAttribute("aria-label","Show photo "+(i+1));
+  dot.onclick=()=>{goToSlide(i);resetHeroTimer();};
+  dotsEl.appendChild(dot);
+});
+
+const heroSlides=()=>sliderEl.querySelectorAll(".slide");
+const heroDots=()=>dotsEl.querySelectorAll(".dot");
+
+function goToSlide(i){
+  heroSlides().forEach(s=>s.classList.remove("active"));
+  heroDots().forEach(d=>d.classList.remove("active"));
+  heroIndex=(i+heroPhotos.length)%heroPhotos.length;
+  heroSlides()[heroIndex].classList.add("active");
+  heroDots()[heroIndex].classList.add("active");
+}
+function nextSlide(){goToSlide(heroIndex+1);}
+function resetHeroTimer(){clearInterval(heroTimer);heroTimer=setInterval(nextSlide,3500) /* [EDIT-HERO] 3500 = 3.5 seconds per photo */;}
+resetHeroTimer();
+
+function openLightbox(i){
+  lightboxIndex=i;
+  showLightboxImage();
+  document.getElementById("lightbox").classList.add("show");
+  clearInterval(heroTimer);
+}
+function showLightboxImage(){
+  const p=heroPhotos[lightboxIndex];
+  document.getElementById("lightboxImg").src=p.img;
+  document.getElementById("lightboxImg").alt=p.caption;
+  document.getElementById("lightboxCaption").textContent=p.caption;
+}
+function lightboxStep(dir,e){
+  e.stopPropagation();
+  lightboxIndex=(lightboxIndex+dir+heroPhotos.length)%heroPhotos.length;
+  showLightboxImage();
+}
+function closeLightbox(e){
+  if(e.target.id==="lightbox"||e.target.classList.contains("lightbox-close")){
+    document.getElementById("lightbox").classList.remove("show");
+    resetHeroTimer();
+  }
+}
+document.addEventListener("keydown",e=>{
+  if(!document.getElementById("lightbox").classList.contains("show")) return;
+  if(e.key==="Escape") document.getElementById("lightbox").classList.remove("show");
+  if(e.key==="ArrowLeft") lightboxStep(-1,{stopPropagation(){}});
+  if(e.key==="ArrowRight") lightboxStep(1,{stopPropagation(){}});
+});
+
+/* [EDIT-ANIMATION] Scroll reveal: adds a fade-up when a section comes into view.
+   To turn off, delete this whole block (or change the .6s in the CSS). */
+(function(){
+  if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  const els=document.querySelectorAll(".section-title,.section-text,.label,.stat,.service,.step,.feature,.contact h2,.contact-copy,.contact-item");
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}
+    });
+  },{threshold:.1,rootMargin:"0px 0px -30px 0px"});
+  els.forEach(el=>{
+    const i=Array.prototype.indexOf.call(el.parentElement.children,el);
+    el.style.setProperty("--d",(i%4)*90+"ms");
+    el.classList.add("reveal");
+    io.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
