@@ -429,7 +429,7 @@ a.contact-item:hover{transform:translateX(6px)}
       <!-- [EDIT-INSTAGRAM] INSTAGRAM IN CONTACT: change href="", or delete this whole <a> ... </a> block to remove it -->
       <a class="contact-item insta" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">📸 <b>Instagram</b><small>@skynete_sevai</small></a>
       <!-- [EDIT-ADDRESS] ADDRESS: change the text in the first <small> to your full street address. The href is your Google Maps link (change it if the shop moves). -->
-      <a class="contact-item" href="https://maps.app.goo.gl/d6mTeuBf3uGT8FLS6" target="_blank" rel="noopener">📍 <b>Address</b><small>SKYNET E-Sevai Maiyam, Musiri, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
+      <a class="contact-item" href="https://maps.app.goo.gl/fjqr6VCHNhR8mm8b6" target="_blank" rel="noopener">📍 <b>Address</b><small>SKYNET E-Sevai Maiyam, Thottiyam, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
     </div>
   </div>
 </section>
@@ -868,6 +868,472 @@ document.addEventListener("keydown",e=>{
     el.classList.add("reveal");
     io.observe(el);
   });
+})();
+
+</script>
+
+<script>
+/* SKYNET E-SEVAI - ADMIN PANEL (hero photos + services). Saves in this browser. Password: skynet123 */
+(function () {
+  "use strict";
+  if (typeof heroPhotos === "undefined" || typeof services === "undefined") return;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var K = { hero: "sk_hero", hid: "sk_hero_hidden", svc: "sk_services", pass: "sk_pass", edt: "sk_edits" };
+  var ls = {
+    get: function (k, d) { try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set: function (k, v) { try { localStorage.setItem(k, JSON.stringify(v)); return true; } catch (e) { return false; } }
+  };
+  var clean = function (t) { return String(t || "").replace(/[<>]/g, "").trim(); };
+  var esc = function (t) { return String(t).replace(/[&<>"']/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]; }); };
+
+  var baseHero = heroPhotos.slice();
+  var baseSvc = JSON.parse(JSON.stringify(services));
+  var baseImg = serviceImages.slice();
+  var heroX = ls.get(K.hero, []), hidden = ls.get(K.hid, []), svcX = ls.get(K.svc, []);
+  var DEF = "Contact us for the exact document list for your service";
+  var normEdits = function (d) { return { cats: (d && d.cats) || {}, subs: (d && d.subs) || {} }; };
+  var edits = normEdits(ls.get(K.edt, null));
+  var loggedIn = false;
+
+  /* ---------- apply saved changes to the page ---------- */
+  function applyHero() {
+    var list = baseHero.filter(function (p) { return hidden.indexOf(p.img) < 0; })
+      .concat(heroX.map(function (p) { return { img: p.img, caption: p.caption }; }));
+    heroPhotos.length = 0; Array.prototype.push.apply(heroPhotos, list);
+    var sl = $("heroSlider"), dots = $("heroDots");
+    sl.querySelectorAll(".slide").forEach(function (n) { n.remove(); });
+    dots.innerHTML = "";
+    heroPhotos.forEach(function (p, i) {
+      var s = document.createElement("div");
+      s.className = "slide" + (i === 0 ? " active" : "");
+      s.innerHTML = '<img src="' + esc(p.img) + '" alt="' + esc(p.caption) + '" loading="lazy" onclick="openLightbox(' + i + ')"><div class="slide-caption">' + esc(p.caption) + "</div>";
+      sl.insertBefore(s, dots);
+      var d = document.createElement("button");
+      d.className = "dot" + (i === 0 ? " active" : "");
+      d.setAttribute("aria-label", "Show photo " + (i + 1));
+      d.onclick = function () { goToSlide(i); resetHeroTimer(); };
+      dots.appendChild(d);
+    });
+    heroIndex = 0;
+  }
+
+  function build() {
+    var cats = [];
+    JSON.parse(JSON.stringify(baseSvc)).forEach(function (c, i) {
+      cats.push({ o: c[0], c: c, img: baseImg[i] || "", subs: c[3].map(function (x) { return { k: c[0] + "||" + x[0], s: x }; }) });
+    });
+    svcX.forEach(function (r) {
+      var m = cats.filter(function (x) { return x.o === r.cat; })[0];
+      if (!m) { m = { o: r.cat, c: [r.cat, r.desc || "", r.icon || "🗂️", []], img: r.img || "", subs: [] }; cats.push(m); }
+      m.subs.push({ k: r.cat + "||" + r.name, s: [r.name, r.text || "", r.docs && r.docs.length ? r.docs : [DEF]], rid: r.id });
+    });
+    cats.forEach(function (m) {
+      var e = edits.cats[m.o] || {};
+      m.hidden = !!e.hidden;
+      if (e.name) m.c[0] = e.name; if (e.desc !== undefined) m.c[1] = e.desc; if (e.icon) m.c[2] = e.icon; if (e.img) m.img = e.img;
+      m.subs.forEach(function (x) {
+        var f = edits.subs[x.k] || {};
+        x.hidden = !!f.hidden;
+        if (f.name) x.s[0] = f.name; if (f.text !== undefined) x.s[1] = f.text; if (f.docs) x.s[2] = f.docs.length ? f.docs : [DEF];
+      });
+    });
+    return cats;
+  }
+
+  function applyServices() {
+    services.length = 0; serviceImages.length = 0;
+    build().forEach(function (m) {
+      if (m.hidden) return;
+      services.push([m.c[0], m.c[1], m.c[2], m.subs.filter(function (x) { return !x.hidden; }).map(function (x) { return x.s; })]);
+      serviceImages.push(m.img);
+    });
+    $("serviceGrid").innerHTML = services.map(function (s, i) {
+      return '<article class="service" onclick="openService(' + i + ')" tabindex="0" onkeydown="if(event.key===\'Enter\'||event.key===\' \'){event.preventDefault();openService(' + i + ')}">' +
+        '<div class="service-image"><img src="' + esc(serviceImages[i] || "images/adhaar.png") + '" alt="' + esc(s[0]) + '" loading="lazy" onerror="this.style.display=\'none\'"></div>' +
+        "<h3>" + esc(s[0]) + "</h3><p>" + esc(s[1]) + '</p><span class="enquire">சேவைகளை காண →</span></article>';
+    }).join("");
+    if ($("skTree")) renderTree();
+  }
+  if (heroX.length || hidden.length) applyHero();
+  if (svcX.length || Object.keys(edits.cats).length || Object.keys(edits.subs).length) applyServices();
+
+  /* ---------- photo resize (keeps browser storage small) ---------- */
+  function shrink(file, max, q) {
+    return new Promise(function (res, rej) {
+      var r = new FileReader();
+      r.onload = function () {
+        var im = new Image();
+        im.onload = function () {
+          var s = Math.min(1, max / Math.max(im.width, im.height)), c = document.createElement("canvas");
+          c.width = Math.round(im.width * s); c.height = Math.round(im.height * s);
+          var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(im, 0, 0, c.width, c.height);
+          res(c.toDataURL("image/jpeg", q));
+        };
+        im.onerror = rej; im.src = r.result;
+      };
+      r.onerror = rej; r.readAsDataURL(file);
+    });
+  }
+
+  /* ---------- admin window ---------- */
+  var css = document.createElement("style");
+  css.textContent =
+    ".ska-bg{position:fixed;inset:0;z-index:5000;background:rgba(2,6,23,.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:4vh 14px;overflow:auto}" +
+    ".ska-bg.open{display:flex}.ska-box{background:#fff;width:min(780px,100%);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);color:#0f172a;font-family:inherit}" +
+    ".ska-box.sm{width:min(400px,100%);margin-top:12vh}.ska-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;border-bottom:3px solid #60a5fa}" +
+    ".ska-head h3{font-size:19px}.ska-x{border:0;background:rgba(255,255,255,.14);color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}.ska-body{padding:4px 24px 24px}" +
+    ".ska-tabs{display:flex;gap:4px;background:#f1f5f9;padding:5px;border-radius:14px;margin:18px 0 4px}.ska-tabs button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:10px;font-weight:700;font-size:14px;font-family:inherit;color:#64748b;cursor:pointer}" +
+    ".ska-tabs button.on{background:#fff;color:#155eef;box-shadow:0 2px 10px rgba(15,23,42,.1)}.ska-body label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}" +
+    ".ska-body input[type=text],.ska-body input[type=password],.ska-body select,.ska-body textarea{width:100%;padding:12px 13px;border:1px solid #e2e8f0;border-radius:12px;font-size:15px;font-family:inherit;background:#f8fafc;color:#0f172a}" +
+    ".ska-body input[type=file]{width:100%;padding:10px;border:1.5px dashed #bfdbfe;border-radius:12px;background:#f8fafc;font-family:inherit}.ska-body textarea{min-height:96px;resize:vertical}" +
+    ".ska-body input:focus,.ska-body select:focus,.ska-body textarea:focus{outline:none;border-color:#155eef;box-shadow:0 0 0 4px #dbeafe;background:#fff}" +
+    ".ska-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ska-btn{border:0;border-radius:999px;padding:11px 20px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;background:#155eef;color:#fff;box-shadow:0 10px 20px -10px rgba(21,94,239,.8)}" +
+    ".ska-btn.o{background:#fff;color:#0f172a;border:1px solid #e2e8f0;box-shadow:none}.ska-btn.d{background:#fee2e2;color:#b91c1c;box-shadow:none;padding:8px 14px}" +
+    ".ska-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ska-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:14px;margin-top:10px}" +
+    ".ska-item img{width:64px;height:48px;object-fit:cover;border-radius:8px;background:#f1f5f9;flex:none}.ska-item .t{flex:1;min-width:0;font-weight:700;font-size:14px}.ska-item .t small{display:block;color:#64748b;font-weight:500}" +
+    ".ska-msg{font-size:13px;font-weight:600;margin-top:10px;min-height:18px}.ska-msg.ok{color:#15803d}.ska-msg.err{color:#dc2626}.ska-h4{margin-top:22px;font-size:15px}.ska-note{font-size:12px;color:#64748b;margin-top:8px}" +
+    ".ska-body details{border:1px solid #e2e8f0;border-radius:14px;margin-top:10px;padding:0 12px 10px;background:#fff}.ska-body summary{cursor:pointer;font-weight:800;font-size:14px;padding:12px 0;list-style:none}" +
+    ".ska-body summary::-webkit-details-marker{display:none}.ska-body summary::before{content:'▸ ';color:#155eef}.ska-body details[open]>summary::before{content:'▾ '}.skdim{opacity:.5}" +
+    "#skEd{border:2px solid #bfdbfe;background:#f8fbff;border-radius:16px;padding:4px 16px 16px;margin-top:14px}" +
+    "@media(max-width:650px){.ska-row{grid-template-columns:1fr}.ska-tabs button{font-size:11.5px;padding:10px 3px}}";
+  document.head.appendChild(css);
+
+  var wrap = document.createElement("div");
+  wrap.innerHTML =
+    '<div class="ska-bg" id="skLogin"><div class="ska-box sm"><div class="ska-head"><h3>🔒 Admin Login</h3><button class="ska-x" data-close aria-label="Close">✕</button></div><div class="ska-body">' +
+    '<label for="skPass">Password</label><input type="password" id="skPass" placeholder="Enter admin password"><div class="ska-msg err" id="skLMsg"></div>' +
+    '<div class="ska-acts"><button class="ska-btn" id="skGo" style="width:100%">Login</button></div></div></div></div>' +
+
+    '<div class="ska-bg" id="skPanel"><div class="ska-box"><div class="ska-head"><h3>⚙️ SKYNET Admin</h3><div style="display:flex;gap:8px"><button class="ska-btn o" id="skOut" style="padding:8px 16px">Logout</button><button class="ska-x" data-close aria-label="Close">✕</button></div></div><div class="ska-body">' +
+    '<div class="ska-tabs"><button id="skt-hero" class="on">🖼️ Hero</button><button id="skt-svc">➕ Add Service</button><button id="skt-edit">✏️ Edit Services</button><button id="skt-set">⚙️ Settings</button></div>' +
+
+    '<div id="skp-hero"><label for="skHFile">New slider photo</label><input type="file" id="skHFile" accept="image/*">' +
+    '<label for="skHCap">Caption (shown on the photo)</label><input type="text" id="skHCap" placeholder="e.g. Passport சேவைகள் – விண்ணப்ப உதவி.">' +
+    '<div class="ska-msg" id="skHMsg"></div><div class="ska-acts"><button class="ska-btn" id="skHAdd">➕ Add Photo</button></div><h4 class="ska-h4">Slider photos</h4><div id="skHList"></div></div>' +
+
+    '<div id="skp-svc" style="display:none"><label for="skSCat">Category</label><select id="skSCat"></select>' +
+    '<div id="skNew" style="display:none"><div class="ska-row"><div><label for="skNName">New category name</label><input type="text" id="skNName" placeholder="e.g. Gas Service"></div><div><label for="skNIcon">Emoji icon</label><input type="text" id="skNIcon" placeholder="🔥" maxlength="4"></div></div>' +
+    '<label for="skNDesc">Category description (Tamil / English)</label><input type="text" id="skNDesc"><label for="skNImg">Category picture (optional)</label><input type="file" id="skNImg" accept="image/*"></div>' +
+    '<label for="skSName">Service name</label><input type="text" id="skSName" placeholder="e.g. New Gas Connection"><label for="skSText">Short description</label><input type="text" id="skSText">' +
+    '<label for="skSDocs">Required documents (one per line)</label><textarea id="skSDocs" placeholder="Aadhar Card&#10;Ration Card&#10;Photo"></textarea>' +
+    '<div class="ska-msg" id="skSMsg"></div><div class="ska-acts"><button class="ska-btn" id="skSAdd">➕ Add Service</button></div><h4 class="ska-h4">Services added by admin</h4><div id="skSList"></div></div>' +
+
+    '<div id="skp-edit" style="display:none"><div id="skEd" style="display:none"><h4 class="ska-h4" id="skEHead">Edit</h4>' +
+    '<label for="skEName">Name</label><input type="text" id="skEName"><label for="skEText">Description (shown under the name)</label><input type="text" id="skEText">' +
+    '<div id="skEIconW"><label for="skEIcon">Emoji icon</label><input type="text" id="skEIcon" maxlength="4"></div>' +
+    '<div id="skEImgW"><label for="skEImg">Replace picture (optional)</label><input type="file" id="skEImg" accept="image/*"></div>' +
+    '<div id="skEDocsW"><label for="skEDocs">Required documents (one per line)</label><textarea id="skEDocs"></textarea></div>' +
+    '<div class="ska-msg" id="skEMsg"></div><div class="ska-acts"><button class="ska-btn" id="skESave">💾 Save changes</button><button class="ska-btn o" id="skECancel">Cancel</button><button class="ska-btn d" id="skERes">Restore original</button></div></div>' +
+    '<label for="skQ">Search services</label><input type="text" id="skQ" placeholder="Type to find a service…"><div id="skTree"></div></div>' +
+
+    '<div id="skp-set" style="display:none"><label for="skNP">Change admin password (leave blank to keep)</label><input type="password" id="skNP" placeholder="New password">' +
+    '<div class="ska-acts"><button class="ska-btn" id="skSave">Save password</button></div><div class="ska-msg" id="skStMsg"></div>' +
+    '<h4 class="ska-h4">Publish to GitHub</h4><p class="ska-note">After making Admin changes, enter your GitHub token and click Publish. The changes will be committed to your <b>skynetMusiris</b> repository and then appear on the live website.</p>' +
+    '<label for="skGhToken">GitHub fine-grained token</label><input type="password" id="skGhToken" autocomplete="off" placeholder="Paste token here (not saved)"><div class="ska-acts"><button class="ska-btn" id="skPublish">🚀 Publish changes to GitHub</button></div><div class="ska-msg" id="skPubMsg"></div><p class="ska-note">Security: this token is used only for the current browser session and is not written to localStorage.</p><h4 class="ska-h4">Backup</h4><div class="ska-acts"><button class="ska-btn o" id="skDl">⬇️ Download backup</button><button class="ska-btn o" id="skRs">⬆️ Restore backup</button><button class="ska-btn d" id="skReset">Remove all admin changes</button></div>' +
+    '<input type="file" id="skRFile" accept=".json,application/json" style="display:none"></div>' +
+    "</div></div></div>";
+  document.body.appendChild(wrap);
+
+  var msg = function (id, t, ok) { var m = $(id); m.textContent = t; m.className = "ska-msg " + (ok ? "ok" : "err"); };
+  var closeAll = function () { $("skLogin").classList.remove("open"); $("skPanel").classList.remove("open"); };
+  wrap.addEventListener("click", function (e) { if (e.target.hasAttribute("data-close") || e.target.classList.contains("ska-bg")) closeAll(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeAll(); });
+
+  function tab(t) {
+    ["hero", "svc", "edit", "set"].forEach(function (n) { $("skp-" + n).style.display = n === t ? "" : "none"; $("skt-" + n).classList.toggle("on", n === t); });
+    if (t === "svc") fillCats();
+    if (t === "edit") renderTree();
+  }
+  ["hero", "svc", "edit", "set"].forEach(function (n) { $("skt-" + n).onclick = function () { tab(n); }; });
+
+  /* hero list + add */
+  function heroList() {
+    var h = baseHero.map(function (p) {
+      var off = hidden.indexOf(p.img) >= 0;
+      return '<div class="ska-item"><img src="' + esc(p.img) + '" alt=""><div class="t">' + esc(p.caption) + "<small>" + (off ? "Hidden" : "Built-in") + '</small></div><button class="ska-btn o" style="padding:8px 14px" data-hide="' + esc(p.img) + '">' + (off ? "Show" : "Hide") + "</button></div>";
+    }).join("");
+    var x = heroX.map(function (p) {
+      return '<div class="ska-item"><img src="' + p.img + '" alt=""><div class="t">' + esc(p.caption || "(no caption)") + "<small>Added by admin</small></div><button class=\"ska-btn d\" data-hdel=\"" + p.id + '">Delete</button></div>';
+    }).join("");
+    $("skHList").innerHTML = x + h;
+  }
+  $("skHList").addEventListener("click", function (e) {
+    var hb = e.target.getAttribute("data-hide"), db = e.target.getAttribute("data-hdel");
+    if (hb) {
+      var i = hidden.indexOf(hb);
+      if (i >= 0) hidden.splice(i, 1);
+      else { if (heroPhotos.length <= 1) { msg("skHMsg", "Keep at least one photo in the slider.", false); return; } hidden.push(hb); }
+      ls.set(K.hid, hidden);
+    } else if (db) {
+      if (!confirm("Delete this photo?")) return;
+      heroX = heroX.filter(function (p) { return String(p.id) !== db; }); ls.set(K.hero, heroX);
+    } else return;
+    applyHero(); heroList();
+  });
+  $("skHAdd").onclick = function () {
+    var f = $("skHFile").files[0];
+    if (!f) { msg("skHMsg", "Please choose a photo.", false); return; }
+    shrink(f, 1100, 0.78).then(function (url) {
+      heroX.push({ id: Date.now(), img: url, caption: clean($("skHCap").value) });
+      if (!ls.set(K.hero, heroX)) { heroX.pop(); msg("skHMsg", "Browser storage is full. Delete a photo and try again.", false); return; }
+      applyHero(); heroList(); $("skHFile").value = ""; $("skHCap").value = ""; msg("skHMsg", "Photo added ✔", true);
+    }).catch(function () { msg("skHMsg", "Could not read this image.", false); });
+  };
+
+  /* services list + add */
+  function fillCats() {
+    $("skSCat").innerHTML = build().map(function (m) { return '<option value="' + esc(m.o) + '">' + esc(m.c[0]) + "</option>"; }).join("") + '<option value="__new">➕ New category…</option>';
+    $("skNew").style.display = $("skSCat").value === "__new" ? "" : "none";
+  }
+  $("skSCat").onchange = function () { $("skNew").style.display = this.value === "__new" ? "" : "none"; };
+  function svcList() {
+    $("skSList").innerHTML = svcX.map(function (r) {
+      return '<div class="ska-item"><div class="t">' + esc(r.name) + "<small>" + esc(r.cat) + " • " + (r.docs ? r.docs.length : 0) + ' documents</small></div><button class="ska-btn d" data-sdel="' + r.id + '">Delete</button></div>';
+    }).join("") || '<p class="ska-note">No services added yet.</p>';
+  }
+  $("skSList").addEventListener("click", function (e) {
+    var id = e.target.getAttribute("data-sdel"); if (!id || !confirm("Delete this service?")) return;
+    var r = svcX.filter(function (x) { return String(x.id) === id; })[0];
+    svcX = svcX.filter(function (x) { return String(x.id) !== id; });
+    var nx = svcX.filter(function (x) { return x.cat === r.cat; })[0];
+    if (nx && !nx.icon && !nx.desc && !nx.img) { nx.icon = r.icon; nx.desc = r.desc; nx.img = r.img; }
+    ls.set(K.svc, svcX); applyServices(); svcList(); fillCats();
+  });
+  $("skSAdd").onclick = function () {
+    var cat = $("skSCat").value, name = clean($("skSName").value);
+    if (!name) { msg("skSMsg", "Please enter the service name.", false); return; }
+    var rec = { id: Date.now(), cat: cat, name: name, text: clean($("skSText").value), docs: $("skSDocs").value.split("\n").map(clean).filter(Boolean) };
+    var finish = function () {
+      svcX.push(rec);
+      if (!ls.set(K.svc, svcX)) { svcX.pop(); msg("skSMsg", "Browser storage is full. Use a smaller picture.", false); return; }
+      applyServices(); svcList(); fillCats();
+      ["skSName", "skSText", "skSDocs", "skNName", "skNIcon", "skNDesc"].forEach(function (i) { $(i).value = ""; }); $("skNImg").value = "";
+      msg("skSMsg", "Service added ✔ (see it on the page)", true);
+    };
+    if (cat === "__new") {
+      rec.cat = clean($("skNName").value);
+      if (!rec.cat) { msg("skSMsg", "Please enter the new category name.", false); return; }
+      rec.icon = clean($("skNIcon").value) || "🗂️"; rec.desc = clean($("skNDesc").value);
+      var f = $("skNImg").files[0];
+      if (f) { shrink(f, 300, 0.85).then(function (u) { rec.img = u; finish(); }).catch(function () { msg("skSMsg", "Could not read this image.", false); }); return; }
+    }
+    finish();
+  };
+
+  /* edit existing services */
+  var openCat = "", ed = null, q = "";
+  var smallBtn = 'class="ska-btn o" style="padding:8px 14px"';
+  function renderTree() {
+    var qq = q.toLowerCase(), html = "";
+    build().forEach(function (m) {
+      var cm = m.c[0].toLowerCase().indexOf(qq) >= 0;
+      var subs = m.subs.filter(function (x) { return !qq || cm || x.s[0].toLowerCase().indexOf(qq) >= 0; });
+      if (qq && !cm && !subs.length) return;
+      html += "<details" + ((qq || openCat === m.o) ? " open" : "") + ' data-o="' + esc(m.o) + '"><summary' + (m.hidden ? ' class="skdim"' : "") + ">" + esc(m.c[2]) + " " + esc(m.c[0]) + " (" + m.subs.length + ")" + (m.hidden ? " • hidden" : "") + "</summary>" +
+        '<div class="ska-item"><div class="t">Category details<small>' + esc(m.c[1]) + "</small></div><button " + smallBtn + ' data-ecat="' + esc(m.o) + '">Edit</button><button ' + smallBtn + ' data-hcat="' + esc(m.o) + '">' + (m.hidden ? "Show" : "Hide") + "</button></div>" +
+        subs.map(function (x) {
+          return '<div class="ska-item' + (x.hidden ? " skdim" : "") + '"><div class="t">' + esc(x.s[0]) + "<small>" + x.s[2].length + " documents" + (x.rid ? " • added by admin" : "") + (x.hidden ? " • hidden" : "") + "</small></div><button " + smallBtn + ' data-esub="' + esc(x.k) + '">Edit</button><button ' + smallBtn + ' data-hsub="' + esc(x.k) + '">' + (x.hidden ? "Show" : "Hide") + "</button>" + (x.rid ? '<button class="ska-btn d" data-sdel2="' + x.rid + '">Delete</button>' : "") + "</div>";
+        }).join("") + "</details>";
+    });
+    $("skTree").innerHTML = html || '<p class="ska-note">No services match.</p>';
+  }
+  function closeEd() { ed = null; $("skEd").style.display = "none"; $("skEMsg").textContent = ""; }
+  function openEd(kind, o, key) {
+    var m = build().filter(function (x) { return x.o === o; })[0]; if (!m) return;
+    var isC = kind === "cat", x = isC ? null : m.subs.filter(function (y) { return y.k === key; })[0];
+    if (!isC && !x) return;
+    ed = { kind: kind, o: o, key: key };
+    $("skEHead").textContent = isC ? "Edit category: " + m.c[0] : "Edit service: " + x.s[0];
+    $("skEName").value = isC ? m.c[0] : x.s[0]; $("skEText").value = isC ? m.c[1] : x.s[1];
+    $("skEIcon").value = isC ? m.c[2] : ""; $("skEImg").value = ""; $("skEDocs").value = isC ? "" : x.s[2].join("\n");
+    $("skEIconW").style.display = isC ? "" : "none"; $("skEImgW").style.display = isC ? "" : "none"; $("skEDocsW").style.display = isC ? "none" : "";
+    $("skEMsg").textContent = ""; $("skEd").style.display = ""; $("skEd").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  var commit = function () { ls.set(K.edt, edits); applyServices(); };
+  $("skQ").oninput = function () { q = this.value.trim(); renderTree(); };
+  $("skTree").addEventListener("click", function (e) {
+    var t = e.target, sm = t.closest("summary");
+    if (sm) { var d = sm.parentNode, o = d.getAttribute("data-o"); openCat = d.open ? (openCat === o ? "" : openCat) : o; return; }
+    var ec = t.getAttribute("data-ecat"), es = t.getAttribute("data-esub"), hc = t.getAttribute("data-hcat"), hs = t.getAttribute("data-hsub"), dl = t.getAttribute("data-sdel2");
+    if (ec !== null) openEd("cat", ec, ec);
+    else if (es !== null) openEd("sub", es.split("||")[0], es);
+    else if (hc !== null) { var c = edits.cats[hc] || (edits.cats[hc] = {}); c.hidden = !c.hidden; commit(); }
+    else if (hs !== null) { var x = edits.subs[hs] || (edits.subs[hs] = {}); x.hidden = !x.hidden; commit(); }
+    else if (dl) {
+      if (!confirm("Delete this service?")) return;
+      svcX = svcX.filter(function (r) { return String(r.id) !== dl; }); ls.set(K.svc, svcX); applyServices(); svcList(); fillCats();
+    }
+  });
+  $("skECancel").onclick = closeEd;
+  $("skESave").onclick = function () {
+    if (!ed) return;
+    var name = clean($("skEName").value);
+    if (!name) { msg("skEMsg", "Please enter a name.", false); return; }
+    var text = clean($("skEText").value);
+    var done = function (img) {
+      if (ed.kind === "cat") { var c = edits.cats[ed.o] || (edits.cats[ed.o] = {}); c.name = name; c.desc = text; c.icon = clean($("skEIcon").value) || undefined; if (img) c.img = img; }
+      else { var x = edits.subs[ed.key] || (edits.subs[ed.key] = {}); x.name = name; x.text = text; x.docs = $("skEDocs").value.split("\n").map(clean).filter(Boolean); }
+      if (!ls.set(K.edt, edits)) { msg("skEMsg", "Browser storage is full. Use a smaller picture.", false); return; }
+      applyServices(); closeEd();
+    };
+    var f = ed.kind === "cat" ? $("skEImg").files[0] : null;
+    if (f) shrink(f, 300, 0.85).then(done).catch(function () { msg("skEMsg", "Could not read this image.", false); }); else done();
+  };
+  $("skERes").onclick = function () {
+    if (!ed) return;
+    var bag = ed.kind === "cat" ? edits.cats : edits.subs, k = ed.kind === "cat" ? ed.o : ed.key;
+    if (bag[k] && bag[k].hidden) bag[k] = { hidden: true }; else delete bag[k];
+    commit(); closeEd();
+  };
+
+  /* ---------- publish current admin changes to GitHub ---------- */
+  var GH_OWNER = "skynetcomputer";
+  var GH_REPO = "skynetMusiris";
+  var GH_BRANCH = "main";
+  var GH_PATH = "data/site-data.json";
+
+  function toBase64Unicode(text) {
+    var bytes = new TextEncoder().encode(text), binary = "";
+    for (var i = 0; i < bytes.length; i += 0x8000) {
+      binary += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+    }
+    return btoa(binary);
+  }
+
+  async function githubRequest(url, options) {
+    options = options || {};
+    options.headers = Object.assign({
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2026-03-10"
+    }, options.headers || {});
+    var r = await fetch(url, options);
+    var text = await r.text();
+    var data;
+    try { data = JSON.parse(text); } catch (e) { data = {}; }
+    if (!r.ok) throw new Error((data && data.message) || ("GitHub error " + r.status));
+    return data;
+  }
+
+  $("skPublish").onclick = async function () {
+    var token = $("skGhToken").value.trim();
+    if (!token) { msg("skPubMsg", "Paste your GitHub token first.", false); return; }
+    var btn = $("skPublish");
+    btn.disabled = true;
+    msg("skPubMsg", "Publishing changes to GitHub…", true);
+    try {
+      var payload = {
+        version: 1,
+        hero: heroX,
+        hidden: hidden,
+        services: svcX,
+        edits: edits
+      };
+      var body = JSON.stringify(payload, null, 2);
+      var api = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + GH_PATH;
+      var auth = { "Authorization": "Bearer " + token };
+      var current = null;
+      try {
+        current = await githubRequest(api + "?ref=" + encodeURIComponent(GH_BRANCH), { headers: auth });
+      } catch (e) {
+        if (!/404|Not Found/i.test(e.message)) throw e;
+      }
+      var commitBody = {
+        message: "Update website content from Admin Panel",
+        content: toBase64Unicode(body),
+        branch: GH_BRANCH
+      };
+      if (current && current.sha) commitBody.sha = current.sha;
+      await githubRequest(api, {
+        method: "PUT",
+        headers: Object.assign({}, auth, { "Content-Type": "application/json" }),
+        body: JSON.stringify(commitBody)
+      });
+      msg("skPubMsg", "Published successfully ✔ Refresh the live website after GitHub Pages updates.", true);
+      $("skGhToken").value = "";
+    } catch (e) {
+      msg("skPubMsg", "Publish failed: " + e.message, false);
+    } finally {
+      btn.disabled = false;
+    }
+  };
+
+  /* settings + backup */
+  $("skSave").onclick = function () {
+    var p = $("skNP").value;
+    if (!p) { msg("skStMsg", "Type a new password first.", false); return; }
+    if (p.length < 4) { msg("skStMsg", "Password must be at least 4 characters.", false); return; }
+    ls.set(K.pass, p); $("skNP").value = ""; msg("skStMsg", "Password changed ✔", true);
+  };
+  $("skDl").onclick = function () {
+    var b = new Blob([JSON.stringify({ hero: heroX, hidden: hidden, services: svcX, edits: edits })], { type: "application/json" });
+    var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "skynet-admin-backup.json"; a.click();
+  };
+  $("skRs").onclick = function () { $("skRFile").click(); };
+  $("skRFile").onchange = function () {
+    var f = this.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try {
+        var d = JSON.parse(r.result);
+        heroX = Array.isArray(d.hero) ? d.hero : []; hidden = Array.isArray(d.hidden) ? d.hidden : []; svcX = Array.isArray(d.services) ? d.services : []; edits = normEdits(d.edits); ls.set(K.edt, edits);
+        ls.set(K.hero, heroX); ls.set(K.hid, hidden); ls.set(K.svc, svcX);
+        applyHero(); applyServices(); heroList(); svcList(); msg("skStMsg", "Backup restored ✔", true);
+      } catch (e) { msg("skStMsg", "This is not a valid backup file.", false); }
+    };
+    r.readAsText(f); this.value = "";
+  };
+  $("skReset").onclick = function () {
+    if (!confirm("Remove ALL admin changes (added photos/services, edited words and documents, hidden items)?")) return;
+    heroX = []; hidden = []; svcX = []; edits = normEdits(null); ls.set(K.edt, edits);
+    ls.set(K.hero, heroX); ls.set(K.hid, hidden); ls.set(K.svc, svcX);
+    applyHero(); applyServices(); heroList(); svcList(); msg("skStMsg", "All admin changes removed.", true);
+  };
+
+  /* login */
+  function openAdmin() {
+    if (loggedIn) { $("skPanel").classList.add("open"); tab("hero"); heroList(); svcList(); return; }
+    $("skPass").value = ""; $("skLMsg").textContent = ""; $("skLogin").classList.add("open");
+    setTimeout(function () { $("skPass").focus(); }, 50);
+  }
+  function login() {
+    if ($("skPass").value === ls.get(K.pass, "skynet123")) { loggedIn = true; closeAll(); openAdmin(); }
+    else $("skLMsg").textContent = "Wrong password.";
+  }
+  $("skGo").onclick = login;
+  $("skPass").addEventListener("keydown", function (e) { if (e.key === "Enter") login(); });
+  $("skOut").onclick = function () { loggedIn = false; closeAll(); };
+
+  var host = document.querySelector(".copyright") || document.querySelector("footer");
+  var link = document.createElement("a");
+  link.href = "#"; link.textContent = "🔒 Admin"; link.style.cssText = "margin-left:14px;opacity:.55;font-size:13px";
+  link.onclick = function (e) { e.preventDefault(); openAdmin(); };
+  host.appendChild(link);
+})();
+</script>
+
+<script>
+/* SKYNET E-SEVAI - load published Admin changes from GitHub */
+(function () {
+  "use strict";
+  var url = "https://raw.githubusercontent.com/skynetcomputer/skynetMusiris/main/data/site-data.json?ts=" + Date.now();
+  fetch(url, { cache: "no-store" }).then(function (r) {
+    if (!r.ok) throw new Error("No published data");
+    return r.json();
+  }).then(function (d) {
+    var map = {
+      "sk_hero": Array.isArray(d.hero) ? d.hero : [],
+      "sk_hero_hidden": Array.isArray(d.hidden) ? d.hidden : [],
+      "sk_services": Array.isArray(d.services) ? d.services : [],
+      "sk_edits": { cats: (d.edits && d.edits.cats) || {}, subs: (d.edits && d.edits.subs) || {} }
+    };
+    var changed = false;
+    Object.keys(map).forEach(function (k) {
+      var next = JSON.stringify(map[k]), old = localStorage.getItem(k);
+      if (old !== next) { localStorage.setItem(k, next); changed = true; }
+    });
+    if (changed) location.reload();
+  }).catch(function () { /* First install or no published data yet. Keep built-in site. */ });
 })();
 </script>
 </body>
