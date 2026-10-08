@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="SKYNET Computers - laptops, PC desktops, keyboards, mouse, speakers and Mantra fingerprint devices.">
+<title>SKYNET Computers | Laptops, PC Desktops & Accessories</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+Tamil:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+/* [EDIT-COLORS] brand theme: purple + orange (from the SKYNET logo) */
+:root{--primary:#5b21b6;--primary2:#3b0f8c;--dark:#1b1033;--muted:#5f5a73;--orange:#f97316;--orange2:#fb923c;--cream:#fff8f1;--lav:#f5f0ff;--green:#16a34a;--border:#e9e1f7;--red:#b91c1c}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Poppins,"Noto Sans Tamil",system-ui,sans-serif;background:#fff;color:var(--dark);line-height:1.65}
+a{text-decoration:none;color:inherit}
+.container{width:min(1140px,92%);margin:auto}
+section{padding:80px 0}.center{text-align:center}
+
+/* header: clean white */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 2px 18px rgba(91,33,182,.1)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo-image{display:flex;align-items:center;width:185px;height:56px;overflow:hidden}
+.logo-image img{width:100%;height:100%;object-fit:contain;object-position:left center}
+.navlinks{display:flex;gap:26px;font-weight:600;color:var(--dark)}.navlinks a{position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:3px;border-radius:3px;background:var(--orange);transition:width .25s}.navlinks a:hover::after{width:100%}
+.whatsapp{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px}
+.menu{display:none;border:0;background:none;font-size:28px;color:var(--primary);cursor:pointer}
+.mobile-nav{display:none;padding:8px 4% 14px;background:#fff;border-top:1px solid var(--border)}.mobile-nav.show{display:block}.mobile-nav a{display:block;padding:11px 0;font-weight:600}.mobile-nav .whatsapp{display:inline-flex;margin-top:6px;color:#fff}
+
+/* hero: light, with a big offset-block slider */
+.hero{padding-top:74px;background:radial-gradient(circle at 92% 12%,rgba(249,115,22,.18),transparent 38%),radial-gradient(circle at 4% 90%,rgba(91,33,182,.14),transparent 40%),var(--cream);overflow:hidden}
+.hero-inner{min-height:650px;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:30px 0 50px}
+.eyebrow{display:inline-block;background:var(--lav);color:var(--primary);padding:5px 14px;border-radius:999px;font-weight:600;font-size:14px}
+.hero h1{font-size:clamp(36px,5.2vw,58px);line-height:1.08;margin:14px 0 10px;font-weight:800;background:linear-gradient(90deg,var(--primary2),var(--primary) 55%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h2{font-size:clamp(17px,2.2vw,23px);font-weight:600;color:var(--dark);margin-bottom:6px}
+.hero p{color:var(--muted);max-width:520px;margin-top:8px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:13px 24px;border-radius:14px;font-weight:700;border:2px solid transparent;transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-2px)}
+.btn-white{background:var(--orange);color:#fff;box-shadow:0 10px 22px -8px rgba(249,115,22,.7)}.btn-green{border-color:var(--primary);color:var(--primary);background:#fff}
+.visual{display:flex;justify-content:center}.hero-visual-col{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.insta-top{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888);color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:14px}
+.insta-top svg{width:19px;height:19px;fill:#fff}
+.hero-slider{position:relative;width:100%;max-width:600px;aspect-ratio:4/3;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,var(--primary),var(--primary2));box-shadow:14px 14px 0 var(--orange),0 30px 50px -20px rgba(59,15,140,.45);margin-right:14px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.slide-caption{position:absolute;left:0;right:0;bottom:0;padding:18px 20px 36px;background:linear-gradient(0deg,rgba(27,16,51,.85),transparent);color:#fff;font-weight:600;font-size:15px}
+.dots{position:absolute;bottom:13px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);border:0;padding:0;cursor:pointer;transition:width .25s}.dot.active{background:var(--orange2);width:24px;border-radius:6px}
+.lightbox{position:fixed;inset:0;background:rgba(27,16,51,.94);display:none;align-items:center;justify-content:center;z-index:3000;padding:24px}
+.lightbox.show{display:flex}.lightbox img{max-width:100%;max-height:88vh;border-radius:14px}
+.lightbox-close,.lightbox-nav{position:absolute;border:0;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-close{top:16px;right:18px;width:42px;height:42px;font-size:22px}
+.lightbox-nav{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:26px}.lightbox-prev{left:14px}.lightbox-next{right:14px}
+.lightbox-caption{position:absolute;left:0;right:0;bottom:16px;text-align:center;color:#fff;font-weight:600;padding:0 60px}
+
+/* section titles: small orange bar instead of ornaments */
+.label{display:inline-block;background:#ffedd5;color:#c2410c;padding:4px 14px;border-radius:999px;font-weight:700;font-size:13px}
+.section-title{font-size:clamp(28px,4vw,40px);color:var(--primary2);margin-top:12px;line-height:1.2;font-weight:800}
+.ornament{width:56px;height:5px;border-radius:5px;background:var(--orange);margin:14px auto 0;font-size:0;overflow:hidden}
+.section-text{color:var(--muted);max-width:640px;margin:14px auto 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.stat{background:var(--lav);border-radius:20px;padding:24px}.stat strong{font-size:32px;color:var(--primary);font-weight:800}.stat span{display:block;color:var(--muted)}
+
+/* services: white cards, purple top bar, orange pill link */
+.services{background:var(--lav)}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.service{position:relative;background:#fff;border-radius:20px;padding:22px 18px 20px;text-align:center;cursor:pointer;overflow:hidden;box-shadow:0 6px 18px -8px rgba(91,33,182,.25);transition:transform .25s,box-shadow .25s}
+.service::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--primary),var(--orange))}
+.service:hover{transform:translateY(-6px);box-shadow:0 22px 34px -14px rgba(91,33,182,.4)}
+.service-image{width:100%;height:100px;border-radius:12px;margin:6px 0 10px;background:var(--lav);overflow:hidden}.service-image img{width:100%;height:100%;object-fit:contain}
+.service h3{font-size:18px;color:var(--primary2);font-weight:700}.service p{color:var(--muted);font-size:13.5px;margin-top:6px}
+.enquire{display:inline-block;margin-top:12px;background:#ffedd5;color:#c2410c;padding:6px 14px;border-radius:999px;font-weight:700;font-size:13.5px;transition:background .2s,color .2s}.service:hover .enquire{background:var(--orange);color:#fff}
+
+/* how it works: connected steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;position:relative}
+.steps::before{content:"";position:absolute;top:30px;left:12%;right:12%;border-top:3px dashed #fdba74}
+.step{position:relative}.step-num{width:62px;height:62px;border-radius:50%;margin:auto;display:grid;place-items:center;font-weight:800;font-size:20px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--orange));box-shadow:0 0 0 6px #fff}
+.step h3{margin-top:14px;color:var(--primary2)}.step p{color:var(--muted);font-size:14.5px;margin-top:6px}
+.why{background:var(--cream)}.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.feature{background:#fff;border-radius:20px;padding:28px 18px;box-shadow:0 6px 18px -10px rgba(91,33,182,.3)}.feature-icon{font-size:40px;width:74px;height:74px;margin:0 auto;display:grid;place-items:center;border-radius:20px;background:var(--lav)}
+.feature h3{margin-top:14px;color:var(--primary2)}.feature p{color:var(--muted);font-size:14.5px;margin-top:6px}
+
+/* agency strip */
+.agency-strip{background:#4b2edb;padding:38px 0;overflow:hidden;border-top:4px solid var(--orange)}
+.agency-strip-inner{width:min(1150px,94%);margin:auto;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
+.agency-strip-title{font-size:22px;font-weight:800;color:#fff;line-height:1.3;border-left:5px solid var(--orange);padding-left:12px}
+.agency-marquee{overflow:hidden}.agency-track{display:flex;width:max-content;animation:agencyScroll 28s linear infinite}.agency-marquee:hover .agency-track{animation-play-state:paused}
+.agency-logo{width:155px;height:82px;margin-right:52px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.agency-logo img{max-width:145px;max-height:62px;width:auto;height:auto;object-fit:contain;display:block}
+
+/* contact + footer */
+.contact{background:linear-gradient(135deg,var(--primary2),var(--primary) 60%,#7c3aed);color:#fff}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact .label{background:rgba(255,255,255,.18);color:#fff}.contact h2{font-size:clamp(28px,4vw,38px);margin-top:12px;font-weight:800}.contact-copy{color:#e9ddff;margin-top:10px}
+.contact-item{display:block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:16px 18px;border-radius:16px;margin-bottom:12px;transition:transform .2s}
+a.contact-item:hover{transform:translateX(6px)}.contact-item small{display:block;color:#e9ddff}
+.contact-item.green{background:var(--green);border:0}.contact-item.insta{background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888);border:0}
+footer{background:var(--dark);color:#a79fc0;text-align:center;padding:28px 15px}
+.footer-title{font-weight:800;color:#fff;font-size:19px}.copyright{border-top:1px solid #2c2150;margin-top:16px;padding-top:16px;font-size:13px}
+.floating-wrap{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:999}.floating-btn{width:62px;height:62px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--green);color:#fff;font-size:22px;line-height:1.1;box-shadow:0 10px 28px rgba(0,0,0,.28)}.floating-btn small{font-size:9.5px;font-weight:700}
+
+/* service detail page */
+#servicePage{display:none;min-height:100vh;padding:120px 0 70px;background:var(--lav)}#servicePage.show{display:block}
+.service-page-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}
+.back-btn{border:0;background:#fff;color:var(--primary);padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px -6px rgba(91,33,182,.4)}
+.service-page-title{display:flex;align-items:center;gap:14px}.service-page-icon{font-size:44px;width:76px;height:76px;display:grid;place-items:center;background:#fff;border-radius:22px}
+.service-page-title h1{font-size:clamp(28px,5vw,42px);color:var(--primary2);line-height:1.1;font-weight:800}.service-page-title p{color:var(--muted)}
+.category-note{background:#fff7ed;border-left:5px solid var(--orange);border-radius:14px;padding:16px;margin:24px 0;color:#7c2d12}
+.detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.detail-card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 8px 22px -12px rgba(91,33,182,.35);animation:fadeUp .45s ease-out backwards}
+.detail-card h3{font-size:19px;color:var(--primary2);margin-bottom:6px}.detail-card p{color:var(--muted)}
+.doc-title{margin-top:14px;font-weight:700;font-size:14px;color:var(--primary)}
+.doc-list{margin-top:8px;background:var(--lav);border-radius:12px;padding:12px 12px 12px 30px;color:#3b3550}.doc-list li{margin:5px 0;font-size:14.5px}
+.detail-wa{display:inline-flex;margin-top:18px;margin-right:8px;background:var(--green);color:#fff;padding:12px 20px;border-radius:999px;font-weight:700}
+
+/* link to computer shop page */
+.shopband{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:56px 0}
+.shopband .container{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.shopband h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;line-height:1.2}
+.shopband p{color:#e9ddff;margin-top:10px;max-width:520px}
+.shopband .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.shopband .tags span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:999px;font-weight:600;font-size:14px}
+.shopband .go{justify-self:end;display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:16px 30px;border-radius:14px;font-weight:800;font-size:18px;box-shadow:0 14px 26px -10px rgba(249,115,22,.8)}
+.shopband .go:hover{background:#ea580c}
+@media(max-width:700px){.shopband .container{grid-template-columns:1fr}.shopband .go{justify-self:start}}
+
+@keyframes agencyScroll{to{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:950px){.service-grid{grid-template-columns:repeat(3,1fr)}.feature-grid,.steps{grid-template-columns:repeat(2,1fr)}.steps::before{display:none}.hero-inner,.contact-grid{grid-template-columns:1fr}.agency-strip-inner{grid-template-columns:1fr}}
+@media(max-width:700px){.navlinks,.nav>.whatsapp{display:none}.menu{display:block}.service-grid{grid-template-columns:1fr 1fr}.stats,.detail-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.logo-image{width:150px}.service-page-head{flex-direction:column;align-items:flex-start}.hero-slider{box-shadow:9px 9px 0 var(--orange)}}
+@media(max-width:470px){.service-grid,.feature-grid{grid-template-columns:1fr}.buttons .btn{width:100%;text-align:center}}
+
+/* ===== shop page additions (same tokens as E-Sevai) ===== */
+.actions{display:flex;align-items:center;gap:10px}
+.ibtn{border:1.5px solid var(--border);background:#fff;border-radius:999px;height:40px;padding:0 14px;display:inline-flex;align-items:center;gap:6px;font:600 14px Poppins,"Noto Sans Tamil",sans-serif;color:var(--primary);cursor:pointer}
+.ibtn:hover{border-color:var(--primary)}
+.count{background:var(--orange);color:#fff;border-radius:999px;font-size:12px;min-width:20px;height:20px;display:inline-grid;place-items:center;padding:0 5px}
+.pricecard{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;color:#fff;padding:24px;aspect-ratio:4/3}
+.pricecard span{color:#e9ddff;font-weight:600}.pricecard strong{font-size:clamp(46px,8vw,76px);font-weight:800;line-height:1.1;margin:6px 0 14px}
+.pricecard em{font-style:normal;background:var(--orange);padding:6px 18px;border-radius:999px;font-weight:700}
+#priceInner{display:flex;flex-direction:column;align-items:center}.shop{background:var(--lav)}
+.toolbar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-top:34px}
+.toolbar input[type=search],.toolbar select{font:inherit;padding:11px 18px;border:1.5px solid var(--border);border-radius:999px;background:#fff;color:var(--dark)}
+.toolbar input[type=search]{flex:1;min-width:220px;max-width:420px}
+.tools{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.check{display:flex;gap:8px;align-items:center;font-weight:600;font-size:14px;color:var(--muted)}
+.cats{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0 26px}
+.cat{border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:8px 18px;font:600 14px Poppins,"Noto Sans Tamil",sans-serif;color:var(--muted);cursor:pointer}
+.cat[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#fff}
+.sfilters{display:flex;gap:8px;flex-wrap:wrap;margin:-8px 0 22px}.sfilters:empty{display:none}.sfilters select{font:inherit;font-size:14px;padding:8px 14px;border:1.5px solid var(--border);border-radius:999px;background:#fff;color:var(--dark)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.card{position:relative;background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 6px 18px -8px rgba(91,33,182,.25);transition:transform .25s,box-shadow .25s}
+.card::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--primary),var(--orange))}
+.card:hover{transform:translateY(-6px);box-shadow:0 22px 34px -14px rgba(91,33,182,.4)}
+.pic{height:150px;margin:18px 16px 0;border-radius:12px;background:var(--lav);display:grid;place-items:center;color:var(--primary)}.pic{overflow:hidden}.pic svg{width:84px;height:84px}.pic img{width:100%;height:100%;object-fit:contain;display:block}
+.off{position:absolute;left:26px;top:28px;background:var(--orange);color:#fff;font-weight:700;font-size:12px;border-radius:999px;padding:3px 10px}
+.heart{position:absolute;right:26px;top:26px;width:34px;height:34px;border-radius:50%;border:0;background:#fff;color:var(--muted);display:grid;place-items:center;box-shadow:0 2px 8px rgba(91,33,182,.25);cursor:pointer}
+.heart[aria-pressed="true"]{color:var(--red)}.heart[aria-pressed="true"] svg{fill:currentColor}
+.info{padding:14px 18px 18px;display:flex;flex-direction:column;gap:10px;flex:1}.info h3{font-size:16px;color:var(--primary2);font-weight:700;line-height:1.35}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips span{background:var(--lav);border-radius:999px;padding:2px 10px;font-size:12.5px;color:var(--muted)}
+.war{font-size:13px;color:var(--green);font-weight:600}.price{margin-top:auto;display:flex;align-items:baseline;gap:10px}.price b{font-size:22px;color:var(--primary);font-weight:800}.price s{color:var(--muted);font-size:14px}
+.add{border:0;border-radius:14px;padding:11px;font:700 15px Poppins,"Noto Sans Tamil",sans-serif;background:var(--orange);color:#fff;cursor:pointer;box-shadow:0 10px 22px -10px rgba(249,115,22,.7)}.add:hover{background:#ea580c}
+.add:disabled{background:#e5e0f0;color:#8b84a0;box-shadow:none;cursor:not-allowed}.empty{grid-column:1/-1;text-align:center;color:var(--muted);padding:40px 0}
+.veil{position:fixed;inset:0;background:rgba(27,16,51,.55);opacity:0;pointer-events:none;transition:opacity .2s;z-index:1500}.veil.on{opacity:1;pointer-events:auto}
+aside{position:fixed;top:0;right:0;height:100%;width:min(420px,100%);background:#fff;z-index:2000;transform:translateX(100%);transition:transform .25s;display:flex;flex-direction:column}aside.on{transform:none}
+.dhead{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;border-bottom:3px solid var(--orange2)}.dhead h2{font-size:20px}
+.lines{flex:1;overflow:auto;padding:8px 20px}.line{display:grid;grid-template-columns:1fr auto;gap:6px 12px;padding:14px 0;border-bottom:1px solid var(--border)}.line b{font-weight:600;font-size:14.5px}
+.qty{display:flex;align-items:center;gap:8px}.qty button{width:28px;height:28px;border-radius:8px;border:1.5px solid var(--border);background:#fff;font-weight:700;cursor:pointer}
+.rm{background:none;border:0;color:var(--red);font-size:13px;padding:0;text-decoration:underline;cursor:pointer;justify-self:end}
+.foot{padding:16px 20px;border-top:1px solid var(--border);display:grid;gap:12px}.total{display:flex;justify-content:space-between;font-weight:800;font-size:18px;color:var(--primary2)}.foot small{color:var(--muted)}
+.foot .btn{background:var(--green);color:#fff;text-align:center}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:10px 18px;border-radius:12px;opacity:0;transition:.2s;z-index:3500;pointer-events:none}.toast.on{opacity:1;transform:translateX(-50%)}
+@media(max-width:700px){.actions .whatsapp{display:none}.ibtn .lbl{display:none}.actions{gap:6px}}
+
+/* ===== LITE PREMIUM THEME (same colours, refined finish) ===== */
+::selection{background:#ddd6fe}
+body{background:#fcfbff;font-weight:400;letter-spacing:.005em;-webkit-font-smoothing:antialiased}
+section{padding:96px 0}
+header{background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);box-shadow:none;border-bottom:1px solid rgba(91,33,182,.1)}
+.navlinks{gap:30px;font-weight:500;font-size:14.5px}.navlinks a::after{height:2px;bottom:-4px}
+.whatsapp{background:linear-gradient(135deg,#22c55e,#16a34a);font-weight:600;box-shadow:0 8px 18px -10px rgba(22,163,74,.8)}
+.ibtn{border-color:rgba(91,33,182,.16);font-weight:500;background:rgba(255,255,255,.7)}.ibtn:hover{background:#fff;border-color:var(--primary)}
+.btn{border-radius:12px;font-weight:600;letter-spacing:.01em;padding:13px 26px}
+.btn-white{background:linear-gradient(135deg,#fb923c,#f97316);box-shadow:0 14px 26px -14px rgba(249,115,22,.9)}
+.btn-green{border-width:1.5px;background:rgba(255,255,255,.7)}
+.hero{background:radial-gradient(900px 420px at 95% 0%,rgba(249,115,22,.12),transparent 60%),radial-gradient(800px 480px at 0% 100%,rgba(91,33,182,.1),transparent 60%),#fffaf5}
+.eyebrow{background:transparent;border:1px solid rgba(91,33,182,.22);text-transform:uppercase;letter-spacing:.16em;font-size:11.5px;font-weight:600;padding:6px 16px}
+.hero h1{font-weight:700;letter-spacing:-.025em}.hero h2{font-weight:500;color:#3b3550}.hero p{font-size:15.5px;line-height:1.8}
+.insta-top{font-weight:600;font-size:13px;padding:8px 16px;box-shadow:0 10px 20px -12px rgba(220,39,67,.7)}
+.hero-slider{margin-right:0;border-radius:26px;box-shadow:0 50px 80px -40px rgba(59,15,140,.55),0 0 0 1px rgba(91,33,182,.08);background:radial-gradient(circle at 20% 15%,rgba(255,255,255,.14),transparent 45%),linear-gradient(150deg,#5b21b6,#2e1065)}
+.pricecard span{letter-spacing:.14em;text-transform:uppercase;font-size:12.5px}.pricecard strong{font-weight:700;letter-spacing:-.03em}.pricecard em{background:linear-gradient(135deg,#fb923c,#f97316);font-weight:600;font-size:13.5px;box-shadow:0 12px 22px -12px rgba(249,115,22,.9)}
+.slide-caption{font-weight:500;padding-bottom:40px}
+.label{background:transparent;border:1px solid rgba(249,115,22,.4);color:#c2410c;text-transform:uppercase;letter-spacing:.16em;font-size:11px;font-weight:600;padding:5px 16px}
+.contact .label{background:transparent;border-color:rgba(255,255,255,.35)}
+.section-title{font-weight:700;letter-spacing:-.02em;font-size:clamp(26px,3.6vw,36px)}
+.ornament{width:36px;height:3px}.section-text{font-size:15px;line-height:1.8}
+.shop{background:linear-gradient(180deg,#faf7ff,#f5f0ff)}
+.toolbar input[type=search],.toolbar select{border-color:rgba(91,33,182,.14);box-shadow:0 1px 2px rgba(91,33,182,.05);font-size:14.5px}
+.toolbar input[type=search]:focus,.toolbar select:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px rgba(91,33,182,.1)}
+.cat{border-color:rgba(91,33,182,.14);font-weight:500;padding:8px 20px}.cat[aria-pressed="true"]{background:linear-gradient(135deg,#6d28d9,#4c1d95);box-shadow:0 10px 18px -10px rgba(76,29,149,.8)}
+.card{border:1px solid rgba(91,33,182,.08);border-radius:18px;box-shadow:0 1px 2px rgba(91,33,182,.05),0 14px 30px -22px rgba(59,15,140,.35)}
+.card::before{display:none}
+.card:hover{transform:translateY(-5px);border-color:rgba(91,33,182,.2);box-shadow:0 24px 44px -24px rgba(59,15,140,.45)}
+.pic{margin:12px 12px 0;height:164px;border-radius:14px;background:radial-gradient(circle at 50% 40%,#fff,#f1eafe)}
+.off{left:22px;top:22px;background:#fff;color:#c2410c;border:1px solid rgba(249,115,22,.35);font-weight:600;font-size:11.5px;padding:2px 10px}
+.heart{right:22px;top:22px;box-shadow:0 4px 12px -4px rgba(59,15,140,.3)}
+.info{padding:16px 18px 18px;gap:11px}.info h3{color:var(--dark);font-weight:600;font-size:15px}
+.chips span{background:#faf7ff;border:1px solid rgba(91,33,182,.1);font-size:12px;padding:2px 10px}
+.war{font-size:12.5px;font-weight:500}
+.price b{font-weight:700;font-size:21px;letter-spacing:-.02em}.price s{font-size:13px}
+.add{border-radius:12px;font-weight:600;font-size:14.5px;background:linear-gradient(135deg,#fb923c,#f97316);box-shadow:0 12px 22px -14px rgba(249,115,22,.95)}
+.add:disabled{background:#eee9f8}
+.sfilters select{border-color:rgba(91,33,182,.14);font-size:13.5px}
+.feature{border:1px solid rgba(91,33,182,.08);border-radius:18px;box-shadow:0 14px 30px -24px rgba(59,15,140,.35);padding:30px 20px}
+.feature-icon{background:linear-gradient(145deg,#f5f0ff,#fff3e8);border:1px solid rgba(91,33,182,.08)}.feature h3{font-weight:600;font-size:17px}
+.why{background:#fffaf5}
+.stat{background:#fff;border:1px solid rgba(91,33,182,.08);border-radius:18px;box-shadow:0 14px 30px -26px rgba(59,15,140,.35)}.stat strong{font-weight:700}
+.shopband{background:radial-gradient(600px 260px at 90% 0%,rgba(249,115,22,.22),transparent 60%),linear-gradient(135deg,#2e1065,#4c1d95 65%,#5b21b6);padding:64px 0}
+.shopband h2{font-weight:700;letter-spacing:-.02em}.shopband .go{border-radius:12px;font-weight:600;font-size:16px;background:linear-gradient(135deg,#fb923c,#f97316)}
+.contact{background:radial-gradient(700px 320px at 100% 0%,rgba(249,115,22,.16),transparent 60%),linear-gradient(135deg,#2e1065,#4c1d95 60%,#6d28d9)}
+.contact h2{font-weight:700;letter-spacing:-.02em}
+.contact-item{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(6px);border-radius:14px;font-size:14.5px}
+.contact-item.green{background:linear-gradient(135deg,#22c55e,#16a34a)}
+footer{background:#140b26;color:#a79fc0}.footer-title{font-weight:700;letter-spacing:.04em}
+.floating-btn{background:linear-gradient(135deg,#22c55e,#16a34a);box-shadow:0 14px 28px -10px rgba(22,163,74,.7)}
+.dhead{background:linear-gradient(135deg,#2e1065,#5b21b6)}.line b{font-weight:500}
+@media(max-width:700px){section{padding:72px 0}.hero-slider{box-shadow:0 36px 60px -34px rgba(59,15,140,.55),0 0 0 1px rgba(91,33,182,.08)}}
+
+/* ===== FEATURED CAROUSEL ===== */
+.fp{background:radial-gradient(700px 300px at 50% 0%,rgba(249,115,22,.16),transparent 60%),#140b26;color:#fff}
+.fp .label{border-color:rgba(255,255,255,.3);color:#fdba74}
+.fp .section-title{color:#fff}.fp .section-text{color:#c9bfe3}
+.fp-wrap{position:relative;margin-top:36px}
+.fp-track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:4px 2px 8px;-webkit-overflow-scrolling:touch}
+.fp-track::-webkit-scrollbar{display:none}
+.fp-card{flex:0 0 min(300px,80%);scroll-snap-align:start;display:flex;flex-direction:column;gap:6px;text-align:left;background:linear-gradient(180deg,#1d1236,#160d2b);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:18px 18px 20px}
+.fp-card h3{font-size:17px;font-weight:600;line-height:1.3;color:#fff}
+.fp-cat{color:var(--orange);font-size:15px;font-weight:500}
+.fp-pic{height:200px;margin:8px 0;width:100%;display:grid;place-items:center;border-radius:12px;background:radial-gradient(circle at 50% 40%,#2a1a4d,#1b1033);overflow:hidden;color:#a78bfa}
+.fp-pic img{width:100%;height:100%;object-fit:contain}.fp-pic svg{width:96px;height:96px}
+.fp-card small{color:#a79fc0;font-size:14px}.fp-featured-extra{color:#e5def4;font-size:13px;line-height:1.45;margin-top:2px}.fp-featured-specs{display:flex;flex-wrap:wrap;gap:5px;margin:2px 0 4px}.fp-featured-specs span{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.08);border-radius:999px;padding:3px 8px;color:#c9bfe3;font-size:11.5px}.fp-card b{font-size:21px;font-weight:700;color:#fff}
+.fp-arrow{position:absolute;top:calc(50% - 40px);width:52px;height:52px;border:0;border-radius:50%;background:var(--orange);display:grid;place-items:center;cursor:pointer;z-index:2;box-shadow:0 10px 24px -8px rgba(249,115,22,.8)}
+.fp-arrow:disabled{opacity:.3;cursor:default}
+.fp-prev{left:-14px}.fp-next{right:-14px}
+.fp-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
+.fp-dots button{width:10px;height:6px;border-radius:6px;border:0;background:rgba(255,255,255,.25);cursor:pointer;padding:0}
+.fp-dots button.on{width:62px;background:var(--orange)}
+.fp-more{display:inline-flex;align-items:center;gap:16px;margin-top:28px;background:linear-gradient(135deg,#fb923c,#f97316);color:#fff;font-weight:700;font-size:20px;padding:8px 8px 8px 30px;border-radius:999px;box-shadow:0 0 34px rgba(249,115,22,.45)}
+.fp-more i{width:48px;height:48px;border-radius:50%;background:#fff;color:#1b1033;display:grid;place-items:center;font-style:normal;font-size:22px}
+@media(max-width:700px){.fp-arrow{display:none}.fp-more{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo-image" href="#home" aria-label="SKYNET Computers"><img src="images/logo.jpeg" alt="SKYNET logo"></a>
+    <nav class="navlinks"><a href="#home">Home</a><a href="#shop">Products</a><a href="skynet-esevai.html" data-esevai>E-Sevai Services</a><a href="#about">About</a><a href="#contact">Contact</a></nav>
+    <div class="actions">
+      <button class="ibtn" id="wishBtn" aria-label="Show saved items" aria-pressed="false">♡ <span class="lbl">Saved</span><span class="count" id="wishCount">0</span></button>
+      <button class="ibtn" id="cartBtn" aria-label="Open cart">🛒 <span class="lbl">Cart</span><span class="count" id="cartCount">0</span></button>
+      <a class="whatsapp" href="https://wa.me/918608670897?text=Hi%20SKYNET%20Computers%2C%20I%20want%20to%20enquire" target="_blank" rel="noopener">💬 WhatsApp</a>
+      <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+    </div>
+  </div>
+  <nav id="mobileNav" class="mobile-nav">
+    <a href="#home" onclick="closeMenu()">Home</a><a href="#shop" onclick="closeMenu()">Products</a><a href="skynet-esevai.html" data-esevai>E-Sevai Services</a><a href="#about" onclick="closeMenu()">About</a><a href="#contact" onclick="closeMenu()">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section id="home" class="hero">
+  <div class="container hero-inner">
+    <div>
+      <div class="eyebrow">Welcome to</div>
+      <h1>SKYNET COMPUTERS</h1>
+      <h2>Laptops · PC / Desktops · Keyboard · Mouse · Speakers</h2>
+      <h2>சோதித்த கணினிகள் – நியாயமான விலையில்</h2>
+      <p>Tested laptops and desktops, keyboards, mice, speakers and Mantra fingerprint devices for homes, students and small businesses. We also set up, service and repair what we sell.</p>
+      <div class="buttons"><a class="btn btn-white" href="#shop">Shop now</a><a class="btn btn-green" href="https://wa.me/918608670897?text=Hi%20SKYNET%20Computers%2C%20I%20want%20to%20enquire" target="_blank" rel="noopener">WhatsApp us</a></div>
+    </div>
+    <div class="visual"><div class="hero-visual-col">
+      <a class="insta-top" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 17.3 6z"/></svg>Follow us on Instagram @skynete_sevai</a>
+      <div class="hero-slider pricecard" id="heroSlider"><div id="priceInner"><span>Refurbished laptops from</span><strong id="fromPrice">₹0</strong><em>Warranty included</em></div></div>
+    </div></div>
+  </div>
+</section>
+
+<section id="featured" class="fp"><div class="container center">
+  <div class="label">Featured</div><h2 class="section-title">Popular Computers &amp; Laptops</h2><div class="ornament">✦</div>
+  <p class="section-text">Tested systems ready to take home. Tap a card to enquire on WhatsApp.</p>
+  <div class="fp-wrap">
+    <button class="fp-arrow fp-prev" id="fpPrev" aria-label="Previous"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M16 4v16L5 12z"/></svg></button>
+    <div class="fp-track" id="fpTrack"></div>
+    <button class="fp-arrow fp-next" id="fpNext" aria-label="Next"><svg width="22" height="22" viewBox="0 0 24 24" fill="#fff"><path d="M8 4v16l11-8z"/></svg></button>
+  </div>
+  <div class="fp-dots" id="fpDots"></div>
+  <a class="fp-more" href="#shop">View More <i>→</i></a>
+</div></section>
+
+<section id="shop" class="shop"><div class="container">
+  <div class="center"><div class="label">Our Products</div><h2 class="section-title">Shop Laptops, PCs &amp; Computer Accessories</h2><div class="ornament">✦</div><p class="section-text">Prices and stock can change. Confirm on WhatsApp before you visit.</p></div>
+  <div class="toolbar">
+    <input id="q" type="search" placeholder="Search laptops, PC, keyboard, mouse..." aria-label="Search products">
+    <div class="tools"><label class="check"><input type="checkbox" id="stock"> In stock only</label>
+      <select id="sort" aria-label="Sort products"><option value="def">Sort: Featured</option><option value="low">Price: low to high</option><option value="high">Price: high to low</option><option value="off">Biggest discount</option></select></div>
+  </div>
+  <div class="cats" id="cats" role="group" aria-label="Product categories"></div>
+  <div class="sfilters" id="specFilters"></div>
+  <div class="grid" id="grid" aria-live="polite"></div>
+</div></section>
+
+<section id="why" class="why"><div class="container center">
+  <div class="label">Why SKYNET</div><h2 class="section-title">Why Buy From SKYNET Computers?</h2><div class="ornament">✦</div>
+  <div class="feature-grid" style="grid-template-columns:repeat(3,1fr)">
+    <div class="feature"><div class="feature-icon">✅</div><h3>Checked &amp; Graded</h3><p>Every machine is tested for battery, display, keyboard and storage.</p></div>
+    <div class="feature"><div class="feature-icon">🛡️</div><h3>Warranty</h3><p>The warranty period is shown on every product card.</p></div>
+    <div class="feature"><div class="feature-icon">🎧</div><h3>Help After You Buy</h3><p>Call or message us for setup, service and repairs.</p></div>
+  </div>
+</div></section>
+
+<section class="shopband"><div class="container">
+  <div><h2>Also visit SKYNET E-Sevai Maiyam</h2><p>Government and digital services – certificates, Aadhaar, PAN, passport, printing and more, all in one place.</p></div>
+  <a class="go" href="skynet-esevai.html" data-esevai>Visit E-Sevai Maiyam</a>
+</div></section>
+
+<section id="about"><div class="container center">
+  <div class="label">About Us</div><h2 class="section-title">Your Local Computer Shop</h2><div class="ornament">✦</div>
+  <p class="section-text">We sell tested laptops and desktops, keyboards, mouse, speakers and Mantra fingerprint scanners with local service and support.</p>
+  <div class="stats"><div class="stat"><strong>6</strong><span>Product Categories</span></div><div class="stat"><strong>Tested</strong><span>Before Delivery</span></div><div class="stat"><strong>Local</strong><span>Service &amp; Support</span></div></div>
+</div></section>
+
+<section id="contact" class="contact"><div class="container contact-grid">
+  <div><div class="label">Contact Us</div><h2>Need Help Choosing a Product?</h2><p class="contact-copy">Contact SKYNET Computers for prices, stock, setup and repairs.</p></div>
+  <div>
+    <a class="contact-item" href="tel:+918608670897">📞 <b>Call Skynet-SIVA</b><small>+91 86086 70897</small></a>
+    <a class="contact-item" href="tel:+919080985580">📞 <b>Call Skynet-SIVA</b><small>+91 90809 85580</small></a>
+    <a class="contact-item green" href="https://wa.me/918608670897?text=Hi%20SKYNET%20Computers%2C%20I%20want%20to%20enquire" target="_blank" rel="noopener">💬 <b>WhatsApp / Enquiry</b><small>+91 86086 70897</small></a>
+    <a class="contact-item insta" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">📸 <b>Instagram</b><small style="color:#fff">@skynete_sevai</small></a>
+    <a class="contact-item" href="https://maps.app.goo.gl/DMGJ63suAZ1Zhvku6" target="_blank" rel="noopener">📍 <b>Thottiyam Address</b><small>SKYNET Computers, Thottiyam, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
+    <a class="contact-item" href="https://share.google/fFQkxQiedJIkMDRUF" target="_blank" rel="noopener">📍 <b>Musiri Address</b><small>SKYNET Computers, Musiri, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
+  </div>
+</div></section>
+</main>
+
+<footer><div class="footer-title">SKYNET Computers</div><p>Laptops, PCs, keyboards, mouse, speakers &amp; Mantra devices.</p><div class="copyright">© <span id="yr"></span> SKYNET Computers. All rights reserved. · <a href="skynet-esevai.html" data-esevai style="color:#fff;text-decoration:underline">Back to SKYNET E-Sevai</a></div></footer>
+<div class="floating-wrap"><a class="floating-btn" href="https://wa.me/918608670897?text=Hi%20SKYNET%20Computers%2C%20I%20want%20to%20enquire" target="_blank" rel="noopener" aria-label="WhatsApp SKYNET Computers">💬<small>WhatsApp</small></a></div>
+
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose" aria-label="Close">✕</button>
+  <button class="lightbox-nav lightbox-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lightbox-nav lightbox-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lightbox-caption" id="lightboxCaption"></div>
+</div>
+<div class="veil" id="veil"></div>
+<aside id="drawer" aria-label="Cart" aria-hidden="true">
+  <div class="dhead"><h2>Your cart</h2><button class="ibtn" id="closeCart" aria-label="Close cart">Close</button></div>
+  <div class="lines" id="lines"></div>
+  <div class="foot"><div class="total"><span>Total</span><span id="total">₹0</span></div>
+    <a class="btn" id="order" href="#" target="_blank" rel="noopener">Send order on WhatsApp</a>
+    <small>No online payment. We confirm availability and the final price with you on WhatsApp.</small></div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+/* ====== EDIT THESE DETAILS ====== */
+const SHOP = {name:"SKYNET Computers",whatsapp:"918608670897",esevaiUrl:"skynet-esevai.html"};  /* whatsapp = number that receives cart orders */
+
+/* ====== PRODUCTS (sample items: replace with your own) ======
+   cat: laptop | desktop | keyboard | mouse | speaker | mantra
+   stock: false shows "Out of stock"   */
+const PRODUCTS = [
+  {id:1,cat:"laptop",sp:{Processor:"Core i5",Generation:"8th Gen",RAM:"8 GB RAM",Storage:"256 GB SSD",Screen:"14 inch",OS:"Windows 11"},name:"Lenovo ThinkPad T480 (Refurbished)",specs:["Core i5 8th Gen","8 GB RAM","256 GB SSD","14 inch","Windows 11"],price:18990,mrp:64000,stock:true,warranty:"6 months warranty"},
+  {id:2,cat:"laptop",sp:{Processor:"Core i5",Generation:"6th Gen",RAM:"8 GB RAM",Storage:"256 GB SSD",Screen:"14 inch",OS:"Windows 11"},name:"HP EliteBook 840 G3 (Refurbished)",specs:["Core i5 6th Gen","8 GB RAM","256 GB SSD","14 inch","Windows 11"],price:15490,mrp:58000,stock:true,warranty:"6 months warranty"},
+  {id:3,cat:"laptop",sp:{Processor:"Core i5",Generation:"8th Gen",RAM:"16 GB RAM",Storage:"512 GB SSD",Screen:"14 inch"},name:"Dell Latitude 5490 (Refurbished)",specs:["Core i5 8th Gen","16 GB RAM","512 GB SSD","14 inch"],price:22490,mrp:72000,stock:true,warranty:"6 months warranty"},
+  {id:4,cat:"desktop",sp:{Processor:"Core i5",Generation:"4th Gen",RAM:"8 GB RAM",Storage:"240 GB SSD",Monitor:"19 inch"},name:"Dell OptiPlex Desktop with 19 inch Monitor",specs:["Core i5 4th Gen","8 GB RAM","240 GB SSD","19 inch monitor"],price:12990,mrp:34000,stock:true,warranty:"6 months warranty"},
+  {id:5,cat:"desktop",sp:{Processor:"Core i3",Generation:"6th Gen",RAM:"8 GB RAM",Storage:"256 GB SSD",OS:"Windows 11"},name:"Lenovo ThinkCentre Mini PC",specs:["Core i3 6th Gen","8 GB RAM","256 GB SSD","Windows 11"],price:9990,mrp:28000,stock:true,warranty:"6 months warranty"},
+  {id:6,cat:"keyboard",sp:{Type:"Wired",Connection:"USB"},name:"USB Computer Keyboard",specs:["Wired USB","Plug and play","Full size"],price:499,mrp:799,stock:true,warranty:"1 year warranty"},
+  {id:7,cat:"mouse",sp:{Type:"Optical",Connection:"USB"},name:"USB Optical Mouse",specs:["1200 DPI","Wired USB","Plug and play"],price:149,mrp:299,stock:true,warranty:"1 year warranty"},
+  {id:8,cat:"speaker",sp:{Type:"2.0 Speaker",Connection:"USB"},name:"USB Computer Speaker",specs:["2.0 channel","USB powered","Desktop speaker"],price:699,mrp:999,stock:true,warranty:"1 year warranty"},
+  {id:9,cat:"mantra",sp:{Type:"Fingerprint Scanner",Connection:"USB"},name:"Mantra MFS110 L1 Fingerprint Scanner",specs:["UIDAI certified","USB","Aadhaar authentication"],price:3150,mrp:4500,stock:true,warranty:"1 year warranty"},
+  {id:10,cat:"desktop",range:"Entry",sp:{Processor:"Core i3",Generation:"10th Gen",RAM:"8 GB RAM",Storage:"256 GB SSD",OS:"Windows 11"},name:"Skynet Office PC",extra:["Keyboard and mouse included"],specs:["Core i3 10th Gen","8 GB RAM","256 GB SSD","Windows 11","Keyboard and mouse included"],price:24990,mrp:32000,stock:true,warranty:"1 year warranty"},
+  {id:11,cat:"desktop",range:"Mid-Range",sp:{Processor:"Core i5",Generation:"12th Gen",RAM:"16 GB RAM",Storage:"512 GB SSD",OS:"Windows 11"},name:"Skynet Gaming PC",extra:["GTX / RTX graphics card"],specs:["Core i5 12th Gen","16 GB RAM","512 GB SSD","Windows 11","GTX / RTX graphics card"],price:49990,mrp:58000,stock:true,warranty:"1 year warranty"},
+  {id:12,cat:"desktop",range:"High-End",sp:{Processor:"Core i7",Generation:"12th Gen",RAM:"32 GB RAM",Storage:"1 TB SSD",OS:"Windows 11"},name:"Skynet Creator PC",extra:["RTX 4060 class graphics"],specs:["Core i7 12th Gen","32 GB RAM","1 TB SSD","Windows 11","RTX 4060 class graphics"],price:89990,mrp:105000,stock:true,warranty:"1 year warranty"}
+];
+const GEN=["4th Gen","5th Gen","6th Gen","7th Gen","8th Gen","9th Gen","10th Gen","11th Gen","12th Gen"];
+const SPEC_FIELDS = {
+  laptop:[["Processor",["Core i3","Core i5","Core i7","Core i9","Ryzen 3","Ryzen 5","Ryzen 7","Celeron","Pentium"]],["Generation",GEN],["RAM",["4 GB RAM","8 GB RAM","16 GB RAM","32 GB RAM"]],["Storage",["128 GB SSD","256 GB SSD","512 GB SSD","1 TB SSD","500 GB HDD","1 TB HDD"]],["Screen",["11.6 inch","13.3 inch","14 inch","15.6 inch"]],["OS",["Windows 11","Windows 10","macOS","No OS"]]],
+  desktop:[["Processor",["Core i3","Core i5","Core i7","Ryzen 3","Ryzen 5","Pentium"]],["Generation",GEN],["RAM",["4 GB RAM","8 GB RAM","16 GB RAM","32 GB RAM"]],["Storage",["128 GB SSD","240 GB SSD","256 GB SSD","512 GB SSD","500 GB HDD","1 TB HDD"]],["Monitor",["No monitor","19 inch","21.5 inch","24 inch"]],["OS",["Windows 11","Windows 10","No OS"]]],
+  keyboard:[["Type",["Wired","Wireless","Mechanical"]],["Connection",["USB","Wireless","Bluetooth"]]],
+  mouse:[["Type",["Optical","Gaming","Wireless"]],["Connection",["USB","Wireless","Bluetooth"]]],
+  speaker:[["Type",["2.0 Speaker","2.1 Speaker","Bluetooth Speaker"]],["Connection",["USB","3.5mm","Bluetooth"]]],
+  mantra:[["Type",["Fingerprint Scanner"]],["Connection",["USB"]]]
+};
+const CATS = [["all","All"],["laptop","Laptops"],["desktop","PC / Desktops"],["keyboard","Keyboards"],["mouse","Mouse"],["speaker","Speakers"],["mantra","Mantra Device"]];
+
+/* ====== APP ====== */
+const $ = s => document.querySelector(s);
+const inr = n => "₹" + n.toLocaleString("en-IN");
+const ICON = {
+  laptop:'<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="12" y="14" width="40" height="28" rx="3"/><path d="M6 50h52l-4-8H10z"/></svg>',
+  desktop:'<svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="10" width="48" height="32" rx="3"/><path d="M24 54h16M32 42v12"/></svg>'
+};
+const load = (k, d) => { try { return JSON.parse(localStorage.getItem(k)) || d; } catch (e) { return d; } };
+const save = (k, v) => { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} };
+
+let cart = load("sn_cart", {});       // {id: qty}
+let wish = load("sn_wish", []);       // [id]
+let state = { cat: "all", q: "", sort: "def", stock: false, wishOnly: false, f: {} };
+
+const off = p => Math.round((1 - p.price / p.mrp) * 100);
+
+function render() {
+  let list = PRODUCTS.filter(p =>
+    (state.cat === "all" || p.cat === state.cat) &&
+    (!state.stock || p.stock) &&
+    Object.keys(state.f).every(k => !state.f[k] || (p.sp && p.sp[k] === state.f[k])) &&
+    (!state.wishOnly || wish.includes(p.id)) &&
+    (p.name + " " + p.specs.join(" ")).toLowerCase().includes(state.q));
+  if (state.sort === "low") list.sort((a, b) => a.price - b.price);
+  if (state.sort === "high") list.sort((a, b) => b.price - a.price);
+  if (state.sort === "off") list.sort((a, b) => off(b) - off(a));
+  $("#grid").innerHTML = list.length ? list.map(p => `
+    <article class="card">
+      <span class="off">${off(p)}% off</span>
+      <button class="heart" data-wish="${p.id}" aria-pressed="${wish.includes(p.id)}" aria-label="Save ${p.name}">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg>
+      </button>
+      <div class="pic">${p.img?`<img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.style.display='none'">`:ICON[p.cat]}</div>
+      <div class="info">
+        <h3>${p.name}</h3>
+        <div class="chips">${p.specs.map(s => `<span>${s}</span>`).join("")}</div>
+        <div class="war">${p.warranty}</div>
+        <div class="price"><b>${inr(p.price)}</b><s>${inr(p.mrp)}</s></div>
+        <button class="add" data-add="${p.id}" ${p.stock ? "" : "disabled"}>${p.stock ? "Add to cart" : "Out of stock"}</button>
+      </div>
+    </article>`).join("") : '<p class="empty">No products match. Try another category or search.</p>';
+  $("#cats").innerHTML = CATS.map(([k, l]) => `<button class="cat" data-cat="${k}" aria-pressed="${state.cat === k}">${l}</button>`).join("");
+  const SF = state.cat === "all" ? [] : (SPEC_FIELDS[state.cat] || []);
+  $("#specFilters").innerHTML = SF.map(([lab]) => {
+    const vals = [...new Set(PRODUCTS.filter(p => p.cat === state.cat && p.sp && p.sp[lab]).map(p => p.sp[lab]))].sort((a, b) => a.localeCompare(b, undefined, {numeric: true}));
+    return vals.length > 1 ? `<select data-sf="${lab}" aria-label="${lab}"><option value="">${lab}: All</option>${vals.map(v => `<option ${state.f[lab] === v ? "selected" : ""}>${v}</option>`).join("")}</select>` : "";
+  }).join("");
+  $("#wishCount").textContent = wish.length;
+  $("#wishBtn").setAttribute("aria-pressed", state.wishOnly);
+}
+
+function renderCart() {
+  const ids = Object.keys(cart).map(Number).filter(id => PRODUCTS.some(p => p.id === id));
+  let total = 0, count = 0, msg = `Hello ${SHOP.name}, I want to order:\n`;
+  $("#lines").innerHTML = ids.length ? ids.map(id => {
+    const p = PRODUCTS.find(x => x.id === id), q = cart[id];
+    total += p.price * q; count += q; msg += `- ${p.name} x ${q} = ${inr(p.price * q)}\n`;
+    return `<div class="line"><b>${p.name}</b><span>${inr(p.price * q)}</span>
+      <div class="qty"><button data-dec="${id}" aria-label="Decrease quantity">-</button><span>${q}</span><button data-inc="${id}" aria-label="Increase quantity">+</button></div>
+      <button class="rm" data-rm="${id}">Remove</button></div>`;
+  }).join("") : '<p class="empty">Your cart is empty. Add a product to start.</p>';
+  msg += `Total: ${inr(total)}`;
+  $("#total").textContent = inr(total);
+  $("#cartCount").textContent = count;
+  $("#order").href = "https://wa.me/" + SHOP.whatsapp + "?text=" + encodeURIComponent(msg);
+  $("#order").style.pointerEvents = ids.length ? "auto" : "none";
+  $("#order").style.opacity = ids.length ? 1 : .5;
+  save("sn_cart", cart);
+}
+
+function toast(t) { const e = $("#toast"); e.textContent = t; e.classList.add("on"); clearTimeout(toast.t); toast.t = setTimeout(() => e.classList.remove("on"), 1600); }
+function drawer(open) {
+  $("#drawer").classList.toggle("on", open); $("#veil").classList.toggle("on", open);
+  $("#drawer").setAttribute("aria-hidden", !open);
+  if (open) $("#closeCart").focus(); else $("#cartBtn").focus();
+}
+
+document.addEventListener("click", e => {
+  const t = e.target.closest("[data-add],[data-wish],[data-cat],[data-inc],[data-dec],[data-rm],[data-go]");
+  if (!t) return;
+  const d = t.dataset;
+  if (d.add) { cart[d.add] = (cart[d.add] || 0) + 1; renderCart(); toast("Added to cart"); }
+  if (d.wish) { const id = +d.wish; wish = wish.includes(id) ? wish.filter(x => x !== id) : [...wish, id]; save("sn_wish", wish); render(); }
+  if (d.cat) { state.f = {}; state.cat = d.cat; state.wishOnly = false; render(); }
+  if (d.go) { state.f = {}; state.cat = d.go; state.wishOnly = false; render(); }
+  if (d.inc) { cart[d.inc]++; renderCart(); }
+  if (d.dec) { if (--cart[d.dec] <= 0) delete cart[d.dec]; renderCart(); }
+  if (d.rm) { delete cart[d.rm]; renderCart(); }
+});
+$("#specFilters").addEventListener("change", e => { const l = e.target.dataset.sf; if (!l) return; state.f[l] = e.target.value; render(); });
+$("#q").addEventListener("input", e => { state.q = e.target.value.trim().toLowerCase(); render(); });
+$("#sort").addEventListener("change", e => { state.sort = e.target.value; render(); });
+$("#stock").addEventListener("change", e => { state.stock = e.target.checked; render(); });
+$("#wishBtn").addEventListener("click", () => { state.wishOnly = !state.wishOnly; render(); location.hash = "shop"; });
+$("#cartBtn").addEventListener("click", () => drawer(true));
+$("#closeCart").addEventListener("click", () => drawer(false));
+$("#veil").addEventListener("click", () => drawer(false));
+document.addEventListener("keydown", e => { if (e.key === "Escape") drawer(false); });
+
+document.querySelectorAll("[data-esevai]").forEach(a=>a.href=SHOP.esevaiUrl);
+$("#order").href="#";
+$("#yr").textContent = new Date().getFullYear();
+$("#fromPrice").textContent = inr(Math.min(...PRODUCTS.filter(p => p.cat === "laptop").map(p => p.price)));
+
+render(); renderCart();
+
+function toggleMenu(){document.getElementById("mobileNav").classList.toggle("show")}
+function closeMenu(){document.getElementById("mobileNav").classList.remove("show")}
+</script>
+<script>
+/* SKYNET COMPUTERS - ADMIN PANEL (products). Saves in this browser; Publish sends it to GitHub for all visitors. Default password: skynet123 (change in Admin > Settings) */
+(function(){
+"use strict";
+if(typeof PRODUCTS==="undefined"||typeof CATS==="undefined")return;
+var $=function(i){return document.getElementById(i)};
+var K={add:"sc_prod",ed:"sc_edits",pass:"sc_pass",dirty:"sc_dirty",hero:"sc_hero"};
+var ls={get:function(k,d){try{var v=localStorage.getItem(k);return v===null?d:JSON.parse(v)}catch(e){return d}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true}catch(e){return false}}};
+var clean=function(t){return String(t||"").replace(/[<>]/g,"").trim()};
+var esc=function(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+var inr=function(n){return "₹"+Number(n).toLocaleString("en-IN")};
+var base=JSON.parse(JSON.stringify(PRODUCTS));
+var heroX=ls.get(K.hero,[]),hTimer,hIdx=0,added=ls.get(K.add,[]),edits=ls.get(K.ed,{}),loggedIn=false,editing=null,q="";
+
+function all(){
+  return base.map(function(p){return{p:p,n:false}}).concat(added.map(function(p){return{p:p,n:true}})).map(function(o){
+    var e=edits[o.p.id]||{};o.p=Object.assign({},o.p,e);o.hidden=!!e.hidden;return o;});
+}
+function apply(){
+  var l=all().filter(function(o){return !o.hidden}).map(function(o){return o.p});
+  PRODUCTS.length=0;Array.prototype.push.apply(PRODUCTS,l);
+  var lp=PRODUCTS.filter(function(p){return p.cat==="laptop"}).map(function(p){return p.price});
+  $("fromPrice").textContent=lp.length?inr(Math.min.apply(null,lp)):"—";
+  render();renderCart();
+}
+function persist(){var a=ls.set(K.add,added),b=ls.set(K.ed,edits),c=ls.set(K.hero,heroX);localStorage.setItem(K.dirty,"1");return a&&b&&c}
+function applyHero(){
+  var sl=$("heroSlider");sl.querySelectorAll(".slide,.dots").forEach(function(n){n.remove()});clearInterval(hTimer);
+  if(!heroX.length){sl.classList.add("pricecard");$("priceInner").style.display="";return}
+  sl.classList.remove("pricecard");$("priceInner").style.display="none";
+  var dots=document.createElement("div");dots.className="dots";
+  heroX.forEach(function(p,i){
+    var s=document.createElement("div");s.className="slide"+(i?"":" active");
+    s.innerHTML='<img src="'+esc(p.img)+'" alt="'+esc(p.caption||"SKYNET Computers")+'"'+(i?' loading="lazy"':"")+' onerror="this.style.display=\'none\'">'+(p.caption?'<div class="slide-caption">'+esc(p.caption)+'</div>':"");
+    sl.appendChild(s);s.querySelector("img").onclick=function(){lbOpen(i)};
+    var d=document.createElement("button");d.className="dot"+(i?"":" active");d.setAttribute("aria-label","Show photo "+(i+1));d.onclick=function(){go(i);play()};dots.appendChild(d);
+  });
+  sl.appendChild(dots);hIdx=0;play();
+}
+var lbI=0;
+function lbShow(){var p=heroX[lbI];if(!p)return;$("lightboxImg").src=p.img;$("lightboxImg").alt=p.caption||"";$("lightboxCaption").textContent=p.caption||""}
+function lbOpen(i){lbI=i;lbShow();var m=heroX.length>1?"":"none";$("lbPrev").style.display=m;$("lbNext").style.display=m;$("lightbox").classList.add("show");clearInterval(hTimer)}
+function lbClose(){$("lightbox").classList.remove("show");play()}
+function lbStep(d){lbI=(lbI+d+heroX.length)%heroX.length;lbShow()}
+$("lbClose").onclick=lbClose;$("lbPrev").onclick=function(e){e.stopPropagation();lbStep(-1)};$("lbNext").onclick=function(e){e.stopPropagation();lbStep(1)};
+$("lightbox").addEventListener("click",function(e){if(e.target.id==="lightbox")lbClose()});
+var tx=null;$("lightbox").addEventListener("touchstart",function(e){tx=e.touches[0].clientX},{passive:true});
+$("lightbox").addEventListener("touchend",function(e){if(tx===null||heroX.length<2)return;var dx=e.changedTouches[0].clientX-tx;tx=null;if(Math.abs(dx)>50)lbStep(dx<0?1:-1)},{passive:true});
+document.addEventListener("keydown",function(e){if(!$("lightbox").classList.contains("show"))return;if(e.key==="Escape")lbClose();if(e.key==="ArrowLeft"&&heroX.length>1)lbStep(-1);if(e.key==="ArrowRight"&&heroX.length>1)lbStep(1)});
+function go(i){var s=$("heroSlider").querySelectorAll(".slide"),d=$("heroSlider").querySelectorAll(".dot");if(!s.length)return;hIdx=(i+s.length)%s.length;s.forEach(function(n,k){n.classList.toggle("active",k===hIdx)});d.forEach(function(n,k){n.classList.toggle("active",k===hIdx)})}
+function play(){clearInterval(hTimer);if(heroX.length>1)hTimer=setInterval(function(){go(hIdx+1)},3500)}
+if(added.length||Object.keys(edits).length)apply();
+if(heroX.length)applyHero();
+
+var css=document.createElement("style");
+css.textContent=".sa-bg{position:fixed;inset:0;z-index:5000;background:rgba(27,16,51,.72);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:4vh 14px;overflow:auto}.sa-bg.open{display:flex}"+
+".sa-box{background:#fff;width:min(780px,100%);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);color:var(--dark)}.sa-box.sm{width:min(400px,100%);margin-top:12vh}"+
+".sa-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 24px;background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;border-bottom:3px solid var(--orange2)}.sa-head h3{font-size:19px}"+
+".sa-x{border:0;background:rgba(255,255,255,.16);color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}.sa-body{padding:4px 24px 24px}"+
+".sa-tabs{display:flex;gap:4px;background:var(--lav);padding:5px;border-radius:14px;margin:18px 0 4px}.sa-tabs button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:10px;font-weight:700;font-size:14px;font-family:inherit;color:var(--muted);cursor:pointer}.sa-tabs button.on{background:#fff;color:var(--primary);box-shadow:0 2px 10px rgba(91,33,182,.15)}"+
+".sa-body label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}.sa-body input[type=text],.sa-body input[type=number],.sa-body input[type=password],.sa-body input[type=search],.sa-body select,.sa-body textarea{width:100%;padding:11px 13px;border:1px solid var(--border);border-radius:12px;font-size:15px;font-family:inherit;background:#faf7ff;color:var(--dark)}.sa-body textarea{min-height:90px;resize:vertical}"+
+".sa-body input:focus,.sa-body select:focus,.sa-body textarea:focus{outline:none;border-color:var(--primary);box-shadow:0 0 0 4px #ede9fe;background:#fff}.sa-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.sa-chk{display:flex;gap:8px;align-items:center;margin-top:14px;font-weight:600}"+
+".sa-btn{border:0;border-radius:999px;padding:10px 18px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;background:var(--primary);color:#fff}.sa-btn.o{background:#fff;color:var(--dark);border:1px solid var(--border)}.sa-btn.d{background:#fee2e2;color:#b91c1c}.sa-btn.s{padding:7px 12px;font-size:13px}"+
+".sa-acts{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.sa-item{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:10px 12px;border:1px solid var(--border);border-radius:14px;margin-top:10px}.sa-item .t{flex:1;min-width:180px;font-weight:700;font-size:14px}.sa-item .t small{display:block;color:var(--muted);font-weight:500}.sa-dim{opacity:.5}"+
+".sa-msg{font-size:13px;font-weight:600;margin-top:10px;min-height:18px}.sa-msg.ok{color:#15803d}.sa-msg.err{color:#dc2626}.sa-h4{margin-top:22px;font-size:15px}.sa-note{font-size:12px;color:var(--muted);margin-top:8px}#saForm{border:2px solid #ddd6fe;background:#faf7ff;border-radius:16px;padding:2px 16px 16px;margin-top:14px;display:none}@media(max-width:650px){.sa-row{grid-template-columns:1fr}}";
+document.head.appendChild(css);
+
+var w=document.createElement("div");
+w.innerHTML='<div class="sa-bg" id="saLogin"><div class="sa-box sm"><div class="sa-head"><h3>🔒 Admin Login</h3><button class="sa-x" data-close aria-label="Close">✕</button></div><div class="sa-body"><label for="saPass">Password</label><input type="password" id="saPass" placeholder="Enter admin password"><div class="sa-msg err" id="saLMsg"></div><div class="sa-acts"><button class="sa-btn" id="saGo" style="width:100%">Login</button></div></div></div></div>'+
+'<div class="sa-bg" id="saPanel"><div class="sa-box"><div class="sa-head"><h3>⚙️ SKYNET Computers Admin</h3><div style="display:flex;gap:8px"><button class="sa-btn o s" id="saOut">Logout</button><button class="sa-x" data-close aria-label="Close">✕</button></div></div><div class="sa-body">'+
+'<div class="sa-tabs"><button id="sat-prod" class="on">📦 Products</button><button id="sat-hero">🖼️ Hero photos</button><button id="sat-set">⚙️ Settings</button></div>'+
+'<div id="sap-prod"><div class="sa-acts"><button class="sa-btn" id="saNew">➕ Add product</button></div>'+
+'<div id="saForm"><h4 class="sa-h4" id="saFHead">Add product</h4><label for="saN">Product name</label><input type="text" id="saN" placeholder="e.g. Dell Latitude 7480 (Refurbished)">'+
+'<label for="saT">Featured card text / label</label><input type="text" id="saT" placeholder="Entry / Mid-Range / High-End"><small class="sa-note">This is the orange text shown below the product name in the home page cards.</small>'+
+'<div class="sa-row"><div><label for="saC">Category</label><select id="saC"></select></div><div><label for="saW">Warranty</label><input type="text" id="saW" placeholder="6 months warranty"></div></div>'+
+'<div class="sa-row"><div><label for="saP">Selling price (₹)</label><input type="number" id="saP" min="1"></div><div><label for="saM">MRP / old price (₹)</label><input type="number" id="saM" min="1"></div></div>'+
+'<label for="saI">Product photo (shown on the card and in the home page carousel)</label><input type="file" id="saI" accept="image/*"><div id="saIPrev" style="margin-top:8px"></div><label for="saIU">…or image path / link</label><input type="text" id="saIU" placeholder="images/laptop1.jpg"><label class="sa-chk"><input type="checkbox" id="saIX"> Remove current photo</label><div id="saSpecs"></div><label for="saFS">Featured card specifications (one per line)</label><textarea id="saFS" placeholder="Core i5 12th Gen&#10;16 GB RAM&#10;512 GB SSD"></textarea><label for="saS">Extra text (one per line, optional)</label><textarea id="saS" placeholder="GTX / RTX graphics card&#10;Keyboard and mouse included"></textarea><label class="sa-chk"><input type="checkbox" id="saK" checked> In stock</label><label for="saRg">⭐ Show in home page carousel (leave empty to hide)</label><input type="text" id="saRg" placeholder="Entry / Mid-Range / High-End">'+
+'<div class="sa-msg" id="saFMsg"></div><div class="sa-acts"><button class="sa-btn" id="saSave">💾 Save</button><button class="sa-btn o" id="saCancel">Cancel</button><button class="sa-btn d" id="saRes" style="display:none">Restore original</button></div></div>'+
+'<label for="saQ">Search products</label><input type="search" id="saQ" placeholder="Type to find a product…"><div id="saList"></div></div>'+
+'<div id="sap-hero" style="display:none"><p class="sa-note">Photos for the slider on the home page (for example laptop photos). With no photos, the "laptops from ₹…" box is shown instead.</p><label for="saHF">New slider photo</label><input type="file" id="saHF" accept="image/*"><label for="saHU">…or image path / link</label><input type="text" id="saHU" placeholder="images/laptop-banner.jpg"><label for="saHC">Caption (shown on the photo)</label><input type="text" id="saHC" placeholder="e.g. Refurbished laptops - 6 months warranty"><div class="sa-msg" id="saHMsg"></div><div class="sa-acts"><button class="sa-btn" id="saHAdd">➕ Add Photo</button></div><h4 class="sa-h4">Slider photos</h4><div id="saHList"></div></div>'+
+'<div id="sap-set" style="display:none"><label for="saNP">Change admin password (leave blank to keep)</label><input type="password" id="saNP" placeholder="New password"><div class="sa-acts"><button class="sa-btn" id="saPw">Save password</button></div><div class="sa-msg" id="saStMsg"></div>'+
+'<h4 class="sa-h4">Publish to GitHub</h4><p class="sa-note">After making changes, enter your GitHub token and click Publish. Changes are committed to your <b>skyNetcomputers</b> repository (<code>data/computers-data.json</code>) and then appear on the live website for everyone.</p><label for="saTok">GitHub fine-grained token</label><input type="password" id="saTok" autocomplete="off" placeholder="Paste token here (not saved)"><div class="sa-acts"><button class="sa-btn" id="saPub">🚀 Publish changes to GitHub</button></div><div class="sa-msg" id="saPMsg"></div>'+
+'<h4 class="sa-h4">Backup</h4><div class="sa-acts"><button class="sa-btn o" id="saDl">⬇️ Download backup</button><button class="sa-btn o" id="saRs">⬆️ Restore backup</button><button class="sa-btn d" id="saReset">Remove all admin changes</button></div><input type="file" id="saRF" accept=".json,application/json" style="display:none"></div>'+
+'</div></div></div>';
+document.body.appendChild(w);
+
+var msg=function(id,t,ok){var m=$(id);m.textContent=t;m.className="sa-msg "+(ok?"ok":"err")};
+var closeAll=function(){$("saLogin").classList.remove("open");$("saPanel").classList.remove("open")};
+w.addEventListener("click",function(e){if(e.target.hasAttribute("data-close")||e.target.classList.contains("sa-bg"))closeAll()});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")closeAll()});
+$("saC").innerHTML=CATS.filter(function(c){return c[0]!=="all"}).map(function(c){return '<option value="'+c[0]+'">'+esc(c[1])+'</option>'}).join("");
+var scat="laptop";
+function specFields(cat,vals){
+  var F=SPEC_FIELDS[cat]||[];
+  $("saSpecs").innerHTML='<label>Specification for this type</label><div class="sa-row">'+F.map(function(f,i){
+    return '<div><label for="saF'+i+'" style="font-weight:600;margin-top:6px">'+esc(f[0])+'</label><input type="text" id="saF'+i+'" list="saDL'+i+'" value="'+esc((vals&&vals[f[0]])||"")+'" placeholder="Select or type"><datalist id="saDL'+i+'">'+f[1].map(function(o){return '<option value="'+esc(o)+'">'}).join("")+'</datalist></div>';
+  }).join("")+'</div>';
+}
+function readSpecs(){var o={};(SPEC_FIELDS[scat]||[]).forEach(function(f,i){var el=$("saF"+i),v=el?clean(el.value):"";if(v)o[f[0]]=v});return o}
+$("saC").onchange=function(){var keep=readSpecs();scat=this.value;specFields(scat,keep)};
+function tab(t){["prod","hero","set"].forEach(function(n){$("sap-"+n).style.display=n===t?"":"none";$("sat-"+n).classList.toggle("on",n===t)});if(t==="prod")list();if(t==="hero")heroList()}
+$("sat-prod").onclick=function(){tab("prod")};$("sat-hero").onclick=function(){tab("hero")};$("sat-set").onclick=function(){tab("set")};
+
+function list(){
+  var qq=q.toLowerCase();
+  $("saList").innerHTML=all().filter(function(o){return !qq||o.p.name.toLowerCase().indexOf(qq)>=0}).map(function(o){
+    var p=o.p;return '<div class="sa-item'+(o.hidden?" sa-dim":"")+'">'+(p.img?'<img src="'+esc(p.img)+'" alt="" style="width:56px;height:42px;object-fit:cover;border-radius:8px">':"")+'<div class="t">'+esc(p.name)+'<small>'+esc(p.cat)+' • '+inr(p.price)+' (MRP '+inr(p.mrp)+') • '+(p.stock?"In stock":"Out of stock")+(p.range?" • carousel: "+esc(p.range):"")+(o.hidden?" • hidden":"")+(o.n?" • added by admin":"")+'</small></div>'+
+    '<button class="sa-btn o s" data-edit="'+p.id+'">Edit</button><button class="sa-btn o s" data-stk="'+p.id+'">'+(p.stock?"Mark out":"Mark in")+'</button><button class="sa-btn o s" data-hide="'+p.id+'">'+(o.hidden?"Show":"Hide")+'</button>'+(o.n?'<button class="sa-btn d s" data-del="'+p.id+'">Delete</button>':"")+'</div>';
+  }).join("")||'<p class="sa-note">No products found.</p>';
+}
+function patch(id,obj){var a=added.filter(function(x){return String(x.id)===String(id)})[0];if(a)Object.assign(a,obj);else edits[id]=Object.assign(edits[id]||{},obj)}
+function commit(){if(!persist())alert("Browser storage is full. Delete something and try again.");apply();list()}
+$("saQ").oninput=function(){q=this.value.trim();list()};
+$("saList").addEventListener("click",function(e){
+  var t=e.target,g=function(a){return t.getAttribute(a)};
+  var ed=g("data-edit"),sk=g("data-stk"),hd=g("data-hide"),dl=g("data-del");
+  var find=function(id){return all().filter(function(o){return String(o.p.id)===String(id)})[0]};
+  if(ed){openForm(find(ed))}
+  else if(sk){var o=find(sk);patch(sk,{stock:!o.p.stock});commit()}
+  else if(hd){var o2=find(hd);edits[hd]=Object.assign(edits[hd]||{},{hidden:!o2.hidden});commit()}
+  else if(dl){if(!confirm("Delete this product?"))return;added=added.filter(function(x){return String(x.id)!==dl});delete edits[dl];commit()}
+});
+function openForm(o){
+  editing=o?o.p.id:null;$("saFHead").textContent=o?"Edit: "+o.p.name:"Add product";
+  $("saN").value=o?o.p.name:"";$("saT").value=o?(o.p.cardText||o.p.range||""):"";$("saC").value=o?o.p.cat:"laptop";scat=$("saC").value;specFields(scat,o&&o.p.sp);$("saW").value=o?o.p.warranty:"";$("saP").value=o?o.p.price:"";$("saM").value=o?o.p.mrp:"";
+  $("saFS").value=o?((o.p.featuredSpecs||o.p.specs||[]).join("\n")):"";$("saS").value=o?(o.p.extra||[]).join("\n"):"";$("saK").checked=o?!!o.p.stock:true;$("saRg").value=o&&o.p.range?o.p.range:(o&&o.p.cardText?o.p.cardText:"");$("saRes").style.display=o&&!o.n?"":"none";
+  $("saI").value="";$("saIX").checked=false;$("saIU").value=o&&o.p.img&&o.p.img.indexOf("data:")!==0?o.p.img:"";$("saIPrev").innerHTML=o&&o.p.img?'<img src="'+esc(o.p.img)+'" style="max-height:80px;border-radius:8px" alt="">':"";$("saFMsg").textContent="";$("saForm").style.display="block";$("saForm").scrollIntoView({behavior:"auto",block:"nearest"});
+}
+function closeForm(){editing=null;$("saForm").style.display="none"}
+$("saNew").onclick=function(){openForm(null)};$("saCancel").onclick=closeForm;
+function shrink(file,max,qual){return new Promise(function(res,rej){var r=new FileReader();r.onload=function(){var im=new Image();im.onload=function(){var k=Math.min(1,max/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);var x=c.getContext("2d");x.fillStyle="#fff";x.fillRect(0,0,c.width,c.height);x.drawImage(im,0,0,c.width,c.height);res(c.toDataURL("image/jpeg",qual))};im.onerror=rej;im.src=r.result};r.onerror=rej;r.readAsDataURL(file)})}
+$("saSave").onclick=async function(){
+  var name=clean($("saN").value),price=Math.round(Number($("saP").value)),mrp=Math.round(Number($("saM").value))||price;
+  if(!name){msg("saFMsg","Please enter the product name.",false);return}
+  if(!(price>0)){msg("saFMsg","Please enter a valid selling price.",false);return}
+  if(mrp<price){msg("saFMsg","MRP must be equal to or higher than the selling price.",false);return}
+  var cardText=clean($("saT").value)||clean($("saRg").value);
+  var extra=$("saS").value.split("\n").map(clean).filter(Boolean);
+  var featuredSpecs=$("saFS").value.split("\n").map(clean).filter(Boolean);
+  var f={name:name,cat:$("saC").value,warranty:clean($("saW").value),price:price,mrp:mrp,stock:$("saK").checked,range:cardText,cardText:cardText,specs:[],featuredSpecs:featuredSpecs};
+  f.sp=readSpecs();
+  f.extra=extra;
+  f.specs=(SPEC_FIELDS[f.cat]||[]).map(function(x){return f.sp[x[0]]}).filter(Boolean).concat(extra);
+  if(!f.featuredSpecs.length)f.featuredSpecs=f.specs.slice();
+  try{
+    var file=$("saI").files[0],url=clean($("saIU").value);
+    if(file)f.img=await shrink(file,600,0.72);
+    else if($("saIX").checked)f.img="";
+    else if(url)f.img=url;
+  }catch(e){msg("saFMsg","Could not read this photo.",false);return}
+  if(editing===null){f.id=Date.now();added.push(f)}else patch(editing,f);
+  commit();closeForm();
+};
+$("saRes").onclick=function(){if(editing===null)return;var h=edits[editing]&&edits[editing].hidden;if(h)edits[editing]={hidden:true};else delete edits[editing];commit();closeForm()};
+
+/* hero photos */
+function heroList(){$("saHList").innerHTML=heroX.map(function(p){return '<div class="sa-item"><img src="'+esc(p.img)+'" alt="" style="width:64px;height:48px;object-fit:cover;border-radius:8px"><div class="t">'+esc(p.caption||"(no caption)")+'</div><button class="sa-btn d s" data-hdel="'+p.id+'">Delete</button></div>'}).join("")||'<p class="sa-note">No photos yet.</p>'}
+$("saHList").addEventListener("click",function(e){var id=e.target.getAttribute("data-hdel");if(!id||!confirm("Delete this photo?"))return;heroX=heroX.filter(function(p){return String(p.id)!==id});if(!persist())alert("Browser storage problem. Try again.");applyHero();heroList()});
+$("saHAdd").onclick=async function(){
+  var f=$("saHF").files[0],u=clean($("saHU").value);
+  if(!f&&!u){msg("saHMsg","Choose a photo or enter an image path.",false);return}
+  try{
+    var img=f?await shrink(f,1100,0.78):u;
+    heroX.unshift({id:Date.now(),img:img,caption:clean($("saHC").value)});
+    if(!persist()){heroX.shift();msg("saHMsg","Browser storage is full. Delete a photo and try again.",false);return}
+    applyHero();heroList();$("saHF").value="";$("saHU").value="";$("saHC").value="";msg("saHMsg","Photo added ✔",true);
+  }catch(e){msg("saHMsg","Could not read this image.",false)}
+};
+/* settings */
+$("saPw").onclick=function(){var p=$("saNP").value;if(p.length<4){msg("saStMsg","Password must be at least 4 characters.",false);return}ls.set(K.pass,p);$("saNP").value="";msg("saStMsg","Password changed ✔",true)};
+$("saDl").onclick=function(){var b=new Blob([JSON.stringify({hero:heroX,added:added,edits:edits})],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="skynet-computers-backup.json";a.click()};
+$("saRs").onclick=function(){$("saRF").click()};
+$("saRF").onchange=function(){var f=this.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var d=JSON.parse(r.result);heroX=Array.isArray(d.hero)?d.hero:[];added=Array.isArray(d.added)?d.added:[];edits=d.edits&&typeof d.edits==="object"?d.edits:{};persist();apply();applyHero();list();msg("saStMsg","Backup restored ✔",true)}catch(e){msg("saStMsg","This is not a valid backup file.",false)}};r.readAsText(f);this.value=""};
+$("saReset").onclick=function(){if(!confirm("Remove ALL admin changes (added products, edited prices, hidden items)?"))return;heroX=[];added=[];edits={};persist();apply();applyHero();list();msg("saStMsg","All admin changes removed.",true)};
+
+/* publish to GitHub */
+var GH={owner:"skynetcomputer",repo:"skyNetcomputers",branch:"main",path:"data/computers-data.json"};
+function b64(t){var b=new TextEncoder().encode(t),s="";for(var i=0;i<b.length;i+=0x8000)s+=String.fromCharCode.apply(null,b.subarray(i,i+0x8000));return btoa(s)}
+async function gh(url,o){o=o||{};o.headers=Object.assign({"Accept":"application/vnd.github+json","X-GitHub-Api-Version":"2022-11-28"},o.headers||{});var r=await fetch(url,o),t=await r.text(),d;try{d=JSON.parse(t)}catch(e){d={}}if(!r.ok)throw new Error((d&&d.message)||("GitHub error "+r.status));return d}
+$("saPub").onclick=async function(){
+  var token=$("saTok").value.trim();if(!token){msg("saPMsg","Paste your GitHub token first.",false);return}
+  var btn=$("saPub");btn.disabled=true;msg("saPMsg","Publishing changes to GitHub…",true);
+  try{
+    var api="https://api.github.com/repos/"+GH.owner+"/"+GH.repo+"/contents/"+GH.path,auth={"Authorization":"Bearer "+token},cur=null;
+    try{cur=await gh(api+"?ref="+encodeURIComponent(GH.branch),{headers:auth})}catch(e){if(!/404|Not Found/i.test(e.message))throw e}
+    var body={message:"Update computer shop products from Admin Panel",content:b64(JSON.stringify({version:1,hero:heroX,added:added,edits:edits},null,2)),branch:GH.branch};
+    if(cur&&cur.sha)body.sha=cur.sha;
+    await gh(api,{method:"PUT",headers:Object.assign({},auth,{"Content-Type":"application/json"}),body:JSON.stringify(body)});
+    localStorage.removeItem(K.dirty);msg("saPMsg","Published successfully ✔ Refresh the live website after GitHub Pages updates.",true);$("saTok").value="";
+  }catch(e){msg("saPMsg","Publish failed: "+e.message,false)}finally{btn.disabled=false}
+};
+
+/* login */
+function openAdmin(){
+  if(loggedIn){$("saPanel").classList.add("open");tab("prod");return}
+  $("saPass").value="";$("saLMsg").textContent="";$("saLogin").classList.add("open");setTimeout(function(){$("saPass").focus()},50);
+}
+function login(){if($("saPass").value===ls.get(K.pass,"skynet123")){loggedIn=true;closeAll();openAdmin()}else $("saLMsg").textContent="Wrong password."}
+$("saGo").onclick=login;$("saPass").addEventListener("keydown",function(e){if(e.key==="Enter")login()});
+$("saOut").onclick=function(){loggedIn=false;closeAll()};
+var host=document.querySelector(".copyright")||document.querySelector("footer"),a=document.createElement("a");
+a.href="#";a.textContent="🔒 Admin";a.style.cssText="margin-left:14px;opacity:.55;font-size:13px";a.onclick=function(e){e.preventDefault();openAdmin()};host.appendChild(a);
+
+/* load published data for all visitors (skipped while this browser has unpublished admin changes) */
+if(localStorage.getItem(K.dirty))return;
+fetch("https://raw.githubusercontent.com/"+GH.owner+"/"+GH.repo+"/"+GH.branch+"/"+GH.path+"?ts="+Date.now(),{cache:"no-store"})
+ .then(function(r){if(!r.ok)throw new Error("HTTP "+r.status);return r.json()})
+ .then(function(d){
+   if(!d||typeof d!=="object"||(d.version!==undefined&&Number(d.version)!==1))throw new Error("Unsupported data");
+   var na=Array.isArray(d.added)?d.added:[],ne=d.edits&&typeof d.edits==="object"&&!Array.isArray(d.edits)?d.edits:{};
+   var nh=Array.isArray(d.hero)?d.hero:[];
+   if(JSON.stringify(na)!==JSON.stringify(added)||JSON.stringify(ne)!==JSON.stringify(edits)||JSON.stringify(nh)!==JSON.stringify(heroX)){added=na;edits=ne;heroX=nh;ls.set(K.add,added);ls.set(K.ed,edits);ls.set(K.hero,heroX);apply();applyHero()}
+ }).catch(function(e){console.warn("SKYNET computers-data.json:",e.message)});
+})();
+</script>
+<script>
+/* ===== FEATURED CAROUSEL (reads PRODUCTS, so admin edits show here too) ===== */
+(function(){
+  "use strict";
+  if(typeof PRODUCTS==="undefined"||typeof SHOP==="undefined")return;
+  var track=document.getElementById("fpTrack"),dots=document.getElementById("fpDots"),prev=document.getElementById("fpPrev"),next=document.getElementById("fpNext");
+  var NAMES={laptop:"Laptop",desktop:"PC / Desktop",keyboard:"Keyboard",mouse:"Mouse",speaker:"Speaker",mantra:"Mantra Device"};
+  var sig="",pages=1,raf=0;
+  var esc=function(t){return String(t).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})};
+  function build(){
+    var list=PRODUCTS.filter(function(p){return p.stock&&(p.range||p.cardText)}).sort(function(a,b){return a.price-b.price}).slice(0,12);
+    document.getElementById("featured").style.display=list.length?"":"none";
+    var s=JSON.stringify(list.map(function(p){return[p.id,p.price,p.name,p.range||p.cardText||"",JSON.stringify(p.featuredSpecs||[]),JSON.stringify(p.extra||[]),p.img?p.img.length:0]}));
+    if(s===sig)return;sig=s;
+    track.innerHTML=list.map(function(p){
+      var url="https://wa.me/"+SHOP.whatsapp+"?text="+encodeURIComponent("Hi SKYNET Computers, I want to enquire about "+p.name);
+      var pic=p.img?'<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" onerror="this.style.display=\'none\'">':(typeof ICON!=="undefined"?ICON[p.cat]:"");
+      var label=p.cardText||p.range||NAMES[p.cat]||"";
+      var specs=p.featuredSpecs&&p.featuredSpecs.length?p.featuredSpecs:(p.specs||[]);
+      var extra=p.extra&&p.extra.length?p.extra:[];
+      var specHtml=specs.length?'<div class="fp-featured-specs">'+specs.map(function(x){return '<span>'+esc(x)+'</span>'}).join("")+'</div>':'';
+      var extraHtml=extra.length?'<div class="fp-featured-extra">'+extra.map(esc).join(' · ')+'</div>':'';
+      return '<a class="fp-card" href="'+url+'" target="_blank" rel="noopener"><h3>'+esc(p.name)+'</h3><span class="fp-cat">'+esc(label)+'</span><div class="fp-pic">'+pic+'</div>'+extraHtml+specHtml+'<small>'+(label?"starts":"Price")+'</small><b>'+inr(p.price)+'</b></a>';
+    }).join("");
+    track.scrollLeft=0;layout();
+  }
+  function layout(){
+    var w=track.clientWidth||1;
+    pages=Math.max(1,Math.ceil(track.scrollWidth/w-0.05));
+    dots.innerHTML="";
+    for(var i=0;i<pages;i++){(function(i){var b=document.createElement("button");b.setAttribute("aria-label","Page "+(i+1));b.onclick=function(){track.scrollTo({left:i*track.clientWidth,behavior:"auto"})};dots.appendChild(b)})(i)}
+    dots.style.display=pages>1?"flex":"none";
+    update();
+  }
+  function update(){
+    var max=track.scrollWidth-track.clientWidth,r=max>0?track.scrollLeft/max:0,cur=Math.round(r*(pages-1));
+    [].forEach.call(dots.children,function(b,i){b.classList.toggle("on",i===cur)});
+    prev.disabled=track.scrollLeft<4;next.disabled=track.scrollLeft>=max-4;
+  }
+  prev.onclick=function(){track.scrollBy({left:-track.clientWidth*0.9,behavior:"auto"})};
+  next.onclick=function(){track.scrollBy({left:track.clientWidth*0.9,behavior:"auto"})};
+  track.addEventListener("scroll",function(){if(raf)return;raf=requestAnimationFrame(function(){raf=0;update()})},{passive:true});
+  window.addEventListener("resize",layout);
+  if(typeof render==="function"){var _r=render;window.render=function(){_r.apply(this,arguments);build()}}
+  build();
+})();
+</script>
+</body>
+</html>
