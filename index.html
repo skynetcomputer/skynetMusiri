@@ -5,341 +5,144 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="SKYNET E-Sevai Maiyam - Government and digital service assistance.">
 <title>SKYNET E-Sevai Maiyam</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Noto+Sans+Tamil:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
-:root{/* [EDIT-COLORS] main colours of the website */--primary:#155eef;--primary2:#0b4acb;--dark:#0f172a;--muted:#64748b;--light:#f8fafc;--green:#16a34a;--border:#e2e8f0}
+/* [EDIT-COLORS] brand theme: purple + orange (from the SKYNET logo) */
+:root{--primary:#5b21b6;--primary2:#3b0f8c;--dark:#1b1033;--muted:#5f5a73;--orange:#f97316;--orange2:#fb923c;--cream:#fff8f1;--lav:#f5f0ff;--green:#16a34a;--border:#e9e1f7}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--dark);background:#fff;line-height:1.6}
+body{font-family:Poppins,"Noto Sans Tamil",system-ui,sans-serif;background:#fff;color:var(--dark);line-height:1.65}
 a{text-decoration:none;color:inherit}
-.container{width:min(1180px,92%);margin:auto}
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(12px);box-shadow:0 2px 15px rgba(15,23,42,.08)}
-.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}
-.logo{font-size:22px;font-weight:900;color:var(--primary)}.logo-image{display:flex;align-items:center;width:185px;height:58px;overflow:hidden}.logo-image img{display:block;width:100%;height:100%;object-fit:contain;object-position:left center}
-.navlinks{display:flex;align-items:center;gap:28px;font-weight:600;color:#334155}
-.navlinks a:hover{color:var(--primary)}
-.whatsapp{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:11px 17px;border-radius:999px;font-weight:800}
-.menu{display:none;border:0;background:none;font-size:28px;cursor:pointer}
-.hero{padding-top:74px;min-height:720px;color:#fff;background:linear-gradient(135deg,#155eef 0%,#1749b7 50%,#312e81 100%);overflow:hidden}
-.hero-inner{min-height:646px;display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:60px}
-.eyebrow{text-transform:uppercase;letter-spacing:3px;color:#bfdbfe;font-weight:800;font-size:13px}
-.hero h1{font-size:clamp(42px,6vw,72px);line-height:1.05;margin:14px 0 20px;font-weight:900}
-.hero h2{font-size:clamp(23px,3vw,34px);margin-bottom:18px}
-.hero p{font-size:18px;color:#dbeafe;max-width:650px}
-.buttons{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 23px;border-radius:9px;font-weight:800;border:2px solid transparent}
-.btn-white{background:#fff;color:var(--primary)}
-.btn-green{background:var(--green);color:#fff}
-.visual{display:flex;justify-content:center}
-.card-visual{background:rgba(255,255,255,.12);padding:25px;border-radius:30px;backdrop-filter:blur(8px)}
-.card-inner{background:#fff;color:var(--dark);border-radius:22px;padding:60px 40px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.25)}
-.card-inner .icon{font-size:75px}.card-inner h3{font-size:25px;margin-top:18px}.card-inner p{color:var(--muted);font-size:15px;margin-top:8px}
-section{padding:90px 0}.center{text-align:center}.label{color:var(--primary);font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:2px}.section-title{font-size:42px;line-height:1.15;margin-top:10px}.section-text{color:var(--muted);max-width:760px;margin:16px auto 0;font-size:17px}
-.about{background:#fff}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}.stat{background:#eff6ff;border-radius:18px;padding:25px;text-align:center}.stat strong{font-size:32px;color:var(--primary)}.stat span{display:block;color:var(--muted)}
-.services{background:#f8fafc}.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}.service{background:#fff;border:1px solid var(--border);border-radius:18px;padding:23px;transition:.25s;box-shadow:0 4px 16px rgba(15,23,42,.03)}
-.service-image{width:100%;height:105px;overflow:hidden;border-radius:10px;margin-bottom:10px;background:#f1f5f9}.service-image img{width:100%;height:100%;object-fit:contain;display:block}.service:hover{transform:translateY(-5px);box-shadow:0 16px 30px rgba(15,23,42,.09);border-color:#bfdbfe}.service-icon{font-size:42px}.service h3{font-size:20px;margin-top:12px}.service p{color:var(--muted);font-size:14px;margin-top:6px}.enquire{display:inline-flex;margin-top:14px;color:var(--primary);font-weight:800}.more{text-align:center;margin-top:35px}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:25px;margin-top:50px}.step{text-align:center}.step-num{height:62px;width:62px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:18px;margin:auto}.step h3{margin-top:17px;font-size:20px}.step p{margin-top:7px;color:var(--muted)}
-.why{background:#eff6ff}.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:48px}.feature{background:#fff;border-radius:18px;padding:28px;text-align:center}.feature-icon{font-size:45px}.feature h3{margin-top:12px}.feature p{color:var(--muted);margin-top:7px;font-size:14px}
-.contact{background:#0f172a;color:#fff}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}.contact .label{color:#60a5fa}.contact h2{font-size:44px;margin-top:10px}.contact-copy{color:#cbd5e1;margin-top:17px;max-width:560px}.contact-list{display:grid;gap:15px}.contact-item{display:block;background:rgba(255,255,255,.07);padding:20px;border-radius:15px}.contact-item.green{background:#16a34a}.contact-item small{display:block;color:#cbd5e1;margin-top:3px}
-/* Instagram */
-.hero-visual-col{display:flex;flex-direction:column;align-items:center;gap:14px;width:100%}
-.insta-top{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888);color:#fff;padding:10px 20px;border-radius:999px;font-weight:800;font-size:15px;box-shadow:0 8px 20px rgba(0,0,0,.25);text-align:center}
-.insta-top svg{width:20px;height:20px;fill:#fff;flex:0 0 auto}
-.contact-item.insta{background:linear-gradient(45deg,#f09433,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888)}
-.contact-item.insta small{color:#fff}
-/* Our Authorized Agency - running logo strip */
-.agency-strip{
-  background:#4b2edb;
-  color:#fff;
-  min-height:225px;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-}
-.agency-strip-inner{
-  width:min(100%,1200px);
-  margin:0 auto;
-  padding:35px 25px;
-  display:grid;
-  grid-template-columns:230px 1fr;
-  align-items:center;
-  gap:28px;
-}
-.agency-strip-title{
-  font-size:25px;
-  line-height:1.35;
-  font-weight:800;
-  color:#fff;
-}
-.agency-marquee{
-  overflow:hidden;
-  width:100%;
-  position:relative;
-}
-.agency-track{
-  display:flex;
-  width:max-content;
-  align-items:center;
-  animation:agencyScroll 28s linear infinite; /* [EDIT-AGENCY] 28s = scroll speed, bigger = slower */
-}
-.agency-logo{
-  width:155px;
-  height:82px;
-  margin-right:52px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 auto;
-}
-.agency-logo img{
-  max-width:145px;
-  max-height:62px;
-  width:auto;
-  height:auto;
-  object-fit:contain;
-  display:block;
-}
-@keyframes agencyScroll{
-  from{transform:translateX(0)}
-  to{transform:translateX(-50%)}
-}
-@media (max-width:800px){
-  .agency-strip{min-height:190px}
-  .agency-strip-inner{
-    grid-template-columns:1fr;
-    gap:18px;
-    padding:28px 18px;
-  }
-  .agency-strip-title{
-    font-size:21px;
-    text-align:left;
-  }
-  .agency-logo{
-    width:125px;
-    margin-right:35px;
-  }
-  .agency-logo img{max-width:120px;max-height:55px}
-}
-footer{background:#020617;color:#94a3b8;text-align:center;padding:32px 15px}.footer-title{font-weight:900;color:#fff;font-size:19px}.copyright{border-top:1px solid #1e293b;margin-top:18px;padding-top:18px;font-size:13px}
-.floating{position:fixed;right:22px;bottom:22px;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;font-size:27px;box-shadow:0 10px 30px rgba(0,0,0,.25);z-index:999}
-.mobile-nav{display:none;padding:10px 4%;border-top:1px solid var(--border);background:#fff}.mobile-nav a{display:block;padding:12px 0;font-weight:700}
-.hero-slider{position:relative;width:100%;max-width:620px;aspect-ratio:4/3;border-radius:22px;overflow:hidden;box-shadow:0 25px 60px rgba(0,0,0,.25);background:#0b4acb}
-.hero-slider .slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}
-.hero-slider .slide.active{opacity:1}
-.hero-slider .slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
-.lightbox{position:fixed;inset:0;background:rgba(2,6,23,.92);display:none;align-items:center;justify-content:center;z-index:3000;padding:28px}
-.lightbox.show{display:flex}
-.lightbox img{max-width:100%;max-height:90vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
-.lightbox-close{position:absolute;top:18px;right:22px;width:44px;height:44px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:24px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.lightbox-close:hover{background:rgba(255,255,255,.28)}
-.lightbox-nav{position:absolute;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;border:0;background:rgba(255,255,255,.15);color:#fff;font-size:26px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.lightbox-nav:hover{background:rgba(255,255,255,.28)}
-.lightbox-prev{left:18px}
-.lightbox-next{right:18px}
-.lightbox-caption{position:absolute;left:0;right:0;bottom:18px;text-align:center;color:#fff;font-weight:700;font-size:15px;padding:0 70px}
-@media(max-width:700px){.lightbox{padding:14px}.lightbox-close{top:10px;right:10px}.lightbox-nav{width:42px;height:42px;font-size:20px}.lightbox-prev{left:8px}.lightbox-next{right:8px}.lightbox-caption{padding:0 55px;font-size:13px}}
-.hero-slider .slide-caption{position:absolute;left:0;right:0;bottom:0;padding:16px 18px 34px;background:linear-gradient(0deg,rgba(0,0,0,.55),transparent);color:#fff;font-weight:800;font-size:15px}
-.hero-slider .dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
-.hero-slider .dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);cursor:pointer;border:0;padding:0}
-.hero-slider .dot.active{background:#fff}
-@media(max-width:700px){.hero-slider{max-width:100%}.insta-top{font-size:13px;padding:9px 16px}}
-@media(max-width:950px){.service-grid{grid-template-columns:repeat(3,1fr)}.feature-grid{grid-template-columns:repeat(2,1fr)}.hero-inner{grid-template-columns:1fr}.visual{display:flex;justify-content:center;margin-top:20px}.steps{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:700px){.logo-image{width:155px;height:52px}.navlinks,.nav>.whatsapp{display:none}.menu{display:block}.mobile-nav.show{display:block}.hero{min-height:auto}.hero-inner{min-height:auto;padding:80px 0 100px}.stats,.contact-grid{grid-template-columns:1fr}.service-grid{grid-template-columns:1fr 1fr}.steps{grid-template-columns:1fr}.section-title,.contact h2{font-size:34px}}
-@media(max-width:470px){.service-grid,.feature-grid{grid-template-columns:1fr}.hero h1{font-size:42px}.buttons .btn{width:100%}}
+.container{width:min(1140px,92%);margin:auto}
+section{padding:80px 0}.center{text-align:center}
 
-/* =====================================================================
-   [EDIT-ANIMATION] ANIMATIONS (smooth, light, no lag)
-   Only "transform" and "opacity" are animated - these run on the graphics
-   card, so the page stays smooth even on low-end phones.
-   TO TURN OFF ALL ANIMATION: delete everything from this comment down to
-   the line "END OF ANIMATIONS". Speed: change the seconds, e.g. .6s -> .4s
-   ===================================================================== */
-@keyframes fadeUp{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
-@keyframes zoomIn{from{opacity:0;transform:scale(.94)}to{opacity:1;transform:none}}
-@keyframes pulseRing{0%{transform:scale(1);opacity:.45}100%{transform:scale(1.7);opacity:0}}
-@keyframes softPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.045)}}
+/* header: clean white */
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);box-shadow:0 2px 18px rgba(91,33,182,.1)}
+.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo-image{display:flex;align-items:center;width:185px;height:56px;overflow:hidden}
+.logo-image img{width:100%;height:100%;object-fit:contain;object-position:left center}
+.navlinks{display:flex;gap:26px;font-weight:600;color:var(--dark)}.navlinks a{position:relative;padding:4px 0}
+.navlinks a::after{content:"";position:absolute;left:0;bottom:-2px;width:0;height:3px;border-radius:3px;background:var(--orange);transition:width .25s}.navlinks a:hover::after{width:100%}
+.whatsapp{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:#fff;padding:10px 18px;border-radius:999px;font-weight:700;font-size:14px}
+.menu{display:none;border:0;background:none;font-size:28px;color:var(--primary);cursor:pointer}
+.mobile-nav{display:none;padding:8px 4% 14px;background:#fff;border-top:1px solid var(--border)}.mobile-nav.show{display:block}.mobile-nav a{display:block;padding:11px 0;font-weight:600}.mobile-nav .whatsapp{display:inline-flex;margin-top:6px;color:#fff}
 
-/* Hero: text slides up one by one, slider zooms in */
-.hero-inner>div:first-child>*{animation:fadeUp .7s ease-out backwards}
-.hero-inner>div:first-child>*:nth-child(1){animation-delay:.05s}
-.hero-inner>div:first-child>*:nth-child(2){animation-delay:.15s}
-.hero-inner>div:first-child>*:nth-child(3){animation-delay:.25s}
-.hero-inner>div:first-child>*:nth-child(4){animation-delay:.35s}
-.hero-inner>div:first-child>*:nth-child(5){animation-delay:.45s}
-.hero-inner>div:first-child>*:nth-child(6){animation-delay:.55s}
-.visual{animation:zoomIn .8s ease-out .25s backwards}
+/* hero: light, with a big offset-block slider */
+.hero{padding-top:74px;background:radial-gradient(circle at 92% 12%,rgba(249,115,22,.18),transparent 38%),radial-gradient(circle at 4% 90%,rgba(91,33,182,.14),transparent 40%),var(--cream);overflow:hidden}
+.hero-inner{min-height:650px;display:grid;grid-template-columns:1fr 1.05fr;gap:56px;align-items:center;padding:30px 0 50px}
+.eyebrow{display:inline-block;background:var(--lav);color:var(--primary);padding:5px 14px;border-radius:999px;font-weight:600;font-size:14px}
+.hero h1{font-size:clamp(36px,5.2vw,58px);line-height:1.08;margin:14px 0 10px;font-weight:800;background:linear-gradient(90deg,var(--primary2),var(--primary) 55%,var(--orange));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero h2{font-size:clamp(17px,2.2vw,23px);font-weight:600;color:var(--dark);margin-bottom:6px}
+.hero p{color:var(--muted);max-width:520px;margin-top:8px}
+.buttons{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.btn{padding:13px 24px;border-radius:14px;font-weight:700;border:2px solid transparent;transition:transform .2s,box-shadow .2s}.btn:hover{transform:translateY(-2px)}
+.btn-white{background:var(--orange);color:#fff;box-shadow:0 10px 22px -8px rgba(249,115,22,.7)}.btn-green{border-color:var(--primary);color:var(--primary);background:#fff}
+.visual{display:flex;justify-content:center}.hero-visual-col{display:flex;flex-direction:column;align-items:center;gap:18px;width:100%}
+.insta-top{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888);color:#fff;padding:9px 18px;border-radius:999px;font-weight:700;font-size:14px}
+.insta-top svg{width:19px;height:19px;fill:#fff}
+.hero-slider{position:relative;width:100%;max-width:600px;aspect-ratio:4/3;border-radius:28px;overflow:hidden;background:linear-gradient(160deg,var(--primary),var(--primary2));box-shadow:14px 14px 0 var(--orange),0 30px 50px -20px rgba(59,15,140,.45);margin-right:14px}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1s ease}.slide.active{opacity:1}
+.slide img{width:100%;height:100%;object-fit:cover;display:block;cursor:zoom-in}
+.slide-caption{position:absolute;left:0;right:0;bottom:0;padding:18px 20px 36px;background:linear-gradient(0deg,rgba(27,16,51,.85),transparent);color:#fff;font-weight:600;font-size:15px}
+.dots{position:absolute;bottom:13px;left:0;right:0;display:flex;justify-content:center;gap:8px;z-index:2}
+.dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);border:0;padding:0;cursor:pointer;transition:width .25s}.dot.active{background:var(--orange2);width:24px;border-radius:6px}
+.lightbox{position:fixed;inset:0;background:rgba(27,16,51,.94);display:none;align-items:center;justify-content:center;z-index:3000;padding:24px}
+.lightbox.show{display:flex}.lightbox img{max-width:100%;max-height:88vh;border-radius:14px}
+.lightbox-close,.lightbox-nav{position:absolute;border:0;border-radius:50%;background:rgba(255,255,255,.16);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.lightbox-close{top:16px;right:18px;width:42px;height:42px;font-size:22px}
+.lightbox-nav{top:50%;transform:translateY(-50%);width:48px;height:48px;font-size:26px}.lightbox-prev{left:14px}.lightbox-next{right:14px}
+.lightbox-caption{position:absolute;left:0;right:0;bottom:16px;text-align:center;color:#fff;font-weight:600;padding:0 60px}
 
-/* Slider: slow zoom on the active photo (stays zoomed while fading out - no jump) */
-.hero-slider .slide img{transform:scale(1);transition:transform 0s linear 1s}
-.hero-slider .slide.active img{transform:scale(1.07);transition:transform 4.5s ease-out 0s}
+/* section titles: small orange bar instead of ornaments */
+.label{display:inline-block;background:#ffedd5;color:#c2410c;padding:4px 14px;border-radius:999px;font-weight:700;font-size:13px}
+.section-title{font-size:clamp(28px,4vw,40px);color:var(--primary2);margin-top:12px;line-height:1.2;font-weight:800}
+.ornament{width:56px;height:5px;border-radius:5px;background:var(--orange);margin:14px auto 0;font-size:0;overflow:hidden}
+.section-text{color:var(--muted);max-width:640px;margin:14px auto 0}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:38px}
+.stat{background:var(--lav);border-radius:20px;padding:24px}.stat strong{font-size:32px;color:var(--primary);font-weight:800}.stat span{display:block;color:var(--muted)}
 
-/* Instagram button: gentle pulse; WhatsApp floating button: soft ring */
-.insta-top{animation:softPulse 3s ease-in-out 1.2s infinite}
-.floating::before{content:"";position:absolute;inset:0;border-radius:50%;background:#16a34a;z-index:-1;animation:pulseRing 2.2s ease-out infinite}
+/* services: white cards, purple top bar, orange pill link */
+.services{background:var(--lav)}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.service{position:relative;background:#fff;border-radius:20px;padding:22px 18px 20px;text-align:center;cursor:pointer;overflow:hidden;box-shadow:0 6px 18px -8px rgba(91,33,182,.25);transition:transform .25s,box-shadow .25s}
+.service::before{content:"";position:absolute;left:0;right:0;top:0;height:6px;background:linear-gradient(90deg,var(--primary),var(--orange))}
+.service:hover{transform:translateY(-6px);box-shadow:0 22px 34px -14px rgba(91,33,182,.4)}
+.service-image{width:100%;height:100px;border-radius:12px;margin:6px 0 10px;background:var(--lav);overflow:hidden}.service-image img{width:100%;height:100%;object-fit:contain}
+.service h3{font-size:18px;color:var(--primary2);font-weight:700}.service p{color:var(--muted);font-size:13.5px;margin-top:6px}
+.enquire{display:inline-block;margin-top:12px;background:#ffedd5;color:#c2410c;padding:6px 14px;border-radius:999px;font-weight:700;font-size:13.5px;transition:background .2s,color .2s}.service:hover .enquire{background:var(--orange);color:#fff}
 
-/* Buttons and contact cards: small lift on hover */
-.btn,.whatsapp,.detail-wa,.back-btn,.contact-item{transition:transform .2s ease,box-shadow .2s ease}
-.btn:hover,.whatsapp:hover,.detail-wa:hover,.back-btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(0,0,0,.18)}
-a.contact-item:hover{transform:translateX(6px)}
+/* how it works: connected steps */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:48px;position:relative}
+.steps::before{content:"";position:absolute;top:30px;left:12%;right:12%;border-top:3px dashed #fdba74}
+.step{position:relative}.step-num{width:62px;height:62px;border-radius:50%;margin:auto;display:grid;place-items:center;font-weight:800;font-size:20px;color:#fff;background:linear-gradient(135deg,var(--primary),var(--orange));box-shadow:0 0 0 6px #fff}
+.step h3{margin-top:14px;color:var(--primary2)}.step p{color:var(--muted);font-size:14.5px;margin-top:6px}
+.why{background:var(--cream)}.feature-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:44px}
+.feature{background:#fff;border-radius:20px;padding:28px 18px;box-shadow:0 6px 18px -10px rgba(91,33,182,.3)}.feature-icon{font-size:40px;width:74px;height:74px;margin:0 auto;display:grid;place-items:center;border-radius:20px;background:var(--lav)}
+.feature h3{margin-top:14px;color:var(--primary2)}.feature p{color:var(--muted);font-size:14.5px;margin-top:6px}
 
-/* Scroll reveal: elements fade up when they come into view (class added by script at the bottom) */
-.reveal{opacity:0}
-.reveal.in{opacity:1;animation:fadeUp .6s ease-out backwards;animation-delay:var(--d,0ms)}
+/* agency strip */
+.agency-strip{background:#4b2edb;padding:38px 0;overflow:hidden;border-top:4px solid var(--orange)}
+.agency-strip-inner{width:min(1150px,94%);margin:auto;display:grid;grid-template-columns:200px 1fr;gap:24px;align-items:center}
+.agency-strip-title{font-size:22px;font-weight:800;color:#fff;line-height:1.3;border-left:5px solid var(--orange);padding-left:12px}
+.agency-marquee{overflow:hidden}.agency-track{display:flex;width:max-content;animation:agencyScroll 28s linear infinite}.agency-marquee:hover .agency-track{animation-play-state:paused}
+.agency-logo{width:155px;height:82px;margin-right:52px;display:flex;align-items:center;justify-content:center;flex:0 0 auto}
+.agency-logo img{max-width:145px;max-height:62px;width:auto;height:auto;object-fit:contain;display:block}
 
-/* Service detail cards: fade up when a category is opened */
-.detail-card{animation:fadeUp .45s ease-out backwards}
+/* contact + footer */
+.contact{background:linear-gradient(135deg,var(--primary2),var(--primary) 60%,#7c3aed);color:#fff}.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.contact .label{background:rgba(255,255,255,.18);color:#fff}.contact h2{font-size:clamp(28px,4vw,38px);margin-top:12px;font-weight:800}.contact-copy{color:#e9ddff;margin-top:10px}
+.contact-item{display:block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);padding:16px 18px;border-radius:16px;margin-bottom:12px;transition:transform .2s}
+a.contact-item:hover{transform:translateX(6px)}.contact-item small{display:block;color:#e9ddff}
+.contact-item.green{background:var(--green);border:0}.contact-item.insta{background:linear-gradient(45deg,#f09433,#dc2743 50%,#bc1888);border:0}
+footer{background:var(--dark);color:#a79fc0;text-align:center;padding:28px 15px}
+.footer-title{font-weight:800;color:#fff;font-size:19px}.copyright{border-top:1px solid #2c2150;margin-top:16px;padding-top:16px;font-size:13px}
+.floating-wrap{position:fixed;right:16px;bottom:16px;display:flex;flex-direction:column;gap:10px;z-index:999}.floating-btn{width:62px;height:62px;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--green);color:#fff;font-size:22px;line-height:1.1;box-shadow:0 10px 28px rgba(0,0,0,.28)}.floating-btn small{font-size:9.5px;font-weight:700}
 
-/* People who turned on "reduce motion" on their phone get no animation */
-@media (prefers-reduced-motion:reduce){
-  *,*::before,*::after{animation:none!important;transition:none!important}
-  .reveal{opacity:1}
-}
-/* END OF ANIMATIONS */
-
-/* Service detail pages */
-.service{cursor:pointer}
-.service .enquire{cursor:pointer}
-#servicePage{display:none;min-height:100vh;padding:125px 0 80px;background:linear-gradient(180deg,#f8fafc,#fff)}
-#servicePage.show{display:block}
-.service-page-head{display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:30px}
-.back-btn{border:0;background:#e2e8f0;color:#0f172a;padding:11px 17px;border-radius:10px;font-weight:800;cursor:pointer}
-.service-page-title{display:flex;align-items:center;gap:15px}
-.service-page-icon{font-size:48px}
-.service-page-title h1{font-size:clamp(30px,5vw,48px);line-height:1.1}
-.service-page-title p{color:#64748b;margin-top:5px}
+/* service detail page */
+#servicePage{display:none;min-height:100vh;padding:120px 0 70px;background:var(--lav)}#servicePage.show{display:block}
+.service-page-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:26px}
+.back-btn{border:0;background:#fff;color:var(--primary);padding:10px 18px;border-radius:999px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px -6px rgba(91,33,182,.4)}
+.service-page-title{display:flex;align-items:center;gap:14px}.service-page-icon{font-size:44px;width:76px;height:76px;display:grid;place-items:center;background:#fff;border-radius:22px}
+.service-page-title h1{font-size:clamp(28px,5vw,42px);color:var(--primary2);line-height:1.1;font-weight:800}.service-page-title p{color:var(--muted)}
+.category-note{background:#fff7ed;border-left:5px solid var(--orange);border-radius:14px;padding:16px;margin:24px 0;color:#7c2d12}
 .detail-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
-.detail-card{background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:24px;box-shadow:0 8px 24px rgba(15,23,42,.05)}
-.detail-card h3{font-size:20px;margin-bottom:8px}
-.detail-card p{color:#64748b}
-.detail-card ul{padding-left:20px;color:#475569}
-.detail-card li{margin:7px 0}
-.doc-title{margin-top:16px;font-weight:800;font-size:14px;color:#1749b7}
-.doc-list{padding-left:20px;color:#334155;margin-top:8px;background:#f0f6ff;border-radius:10px;padding:12px 12px 12px 30px;list-style:disc}
-.doc-list li{margin:5px 0;font-size:14.5px}
-.detail-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-.detail-wa{display:inline-flex;align-items:center;justify-content:center;background:#16a34a;color:#fff;padding:13px 20px;border-radius:10px;font-weight:900}
-.detail-call{display:inline-flex;align-items:center;justify-content:center;background:#155eef;color:#fff;padding:13px 20px;border-radius:10px;font-weight:900}
-.category-note{background:#eff6ff;border:1px solid #bfdbfe;border-radius:16px;padding:18px;margin-bottom:22px;color:#1e3a8a}
-@media(max-width:700px){.detail-grid{grid-template-columns:1fr}.service-page-head{align-items:flex-start;flex-direction:column}.service-page-title{align-items:flex-start}}
+.detail-card{background:#fff;border-radius:20px;padding:22px;box-shadow:0 8px 22px -12px rgba(91,33,182,.35);animation:fadeUp .45s ease-out backwards}
+.detail-card h3{font-size:19px;color:var(--primary2);margin-bottom:6px}.detail-card p{color:var(--muted)}
+.doc-title{margin-top:14px;font-weight:700;font-size:14px;color:var(--primary)}
+.doc-list{margin-top:8px;background:var(--lav);border-radius:12px;padding:12px 12px 12px 30px;color:#3b3550}.doc-list li{margin:5px 0;font-size:14.5px}
+.detail-wa{display:inline-flex;margin-top:18px;margin-right:8px;background:var(--green);color:#fff;padding:12px 20px;border-radius:999px;font-weight:700}
 
+/* link to computer shop page */
+.shopband{background:linear-gradient(135deg,var(--primary2),var(--primary));color:#fff;padding:56px 0}
+.shopband .container{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;align-items:center}
+.shopband h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;line-height:1.2}
+.shopband p{color:#e9ddff;margin-top:10px;max-width:520px}
+.shopband .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.shopband .tags span{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);padding:5px 14px;border-radius:999px;font-weight:600;font-size:14px}
+.shopband .go{justify-self:end;display:inline-flex;align-items:center;gap:8px;background:var(--orange);color:#fff;padding:16px 30px;border-radius:14px;font-weight:800;font-size:18px;box-shadow:0 14px 26px -10px rgba(249,115,22,.8)}
+.shopband .go:hover{background:#ea580c}
+@media(max-width:700px){.shopband .container{grid-template-columns:1fr}.shopband .go{justify-self:start}}
+
+@keyframes agencyScroll{to{transform:translateX(-50%)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media(max-width:950px){.service-grid{grid-template-columns:repeat(3,1fr)}.feature-grid,.steps{grid-template-columns:repeat(2,1fr)}.steps::before{display:none}.hero-inner,.contact-grid{grid-template-columns:1fr}.agency-strip-inner{grid-template-columns:1fr}}
+@media(max-width:700px){.navlinks,.nav>.whatsapp{display:none}.menu{display:block}.service-grid{grid-template-columns:1fr 1fr}.stats,.detail-grid{grid-template-columns:1fr}.steps{grid-template-columns:1fr}.logo-image{width:150px}.service-page-head{flex-direction:column;align-items:flex-start}.hero-slider{box-shadow:9px 9px 0 var(--orange)}}
+@media(max-width:470px){.service-grid,.feature-grid{grid-template-columns:1fr}.buttons .btn{width:100%;text-align:center}}
 </style>
 </head>
 <body>
-<!--
-=====================================================================
-  EASY EDIT GUIDE - SKYNET E-SEVAI MAIYAM WEBSITE
-  Tip: Press Ctrl+F in your editor and search for the tag shown
-  (like  [EDIT-PHONE] ) to jump straight to that part.
-=====================================================================
-
-  [EDIT-PHONE]     Phone / WhatsApp number
-      Current number: 919952750897  (WhatsApp links)  and  +919952750897 (call link)
-      -> Use Find & Replace (Ctrl+H): replace 919952750897 with your new number.
-         (Use country code 91 first, no + and no spaces for WhatsApp links.)
-      -> Also change the visible text "+91 99527 50897" in the Contact section.
-
-  [EDIT-INSTAGRAM] Instagram link
-      Current link: https://www.instagram.com/skynete_sevai
-      -> Find & Replace this link to change it everywhere.
-      -> It appears in 2 places: above the hero slider and in the Contact section.
-      -> To REMOVE it from one place, delete that block (each block has a comment).
-
-  [EDIT-LOGO]      Logo:  replace the file  images/logo.jpeg  (keep the same name).
-
-  [EDIT-HERO]      Hero slider photos + captions (top of page):
-      -> Search "heroPhotos" near the bottom of this file.
-      -> Each line is one photo:  {img:"images/1.jpg", caption:'Your text'},
-      -> To add a photo: copy one line, change the file name and caption.
-      -> To remove a photo: delete its line.
-      -> Slide speed: search "3500" (3500 = 3.5 seconds).
-
-  [EDIT-SERVICES]  Services, sub-services and required documents:
-      -> Search "const services" near the bottom of this file.
-      -> Structure:
-           ["Category Name","Tamil description","emoji",[
-              ["Sub-service name","Tamil description",["Document 1","Document 2"]],
-           ]],
-      -> To add a document: add "New Document" inside the last [ ] list.
-      -> To add a sub-service: copy one ["..","..",[..]], line and edit it.
-      -> Keep every quote " and comma , exactly as in the examples.
-
-  [EDIT-SERVICE-IMAGES] Service card pictures:
-      -> Search "serviceImages". Pictures are in the SAME ORDER as the services list.
-      -> New exam services need these pictures: images/rrb.png , images/ssc.png , images/postoffice.png
-         (if a picture is missing, the card still works, just without a picture).
-      -> If you add a NEW category in the middle of the list, add its picture at the same position.
-
-  [EDIT-AGENCY]    "Our Authorized Agency" running logos:
-      -> Search "agency-track". Each logo is one line:
-         <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
-      -> The list is written TWICE for smooth scrolling. Whatever you add or
-         remove in the first half, do the same in the second half.
-      -> Scroll speed: search "28s" (bigger number = slower).
-
-  [EDIT-ANIMATION] Animations (smooth, light, no lag)
-      -> Search "ANIMATIONS" in the <style> part. Delete that block to turn all animation off.
-      -> Make it faster/slower: change the seconds (.6s, .7s, .8s, 4.5s).
-      -> Also delete the "Scroll reveal" block at the very bottom of the script to fully remove it.
-
-  [EDIT-TEXT]      Headings and paragraphs: just change the text between the tags,
-                   e.g.  <h2>Thottiyam & Musiri</h2>
-
-  [EDIT-ADDRESS]   Address: in the Contact section, change the first line of text under
-                   📍 Address to your full street address. Tapping the card opens the
-                   Google Maps link (search "maps.app.goo.gl" to change the map link).
-
-  [EDIT-COLORS]    Colours: at the top of the <style> part, see  :root{--primary:...}
-      --primary = main blue,  --green = WhatsApp green,  --dark = dark text/background.
-
-
-  ---------------------------------------------------------------
-  EXAMPLES WITH PHOTOS (copy and paste these)
-  ---------------------------------------------------------------
-
-  EXAMPLE 1 - Add a NEW HERO SLIDER PHOTO
-    Step 1: Copy your photo into the images folder and name it  12.jpg
-            Folder look:   website/
-                             index.html
-                             images/
-                               logo.jpeg
-                               1.jpg  2.jpg ... 11.jpg
-                               12.jpg      <-- your new photo
-    Step 2: Search "heroPhotos", and after the last photo line add:
-            {img:"images/12.jpg",caption:'Passport சேவைகள் – விண்ணப்ப உதவி.'},
-    Step 3: Save and refresh the page. The photo now shows in the slider.
-
-  EXAMPLE 2 - Add a NEW AUTHORIZED AGENCY LOGO
-    Step 1: Put the logo in images folder, for example  images/bsnl.png
-    Step 2: Search "agency-track" and add this line in BOTH halves:
-            <div class="agency-logo"><img src="images/bsnl.png" alt="BSNL"></div>
-
-  EXAMPLE 3 - Change a SERVICE CARD PICTURE
-    Step 1: Put the picture in images folder, for example  images/newpan.png
-    Step 2: Search "serviceImages" and replace the file name of that service.
-            (PAN Card is the 5th picture: "images/pan.png" -> "images/newpan.png")
-
-  EXAMPLE 4 - Add a NEW DOCUMENT to a service
-    Find:    ["New PAN Application","...",["Aadhar Card","Photo","Signature"]],
-    Change:  ["New PAN Application","...",["Aadhar Card","Photo","Signature","Address Proof"]],
-
-  Photo tips: use .jpg or .png, keep file names simple (no spaces if possible),
-  and keep hero photos around 1200 x 900 px (4:3 shape) so they fit well.
-
-  IMPORTANT: Keep this file in the same folder as the  images  folder.
-=====================================================================
--->
+<!-- [EDIT-PHONE] WhatsApp number used everywhere: 918973310128 (Find & Replace to change) -->
 <header>
   <div class="container nav">
-    <!-- [EDIT-LOGO] Logo file: images/logo.jpeg -->
-    <a class="logo logo-image" href="#home" aria-label="SKYNET E-Sevai Maiyam"><img src="images/logo.jpeg" alt="SKYNET E-Sevai Maiyam logo"></a>
-    <nav class="navlinks">
-      <a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="#how">How It Works</a><a href="#why">Why Choose Us</a><a href="#contact">Contact</a>
-    </nav>
-    <!-- [EDIT-PHONE] WhatsApp number in the link (919952750897) -->
-    <a class="whatsapp" href="https://wa.me/919952750897" target="_blank">💬 WhatsApp</a>
+    <a class="logo-image" href="#home" aria-label="SKYNET E-Sevai Maiyam"><img src="images/logo.jpeg" alt="SKYNET E-Sevai Maiyam logo"></a>
+    <nav class="navlinks"><a href="#home">Home</a><a href="#about">About</a><a href="#services">Services</a><a href="skynet-computers.html">Computer Shop</a><a href="#how">How It Works</a><a href="#why">Why Choose Us</a><a href="#contact">Contact</a></nav>
+    <a class="whatsapp" href="#contact" onclick="if(typeof showAllServices==='function'&&document.getElementById('servicePage').classList.contains('show'))showAllServices()">💬 WhatsApp</a>
     <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
   </div>
   <nav id="mobileNav" class="mobile-nav">
-    <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="#how" onclick="closeMenu()">How It Works</a><a href="#why" onclick="closeMenu()">Why Choose Us</a><a href="#contact" onclick="closeMenu()">Contact</a>
-    <a class="whatsapp" href="https://wa.me/919952750897" target="_blank">💬 WhatsApp</a>
+    <a href="#home" onclick="closeMenu()">Home</a><a href="#about" onclick="closeMenu()">About</a><a href="#services" onclick="closeMenu()">Services</a><a href="skynet-computers.html">Computer Shop</a><a href="#how" onclick="closeMenu()">How It Works</a><a href="#why" onclick="closeMenu()">Why Choose Us</a><a href="#contact" onclick="closeMenu()">Contact</a>
+    <a class="whatsapp" href="#contact" onclick="if(typeof showAllServices==='function'&&document.getElementById('servicePage').classList.contains('show'))showAllServices()">💬 WhatsApp</a>
   </nav>
 </header>
 
@@ -347,150 +150,105 @@ a.contact-item:hover{transform:translateX(6px)}
 <section id="home" class="hero">
   <div class="container hero-inner">
     <div>
-      <!-- [EDIT-TEXT] Hero heading and description -->
       <div class="eyebrow">Welcome to</div>
-      <h1>SKYNET COMPUTERS </h1>
+      <h1>SKYNET COMPUTERS</h1>
       <h2>E-SEVAI MAIYAM</h2>
-<h2>Thottiyam & Musiri</h2>
+      <h2>Thottiyam</h2>
       <h2>உங்கள் அரசு சேவைகள் அனைத்தும் ஒரே இடத்தில்</h2>
       <p>Government and digital services made simple, convenient and accessible. Get assistance for various online government services from one place.</p>
-      <div class="buttons"><a class="btn btn-white" href="#services">சேவைகளை காண்க</a><a class="btn btn-green" href="https://wa.me/919952750897" target="_blank">WhatsApp Us</a></div>
+      <div class="buttons"><a class="btn btn-white" href="#services">சேவைகளை காண்க</a><a class="btn btn-green" href="https://wa.me/918973310128" target="_blank" rel="noopener">WhatsApp Thottiyam</a><a class="btn btn-green" href="https://wa.me/919952750897" target="_blank" rel="noopener">WhatsApp Musiri</a></div>
     </div>
-    <div class="visual">
-      <div class="hero-visual-col">
-        <!-- [EDIT-INSTAGRAM] INSTAGRAM BUTTON ABOVE SLIDER: change the link in href="", or delete this whole <a> ... </a> block to remove it -->
-        <a class="insta-top" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 17.3 6z"/></svg>
-          Follow us on Instagram @skynete_sevai
-        </a>
-        <!-- [EDIT-HERO] Slider photos are set in the script at the bottom: search "heroPhotos" -->
-        <div class="hero-slider" id="heroSlider"><div class="dots" id="heroDots"></div></div>
-      </div>
-    </div>
+    <div class="visual"><div class="hero-visual-col">
+      <a class="insta-top" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A4.5 4.5 0 1 1 7.5 12 4.5 4.5 0 0 1 12 7.5zm0 2A2.5 2.5 0 1 0 14.5 12 2.5 2.5 0 0 0 12 9.5zM17.3 6a1.2 1.2 0 1 1-1.2 1.2A1.2 1.2 0 0 1 17.3 6z"/></svg>
+        Follow us on Instagram @skynete_sevai
+      </a>
+      <div class="hero-slider" id="heroSlider"><div class="dots" id="heroDots"></div></div>
+    </div></div>
     <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
       <button class="lightbox-close" onclick="closeLightbox(event)" aria-label="Close">✕</button>
-      <button class="lightbox-nav lightbox-prev" onclick="lightboxStep(-1,event)" aria-label="Previous image">‹</button>
+      <button class="lightbox-nav lightbox-prev" onclick="lightboxStep(-1,event)" aria-label="Previous">‹</button>
       <img id="lightboxImg" src="" alt="">
-      <button class="lightbox-nav lightbox-next" onclick="lightboxStep(1,event)" aria-label="Next image">›</button>
+      <button class="lightbox-nav lightbox-next" onclick="lightboxStep(1,event)" aria-label="Next">›</button>
       <div class="lightbox-caption" id="lightboxCaption"></div>
     </div>
   </div>
 </section>
 
-<section id="about" class="about">
-  <div class="container center">
-    <div class="label">About Us</div><h2 class="section-title">Your Local Digital Service Centre</h2>
-    <p class="section-text">SKYNET E-Sevai Maiyam helps people access government and digital services with clear guidance and convenient local support.</p>
-    <!-- [EDIT-TEXT] Numbers/labels in the About section (20+, Easy, Local) -->
-    <div class="stats"><div class="stat"><strong>20+</strong><span>Service Categories</span></div><div class="stat"><strong>Easy</strong><span>Service Assistance</span></div><div class="stat"><strong>Local</strong><span>Customer Support</span></div></div>
-  </div>
-</section>
+<section id="about"><div class="container center">
+  <div class="label">About Us</div><h2 class="section-title">Your Local Digital Service Centre</h2><div class="ornament">✦</div>
+  <p class="section-text">SKYNET E-Sevai Maiyam helps people access government and digital services with clear guidance and convenient local support.</p>
+  <div class="stats"><div class="stat"><strong>20+</strong><span>Service Categories</span></div><div class="stat"><strong>Easy</strong><span>Service Assistance</span></div><div class="stat"><strong>Local</strong><span>Customer Support</span></div></div>
+</div></section>
 
-<section id="services" class="services">
-  <div class="container">
-    <div class="center"><div class="label">Our Services</div><h2 class="section-title">Government & Digital Services</h2><p class="section-text">Assistance for a wide range of government and digital services.</p></div>
-    <!-- [EDIT-SERVICES] Service cards are created automatically from the script at the bottom: search "const services" -->
-    <div id="serviceGrid" class="service-grid"></div>
-  </div>
-</section>
+<section id="services" class="services"><div class="container">
+  <div class="center"><div class="label">Our Services</div><h2 class="section-title">Government &amp; Digital Services</h2><div class="ornament">✦</div><p class="section-text">Assistance for a wide range of government and digital services.</p></div>
+  <div id="serviceGrid" class="service-grid"></div>
+</div></section>
 
-<section id="how">
-  <div class="container center">
-    <div class="label">Simple Process</div><h2 class="section-title">How It Works</h2>
-    <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Choose Service</h3><p>Select the government or digital service you need.</p></div>
-      <div class="step"><div class="step-num">02</div><h3>Contact Us</h3><p>Contact us through WhatsApp or phone.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Submit Documents</h3><p>Provide the required documents for your service.</p></div>
-      <div class="step"><div class="step-num">04</div><h3>Get Your Service</h3><p>We assist you through the application process.</p></div>
-    </div>
+<section id="computer-shop" class="shopband"><div class="container">
+  <div>
+    <h2>Also visit SkyNet Computers</h2>
+    <p>Refurbished laptops and desktops, CCTV cameras, mobiles, tablets and computer accessories from our computer shop.</p>
+    <div class="tags"><span>Laptops</span><span>Desktops</span><span>CCTV</span><span>Mobiles</span><span>Accessories</span></div>
   </div>
-</section>
+  <a class="go" href="skynet-computers.html">Visit Computer Shop</a>
+</div></section>
 
-<section id="why" class="why">
-  <div class="container center">
-    <div class="label">Why SKYNET</div><h2 class="section-title">Why Choose SKYNET E-Sevai Maiyam?</h2>
-    <div class="feature-grid">
-      <div class="feature"><div class="feature-icon">⚡</div><h3>Quick Service</h3><p>Efficient assistance with government and digital services.</p></div>
-      <div class="feature"><div class="feature-icon">🤝</div><h3>Friendly Support</h3><p>Guidance throughout the service process.</p></div>
-      <div class="feature"><div class="feature-icon">🔒</div><h3>Reliable</h3><p>Your service requirements handled carefully.</p></div>
-      <div class="feature"><div class="feature-icon">📱</div><h3>Easy Access</h3><p>Reach us easily by phone or WhatsApp.</p></div>
-    </div>
+<section id="how"><div class="container center">
+  <div class="label">Simple Process</div><h2 class="section-title">How It Works</h2><div class="ornament">✦</div>
+  <div class="steps">
+    <div class="step"><div class="step-num">1</div><h3>Choose Service</h3><p>Select the government or digital service you need.</p></div>
+    <div class="step"><div class="step-num">2</div><h3>Contact Us</h3><p>Contact us through WhatsApp or phone.</p></div>
+    <div class="step"><div class="step-num">3</div><h3>Submit Documents</h3><p>Provide the required documents for your service.</p></div>
+    <div class="step"><div class="step-num">4</div><h3>Get Your Service</h3><p>We assist you through the application process.</p></div>
   </div>
-</section>
+</div></section>
 
-<section id="contact" class="contact">
-  <div class="container contact-grid">
-    <div><div class="label">Contact Us</div><h2>Need Help With a Service?</h2><p class="contact-copy">Contact SKYNET E-Sevai Maiyam for assistance with government and digital services.</p></div>
-    <div class="contact-list">
-      <!-- [EDIT-PHONE] CALL: change the number in href="tel:..." and the visible text below -->
-      <a class="contact-item" href="tel:+919952750897">📞 <b>Call Us</b><small>+91 99527 50897</small></a>
-      <!-- [EDIT-PHONE] WHATSAPP: change the number inside the wa.me link -->
-      <a class="contact-item green" href="https://wa.me/919952750897" target="_blank">💬 <b>WhatsApp</b><small>Chat with us on WhatsApp</small></a>
-      <!-- [EDIT-INSTAGRAM] INSTAGRAM IN CONTACT: change href="", or delete this whole <a> ... </a> block to remove it -->
-      <a class="contact-item insta" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">📸 <b>Instagram</b><small>@skynete_sevai</small></a>
-      <!-- [EDIT-ADDRESS] ADDRESS: change the text in the first <small> to your full street address. The href is your Google Maps link (change it if the shop moves). -->
-      <a class="contact-item" href="https://maps.app.goo.gl/fjqr6VCHNhR8mm8b6" target="_blank" rel="noopener">📍 <b>Address</b><small>SKYNET E-Sevai Maiyam, Thottiyam, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
-    </div>
+<section id="why" class="why"><div class="container center">
+  <div class="label">Why SKYNET</div><h2 class="section-title">Why Choose SKYNET E-Sevai Maiyam?</h2><div class="ornament">✦</div>
+  <div class="feature-grid">
+    <div class="feature"><div class="feature-icon">⚡</div><h3>Quick Service</h3><p>Efficient assistance with government and digital services.</p></div>
+    <div class="feature"><div class="feature-icon">🤝</div><h3>Friendly Support</h3><p>Guidance throughout the service process.</p></div>
+    <div class="feature"><div class="feature-icon">🔒</div><h3>Reliable</h3><p>Your service requirements handled carefully.</p></div>
+    <div class="feature"><div class="feature-icon">📱</div><h3>Easy Access</h3><p>Reach us easily by phone or WhatsApp.</p></div>
   </div>
-</section>
+</div></section>
 
-<section id="servicePage" aria-label="Service details">
-  <div class="container">
-    <div class="service-page-head">
-      <button class="back-btn" onclick="showAllServices()">← சேவைகளுக்கு திரும்பு</button>
-      <a class="whatsapp" href="https://wa.me/919952750897" target="_blank">💬 WhatsApp</a>
-    </div>
-    <div class="service-page-title">
-      <div class="service-page-icon" id="detailIcon">🪪</div>
-      <div>
-        <h1 id="detailTitle">Service</h1>
-        <p id="detailSubtitle">கீழே ஒரு சேவையை தேர்ந்தெடுக்கவும்</p>
-      </div>
-    </div>
-    <div class="category-note">
-      உங்களுக்கு தேவையான சேவையை தேர்ந்தெடுக்கவும். ஆவண தேவைகள், கட்டணம் மற்றும் தற்போதைய செயல்முறை விவரங்களுக்கு, முக்கியமான ஆவணங்களை அனுப்பும் முன் SKYNET E-Sevai Maiyam-ஐ WhatsApp மூலம் தொடர்பு கொள்ளவும்.
-    </div>
-    <div class="detail-grid" id="detailGrid"></div>
+<section id="contact" class="contact"><div class="container contact-grid">
+  <div><div class="label">Contact Us</div><h2>Need Help With a Service?</h2><p class="contact-copy">Contact SKYNET E-Sevai Maiyam for assistance with government and digital services.</p></div>
+  <div>
+    <a class="contact-item" href="tel:+918608670897">📞 <b>Call Skynet-SIVA</b><small>+91 86086 70897</small></a>
+    <a class="contact-item" href="tel:+919080985580">📞 <b>Call Skynet-SIVA</b><small>+91 90809 85580</small></a>
+    <a class="contact-item green" href="https://wa.me/918973310128" target="_blank" rel="noopener">💬 <b>WhatsApp Thottiyam</b><small>Chat with us on WhatsApp</small></a>
+    <a class="contact-item insta" href="https://www.instagram.com/skynete_sevai" target="_blank" rel="noopener">📸 <b>Instagram</b><small style="color:#fff">@skynete_sevai</small></a>
+    <a class="contact-item" href="https://maps.app.goo.gl/DMGJ63suAZ1Zhvku6" target="_blank" rel="noopener">📍 <b>Thottiyam Address</b><small>SKYNET E-Sevai Maiyam, Thottiyam, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
+<a class="contact-item" href="https://share.google/fFQkxQiedJIkMDRUF" target="_blank" rel="noopener">📍 <b>Musiri Address</b><small>SKYNET E-Sevai Maiyam, Musiri, Tamil Nadu</small><small>🗺️ Tap to open in Google Maps</small></a>
   </div>
-</section>
+</div></section>
 
+<section id="servicePage" aria-label="Service details"><div class="container">
+  <div class="service-page-head">
+    <button class="back-btn" onclick="showAllServices()">← சேவைகளுக்கு திரும்பு</button>
+    <a class="whatsapp" href="#contact" onclick="showAllServices()">💬 WhatsApp</a>
+  </div>
+  <div class="service-page-title"><div class="service-page-icon" id="detailIcon">🪪</div><div><h1 id="detailTitle">Service</h1><p id="detailSubtitle"></p></div></div>
+  <div class="category-note">உங்களுக்கு தேவையான சேவையை தேர்ந்தெடுக்கவும். ஆவண தேவைகள், கட்டணம் மற்றும் தற்போதைய செயல்முறை விவரங்களுக்கு, முக்கியமான ஆவணங்களை அனுப்பும் முன் WhatsApp மூலம் தொடர்பு கொள்ளவும்.</div>
+  <div class="detail-grid" id="detailGrid"></div>
+</div></section>
 </main>
 
-<!-- [EDIT-AGENCY] Running logo strip. Logos are listed twice (needed for the loop) - edit both halves the same way. -->
-<section class="agency-strip" aria-label="Our Authorized Agency">
-  <div class="agency-strip-inner">
-    <div class="agency-strip-title">Our Authorized<br>Agency</div>
-    <div class="agency-marquee">
-      <div class="agency-track">
-           <div class="agency-logo"><img src="images/Aadhar.png" alt="Aadhaar"></div>
-        <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
-        <div class="agency-logo"><img src="images/Digital.png" alt="Digital"></div>
-        <div class="agency-logo"><img src="images/passport (1).png" alt="Passport Seva"></div>
-        <div class="agency-logo"><img src="images/irctc.png" alt="IRCTC"></div>
-        <div class="agency-logo"><img src="images/nsdl.png" alt="NSDL"></div>
-        <div class="agency-logo"><img src="images/tneGa.png" alt="TNEGA"></div>
-        <div class="agency-logo"><img src="images/uti.png" alt="UTI"></div>
-        <div class="agency-logo"><img src="images/Aadhar.png" alt="Aadhaar"></div>
-        <div class="agency-logo"><img src="images/csc.png" alt="CSC"></div>
-        <div class="agency-logo"><img src="images/Digital.png" alt="Digital"></div>
-        <div class="agency-logo"><img src="images/passport (1).png" alt="Passport Seva"></div>
-        <div class="agency-logo"><img src="images/irctc.png" alt="IRCTC"></div>
-        <div class="agency-logo"><img src="images/nsdl.png" alt="NSDL"></div>
-        <div class="agency-logo"><img src="images/tneGa.png" alt="TNEGA"></div>
-        <div class="agency-logo"><img src="images/uti.png" alt="UTI"></div>
-      </div>
-    </div>
-  </div>
-</section>
+<section class="agency-strip" aria-label="Our Authorized Agency"><div class="agency-strip-inner">
+  <div class="agency-strip-title">Our Authorized<br>Agency</div>
+  <div class="agency-marquee"><div class="agency-track" id="agencyTrack"></div></div>
+</div></section>
 
 <footer><div class="footer-title">SKYNET E-Sevai Maiyam</div><p>Your trusted digital and government service centre.</p><div class="copyright">© <span id="year"></span> SKYNET E-Sevai Maiyam. All rights reserved.</div></footer>
-<a class="floating" href="https://wa.me/919952750897" target="_blank" aria-label="WhatsApp">💬</a>
+<div class="floating-wrap"><a class="floating-btn" href="https://wa.me/918973310128" target="_blank" rel="noopener" aria-label="WhatsApp Thottiyam">💬<small>Thottiyam</small></a></div>
 
 <script>
-
 /* [EDIT-SERVICES] SERVICE LIST
-   Format: ["Category","Tamil description","emoji",[ ["Sub-service","Tamil description",["Doc 1","Doc 2"]], ... ]],
-   Add a document = add "Name" inside the last [ ].  Add a service = copy one whole line and edit it. */
+   Format: ["Category","Tamil description","emoji",[ ["Sub-service","Tamil description",["Doc 1","Doc 2"]], ... ]], */
 const services=[
 ["E-Sevai","தமிழ்நாடு அரசு இ-சேவை சான்றிதழ்கள் மற்றும் சேவைகள்.","🏛️",[
 ["Income Certificate","குடும்ப ஆண்டு வருமானத்தை உறுதி செய்யும் அரசு சான்றிதழ்.",["Photo","Aadhar Card","Ration Card","Signature","Payslip (if Govt Salary Person)","PAN Card (if Parents in Govt Job)","Mobile Number"]],
@@ -692,85 +450,77 @@ const services=[
 ]]
 ];
 
-const grid=document.getElementById("serviceGrid");
 /* [EDIT-SERVICE-IMAGES] One picture per category, in the SAME ORDER as the services list above */
 const serviceImages=[
 "images/eservice.png","images/adhaar.png","images/voter id.jpeg","images/passport.png","images/pan.png","images/Employment.png","images/ration.png","images/education.png","images/EPFO.png",
 "images/booking.png","images/payments.png","images/pvc.png","images/land.png","images/police.png","images/bd.png","images/pdf.png","images/dis.png","images/msme.png","images/esharm.png",
 "images/insurence.png","images/tnpsc.png","images/loan.png","images/farmer.png","images/driving.png","images/eb.png","images/food.png",
-
-
-/* NEW: RRB, SSC, Post Office pictures - add these 3 files to the images folder */
 "images/rrb.png","images/ssc.png","images/postoffice.png",
-
-"images/print.png","images/bank.png","images/insurance.png","images/certificate.png",
-
+"images/print.png","images/bank.png","images/insurance.png","images/certificate.png"
 ];
 
+const grid=document.getElementById("serviceGrid");
 grid.innerHTML=services.map((s,i)=>`
 <article class="service" onclick="openService(${i})" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openService(${i})}">
-  <div class="service-image"><img src="${serviceImages[i]||'images/adhaar.png'}" alt="${s[0]}" loading="lazy" onerror="this.style.display='none'"></div>
-  <h3>${s[0]}</h3><p>${s[1]}</p>
-  <span class="enquire">சேவைகளை காண →</span>
+  <div class="service-image"><img src="${serviceImages[i]||'images/adhaar.png'}" alt="${s[0]}" loading="lazy" onerror="this.style.display=&quot;none&quot;"></div>
+  <h3>${s[0]}</h3><p>${s[1]}</p><span class="enquire">சேவைகளை காண →</span>
 </article>`).join("");
 
-function openService(index){
+function renderService(index){
   const s=services[index];
+  if(!s) return;
   document.getElementById("detailIcon").textContent=s[2];
   document.getElementById("detailTitle").textContent=s[0];
   document.getElementById("detailSubtitle").textContent=s[1];
   document.getElementById("detailGrid").innerHTML=s[3].map((item,k)=>`
     <article class="detail-card" style="animation-delay:${Math.min(k,8)*60}ms">
-      <h3>${item[0]}</h3>
-      <p>${item[1]}</p>
-      ${item[2]?`<div class="doc-title">📑 தேவையான ஆவணங்கள் / Required Documents</div>
-      <ul class="doc-list">
-        ${item[2].map(doc=>`<li>${doc}</li>`).join("")}
-      </ul>`:""}
-      <div class="detail-actions">
-        <a class="detail-wa" href="https://wa.me/919952750897?text=${encodeURIComponent("Hello SKYNET E-Sevai Maiyam, I need help with "+s[0]+" - "+item[0])}" target="_blank">💬 விண்ணப்பிக்க / விசாரிக்க</a>
-      </div>
+      <h3>${item[0]}</h3><p>${item[1]}</p>
+      ${item[2]?`<div class="doc-title">📑 தேவையான ஆவணங்கள் / Required Documents</div><ul class="doc-list">${item[2].map(d=>`<li>${d}</li>`).join("")}</ul>`:""}
+      <a class="detail-wa" href="https://wa.me/918973310128?text=${encodeURIComponent("Hello SKYNET E-Sevai Maiyam Thottiyam, I need help with "+s[0]+" - "+item[0])}" target="_blank" rel="noopener">💬 WhatsApp</a>
     </article>`).join("");
   document.getElementById("servicePage").classList.add("show");
   document.querySelector("header").style.display="none";
   document.querySelector("footer").style.display="none";
-  document.querySelector(".floating").style.display="none";
-  document.querySelector("main").querySelectorAll(":scope > section:not(#servicePage)").forEach(x=>x.style.display="none");
-  location.hash="service-"+encodeURIComponent(s[0]);
+  document.querySelector(".floating-wrap").style.display="none";
+  document.querySelectorAll("main > section:not(#servicePage)").forEach(x=>x.style.display="none");
   window.scrollTo({top:0,behavior:"smooth"});
 }
-
-function showAllServices(){
+function openService(index){
+  const s=services[index];
+  if(!s) return;
+  renderService(index);
+  history.pushState({serviceIndex:index},"",location.pathname+location.search+"#service-"+encodeURIComponent(s[0]));
+}
+function showAllServices(fromBack){
   document.getElementById("servicePage").classList.remove("show");
   document.querySelector("header").style.display="";
   document.querySelector("footer").style.display="";
-  document.querySelector(".floating").style.display="";
-  document.querySelector("main").querySelectorAll(":scope > section:not(#servicePage)").forEach(x=>x.style.display="");
-  history.replaceState(null,"",location.pathname+location.search);
+  document.querySelector(".floating-wrap").style.display="";
+  document.querySelectorAll("main > section:not(#servicePage)").forEach(x=>x.style.display="");
+  if(!fromBack) history.replaceState(null,"",location.pathname+location.search);
   window.scrollTo({top:0,behavior:"smooth"});
 }
+function restoreFromUrl(){
+  if(location.hash.startsWith("#service-")){
+    const idx=services.findIndex(x=>x[0]===decodeURIComponent(location.hash.substring(9)));
+    if(idx>=0){ renderService(idx); return; }
+  }
+  showAllServices(true);
+}
+window.addEventListener("popstate",restoreFromUrl);
+window.addEventListener("load",restoreFromUrl);
 
 document.getElementById("year").textContent=new Date().getFullYear();
-
 function toggleMenu(){document.getElementById("mobileNav").classList.toggle("show")}
 function closeMenu(){document.getElementById("mobileNav").classList.remove("show")}
 
+/* [EDIT-AGENCY] logos are listed once here and doubled automatically for the loop */
+const agencyLogos=[["Aadhar.png","Aadhaar"],["csc.png","CSC"],["Digital.png","Digital"],["passport (1).png","Passport Seva"],["irctc.png","IRCTC"],["nsdl.png","NSDL"],["tneGa.png","TNEGA"],["uti.png","UTI"]];
+const logoHtml=agencyLogos.map(l=>`<div class="agency-logo"><img src="images/${l[0]}" alt="${l[1]}"></div>`).join("");
+document.getElementById("agencyTrack").innerHTML=logoHtml+logoHtml;
 
-window.addEventListener("load",()=>{
-  if(location.hash.startsWith("#service-")){
-    const name=decodeURIComponent(location.hash.substring(9));
-    const idx=services.findIndex(x=>x[0]===name);
-    if(idx>=0) openService(idx);
-  }
-});
-
-/* ---- Hero running photo gallery ---- */
-/* [EDIT-HERO] EASY IMAGE CHANGE:
-   1. Put your photo in the images/ folder (example: images/12.jpg)
-   2. Add a line below:  {img:"images/12.jpg",caption:'Your caption'},
-   3. To remove a photo, delete its line. */
+/* [EDIT-HERO] hero photos: one line each. Slide speed: search 3500 */
 const heroPhotos=[
-  
   {img:"images/1.jpg",caption:'Aadhaar சேவைகள் – ஒரே நாளில் மொபைல் எண் இணைத்து தரப்படும்.'},
   {img:"images/2.jpg",caption:'Domestic Money Transfer – பணம் அனுப்பும் சேவை.'},
   {img:"images/3.jpg",caption:'Credit Card – மூலம் பணம் எடுத்து தரப்படும்.'},
@@ -782,35 +532,24 @@ const heroPhotos=[
   {img:"images/9.jpg",caption:'Domestic Money Transfer – எந்த வங்கிக்கும் பணம் அனுப்பலாம்.'},
   {img:"images/10.jpg",caption:'Credit Card – Unlimited withdrawal மற்றும் credit card சேவை.'},
   {img:"images/11.jpg",caption:'இ-சேவை மையம் – பட்டா, சிட்டா, EC, FMB, A Register மற்றும் நில சேவைகள்.'}
-  // EXAMPLE - to add a new photo: put 12.jpg in the images folder,
-  // add a comma after the last photo line above, then add this line (without the // at the start):
-  // ,{img:"images/12.jpg",caption:'Passport சேவைகள் – விண்ணப்ப உதவி.'}
-  
-  
-  
 ];
 const sliderEl=document.getElementById("heroSlider");
 const dotsEl=document.getElementById("heroDots");
-let heroIndex=0;
-let lightboxIndex=0;
-let heroTimer;
+let heroIndex=0,lightboxIndex=0,heroTimer;
 
 heroPhotos.forEach((p,i)=>{
   const slide=document.createElement("div");
   slide.className="slide"+(i===0?" active":"");
-  slide.innerHTML=`<img src="${p.img}" alt="${p.caption}" loading="${i===0?"eager":"lazy"}" onclick="openLightbox(${i})"><div class="slide-caption">${p.caption}</div>`;
+  slide.innerHTML=`<img src="${p.img}" alt="${p.caption}" loading="${i===0?"eager":"lazy"}" onclick="openLightbox(${i})" onerror="this.style.display=&quot;none&quot;"><div class="slide-caption">${p.caption}</div>`;
   sliderEl.insertBefore(slide,dotsEl);
-
   const dot=document.createElement("button");
   dot.className="dot"+(i===0?" active":"");
   dot.setAttribute("aria-label","Show photo "+(i+1));
   dot.onclick=()=>{goToSlide(i);resetHeroTimer();};
   dotsEl.appendChild(dot);
 });
-
 const heroSlides=()=>sliderEl.querySelectorAll(".slide");
 const heroDots=()=>dotsEl.querySelectorAll(".dot");
-
 function goToSlide(i){
   heroSlides().forEach(s=>s.classList.remove("active"));
   heroDots().forEach(d=>d.classList.remove("active"));
@@ -819,30 +558,20 @@ function goToSlide(i){
   heroDots()[heroIndex].classList.add("active");
 }
 function nextSlide(){goToSlide(heroIndex+1);}
-function resetHeroTimer(){clearInterval(heroTimer);heroTimer=setInterval(nextSlide,3500) /* [EDIT-HERO] 3500 = 3.5 seconds per photo */;}
+function resetHeroTimer(){clearInterval(heroTimer);heroTimer=setInterval(nextSlide,3500);}
 resetHeroTimer();
 
-function openLightbox(i){
-  lightboxIndex=i;
-  showLightboxImage();
-  document.getElementById("lightbox").classList.add("show");
-  clearInterval(heroTimer);
-}
+function openLightbox(i){lightboxIndex=i;showLightboxImage();document.getElementById("lightbox").classList.add("show");clearInterval(heroTimer);}
 function showLightboxImage(){
   const p=heroPhotos[lightboxIndex];
   document.getElementById("lightboxImg").src=p.img;
   document.getElementById("lightboxImg").alt=p.caption;
   document.getElementById("lightboxCaption").textContent=p.caption;
 }
-function lightboxStep(dir,e){
-  e.stopPropagation();
-  lightboxIndex=(lightboxIndex+dir+heroPhotos.length)%heroPhotos.length;
-  showLightboxImage();
-}
+function lightboxStep(dir,e){e.stopPropagation();lightboxIndex=(lightboxIndex+dir+heroPhotos.length)%heroPhotos.length;showLightboxImage();}
 function closeLightbox(e){
   if(e.target.id==="lightbox"||e.target.classList.contains("lightbox-close")){
-    document.getElementById("lightbox").classList.remove("show");
-    resetHeroTimer();
+    document.getElementById("lightbox").classList.remove("show");resetHeroTimer();
   }
 }
 document.addEventListener("keydown",e=>{
@@ -851,29 +580,10 @@ document.addEventListener("keydown",e=>{
   if(e.key==="ArrowLeft") lightboxStep(-1,{stopPropagation(){}});
   if(e.key==="ArrowRight") lightboxStep(1,{stopPropagation(){}});
 });
-
-/* [EDIT-ANIMATION] Scroll reveal: adds a fade-up when a section comes into view.
-   To turn off, delete this whole block (or change the .6s in the CSS). */
-(function(){
-  if(!("IntersectionObserver" in window)||window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-  const els=document.querySelectorAll(".section-title,.section-text,.label,.stat,.service,.step,.feature,.contact h2,.contact-copy,.contact-item");
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(en=>{
-      if(en.isIntersecting){en.target.classList.add("in");io.unobserve(en.target);}
-    });
-  },{threshold:.1,rootMargin:"0px 0px -30px 0px"});
-  els.forEach(el=>{
-    const i=Array.prototype.indexOf.call(el.parentElement.children,el);
-    el.style.setProperty("--d",(i%4)*90+"ms");
-    el.classList.add("reveal");
-    io.observe(el);
-  });
-})();
-
 </script>
 
 <script>
-/* SKYNET E-SEVAI - ADMIN PANEL (hero photos + services). Saves in this browser. Password: skynet123 */
+/* SKYNET E-SEVAI - ADMIN PANEL (hero photos + services). Saves in this browser. Default password: skynet123 (change it in Admin > Settings) */
 (function () {
   "use strict";
   if (typeof heroPhotos === "undefined" || typeof services === "undefined") return;
@@ -898,8 +608,9 @@ document.addEventListener("keydown",e=>{
 
   /* ---------- apply saved changes to the page ---------- */
   function applyHero() {
-    var list = baseHero.filter(function (p) { return hidden.indexOf(p.img) < 0; })
-      .concat(heroX.map(function (p) { return { img: p.img, caption: p.caption }; }));
+    /* Admin-added hero photos go first so the newly added image is visible immediately. */
+    var list = heroX.map(function (p) { return { img: p.img, caption: p.caption }; })
+      .concat(baseHero.filter(function (p) { return hidden.indexOf(p.img) < 0; }));
     heroPhotos.length = 0; Array.prototype.push.apply(heroPhotos, list);
     var sl = $("heroSlider"), dots = $("heroDots");
     sl.querySelectorAll(".slide").forEach(function (n) { n.remove(); });
@@ -907,7 +618,7 @@ document.addEventListener("keydown",e=>{
     heroPhotos.forEach(function (p, i) {
       var s = document.createElement("div");
       s.className = "slide" + (i === 0 ? " active" : "");
-      s.innerHTML = '<img src="' + esc(p.img) + '" alt="' + esc(p.caption) + '" loading="lazy" onclick="openLightbox(' + i + ')"><div class="slide-caption">' + esc(p.caption) + "</div>";
+      s.innerHTML = '<img src="' + esc(p.img) + '" alt="' + esc(p.caption) + '" loading="' + (i === 0 ? 'eager' : 'lazy') + '" decoding="async" onclick="openLightbox(' + i + ')" onerror="this.style.display=&quot;none&quot;">' + '<div class="slide-caption">' + esc(p.caption) + "</div>";
       sl.insertBefore(s, dots);
       var d = document.createElement("button");
       d.className = "dot" + (i === 0 ? " active" : "");
@@ -916,6 +627,12 @@ document.addEventListener("keydown",e=>{
       dots.appendChild(d);
     });
     heroIndex = 0;
+    /* Ensure the first/admin image is painted immediately and the timer uses the new slide list. */
+    if (heroSlides().length) {
+      heroSlides().forEach(function (n, i) { n.classList.toggle("active", i === 0); });
+    }
+    heroDots().forEach(function (n, i) { n.classList.toggle("active", i === 0); });
+    resetHeroTimer();
   }
 
   function build() {
@@ -979,23 +696,23 @@ document.addEventListener("keydown",e=>{
   /* ---------- admin window ---------- */
   var css = document.createElement("style");
   css.textContent =
-    ".ska-bg{position:fixed;inset:0;z-index:5000;background:rgba(2,6,23,.7);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:4vh 14px;overflow:auto}" +
-    ".ska-bg.open{display:flex}.ska-box{background:#fff;width:min(780px,100%);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);color:#0f172a;font-family:inherit}" +
-    ".ska-box.sm{width:min(400px,100%);margin-top:12vh}.ska-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 24px;background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;border-bottom:3px solid #60a5fa}" +
-    ".ska-head h3{font-size:19px}.ska-x{border:0;background:rgba(255,255,255,.14);color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}.ska-body{padding:4px 24px 24px}" +
-    ".ska-tabs{display:flex;gap:4px;background:#f1f5f9;padding:5px;border-radius:14px;margin:18px 0 4px}.ska-tabs button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:10px;font-weight:700;font-size:14px;font-family:inherit;color:#64748b;cursor:pointer}" +
-    ".ska-tabs button.on{background:#fff;color:#155eef;box-shadow:0 2px 10px rgba(15,23,42,.1)}.ska-body label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}" +
-    ".ska-body input[type=text],.ska-body input[type=password],.ska-body select,.ska-body textarea{width:100%;padding:12px 13px;border:1px solid #e2e8f0;border-radius:12px;font-size:15px;font-family:inherit;background:#f8fafc;color:#0f172a}" +
-    ".ska-body input[type=file]{width:100%;padding:10px;border:1.5px dashed #bfdbfe;border-radius:12px;background:#f8fafc;font-family:inherit}.ska-body textarea{min-height:96px;resize:vertical}" +
-    ".ska-body input:focus,.ska-body select:focus,.ska-body textarea:focus{outline:none;border-color:#155eef;box-shadow:0 0 0 4px #dbeafe;background:#fff}" +
-    ".ska-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ska-btn{border:0;border-radius:999px;padding:11px 20px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;background:#155eef;color:#fff;box-shadow:0 10px 20px -10px rgba(21,94,239,.8)}" +
-    ".ska-btn.o{background:#fff;color:#0f172a;border:1px solid #e2e8f0;box-shadow:none}.ska-btn.d{background:#fee2e2;color:#b91c1c;box-shadow:none;padding:8px 14px}" +
-    ".ska-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ska-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e2e8f0;border-radius:14px;margin-top:10px}" +
-    ".ska-item img{width:64px;height:48px;object-fit:cover;border-radius:8px;background:#f1f5f9;flex:none}.ska-item .t{flex:1;min-width:0;font-weight:700;font-size:14px}.ska-item .t small{display:block;color:#64748b;font-weight:500}" +
-    ".ska-msg{font-size:13px;font-weight:600;margin-top:10px;min-height:18px}.ska-msg.ok{color:#15803d}.ska-msg.err{color:#dc2626}.ska-h4{margin-top:22px;font-size:15px}.ska-note{font-size:12px;color:#64748b;margin-top:8px}" +
-    ".ska-body details{border:1px solid #e2e8f0;border-radius:14px;margin-top:10px;padding:0 12px 10px;background:#fff}.ska-body summary{cursor:pointer;font-weight:800;font-size:14px;padding:12px 0;list-style:none}" +
-    ".ska-body summary::-webkit-details-marker{display:none}.ska-body summary::before{content:'▸ ';color:#155eef}.ska-body details[open]>summary::before{content:'▾ '}.skdim{opacity:.5}" +
-    "#skEd{border:2px solid #bfdbfe;background:#f8fbff;border-radius:16px;padding:4px 16px 16px;margin-top:14px}" +
+    ".ska-bg{position:fixed;inset:0;z-index:5000;background:rgba(27,16,51,.72);backdrop-filter:blur(6px);display:none;align-items:flex-start;justify-content:center;padding:4vh 14px;overflow:auto}" +
+    ".ska-bg.open{display:flex}.ska-box{background:#fff;width:min(780px,100%);border-radius:24px;overflow:hidden;box-shadow:0 40px 90px -20px rgba(0,0,0,.6);color:#1b1033;font-family:inherit}" +
+    ".ska-box.sm{width:min(400px,100%);margin-top:12vh}.ska-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 24px;background:linear-gradient(135deg,#3b0f8c,#5b21b6);color:#fff;border-bottom:3px solid #fb923c}" +
+    ".ska-head h3{font-size:19px}.ska-x{border:0;background:rgba(255,255,255,.16);color:#fff;width:36px;height:36px;border-radius:10px;font-size:18px;cursor:pointer}.ska-body{padding:4px 24px 24px}" +
+    ".ska-tabs{display:flex;gap:4px;background:#f5f0ff;padding:5px;border-radius:14px;margin:18px 0 4px}.ska-tabs button{flex:1;border:0;background:transparent;padding:10px 6px;border-radius:10px;font-weight:700;font-size:14px;font-family:inherit;color:#5f5a73;cursor:pointer}" +
+    ".ska-tabs button.on{background:#fff;color:#5b21b6;box-shadow:0 2px 10px rgba(91,33,182,.15)}.ska-body label{display:block;font-size:13px;font-weight:700;margin:14px 0 6px}" +
+    ".ska-body input[type=text],.ska-body input[type=password],.ska-body select,.ska-body textarea{width:100%;padding:12px 13px;border:1px solid #e9e1f7;border-radius:12px;font-size:15px;font-family:inherit;background:#faf7ff;color:#1b1033}" +
+    ".ska-body input[type=file]{width:100%;padding:10px;border:1.5px dashed #ddd6fe;border-radius:12px;background:#faf7ff;font-family:inherit}.ska-body textarea{min-height:96px;resize:vertical}" +
+    ".ska-body input:focus,.ska-body select:focus,.ska-body textarea:focus{outline:none;border-color:#5b21b6;box-shadow:0 0 0 4px #ede9fe;background:#fff}" +
+    ".ska-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.ska-btn{border:0;border-radius:999px;padding:11px 20px;font-weight:800;font-size:14px;cursor:pointer;font-family:inherit;background:#5b21b6;color:#fff;box-shadow:0 10px 20px -10px rgba(91,33,182,.8)}" +
+    ".ska-btn.o{background:#fff;color:#1b1033;border:1px solid #e9e1f7;box-shadow:none}.ska-btn.d{background:#fee2e2;color:#b91c1c;box-shadow:none;padding:8px 14px}" +
+    ".ska-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.ska-item{display:flex;align-items:center;gap:12px;padding:10px 12px;border:1px solid #e9e1f7;border-radius:14px;margin-top:10px}" +
+    ".ska-item img{width:64px;height:48px;object-fit:cover;border-radius:8px;background:#f5f0ff;flex:none}.ska-item .t{flex:1;min-width:0;font-weight:700;font-size:14px}.ska-item .t small{display:block;color:#5f5a73;font-weight:500}" +
+    ".ska-msg{font-size:13px;font-weight:600;margin-top:10px;min-height:18px}.ska-msg.ok{color:#15803d}.ska-msg.err{color:#dc2626}.ska-h4{margin-top:22px;font-size:15px}.ska-note{font-size:12px;color:#5f5a73;margin-top:8px}" +
+    ".ska-body details{border:1px solid #e9e1f7;border-radius:14px;margin-top:10px;padding:0 12px 10px;background:#fff}.ska-body summary{cursor:pointer;font-weight:800;font-size:14px;padding:12px 0;list-style:none}" +
+    ".ska-body summary::-webkit-details-marker{display:none}.ska-body summary::before{content:'▸ ';color:#f97316}.ska-body details[open]>summary::before{content:'▾ '}.skdim{opacity:.5}" +
+    "#skEd{border:2px solid #ddd6fe;background:#faf7ff;border-radius:16px;padding:4px 16px 16px;margin-top:14px}" +
     "@media(max-width:650px){.ska-row{grid-template-columns:1fr}.ska-tabs button{font-size:11.5px;padding:10px 3px}}";
   document.head.appendChild(css);
 
@@ -1029,7 +746,7 @@ document.addEventListener("keydown",e=>{
 
     '<div id="skp-set" style="display:none"><label for="skNP">Change admin password (leave blank to keep)</label><input type="password" id="skNP" placeholder="New password">' +
     '<div class="ska-acts"><button class="ska-btn" id="skSave">Save password</button></div><div class="ska-msg" id="skStMsg"></div>' +
-    '<h4 class="ska-h4">Publish to GitHub</h4><p class="ska-note">After making Admin changes, enter your GitHub token and click Publish. The changes will be committed to your <b>skynetMusiris</b> repository and then appear on the live website.</p>' +
+    '<h4 class="ska-h4">Publish to GitHub</h4><p class="ska-note">After making Admin changes, enter your GitHub token and click Publish. The changes will be committed to your <b>skyNetcomputers</b> repository and then appear on the live website.</p>' +
     '<label for="skGhToken">GitHub fine-grained token</label><input type="password" id="skGhToken" autocomplete="off" placeholder="Paste token here (not saved)"><div class="ska-acts"><button class="ska-btn" id="skPublish">🚀 Publish changes to GitHub</button></div><div class="ska-msg" id="skPubMsg"></div><p class="ska-note">Security: this token is used only for the current browser session and is not written to localStorage.</p><h4 class="ska-h4">Backup</h4><div class="ska-acts"><button class="ska-btn o" id="skDl">⬇️ Download backup</button><button class="ska-btn o" id="skRs">⬆️ Restore backup</button><button class="ska-btn d" id="skReset">Remove all admin changes</button></div>' +
     '<input type="file" id="skRFile" accept=".json,application/json" style="display:none"></div>' +
     "</div></div></div>";
@@ -1189,7 +906,7 @@ document.addEventListener("keydown",e=>{
 
   /* ---------- publish current admin changes to GitHub ---------- */
   var GH_OWNER = "skynetcomputer";
-  var GH_REPO = "skynetMusiris";
+  var GH_REPO = "skyNetcomputers";
   var GH_BRANCH = "main";
   var GH_PATH = "data/site-data.json";
 
@@ -1222,13 +939,7 @@ document.addEventListener("keydown",e=>{
     btn.disabled = true;
     msg("skPubMsg", "Publishing changes to GitHub…", true);
     try {
-      var payload = {
-        version: 1,
-        hero: heroX,
-        hidden: hidden,
-        services: svcX,
-        edits: edits
-      };
+      var payload = { version: 1, hero: heroX, hidden: hidden, services: svcX, edits: edits };
       var body = JSON.stringify(payload, null, 2);
       var api = "https://api.github.com/repos/" + GH_OWNER + "/" + GH_REPO + "/contents/" + GH_PATH;
       var auth = { "Authorization": "Bearer " + token };
@@ -1238,11 +949,7 @@ document.addEventListener("keydown",e=>{
       } catch (e) {
         if (!/404|Not Found/i.test(e.message)) throw e;
       }
-      var commitBody = {
-        message: "Update website content from Admin Panel",
-        content: toBase64Unicode(body),
-        branch: GH_BRANCH
-      };
+      var commitBody = { message: "Update website content from Admin Panel", content: toBase64Unicode(body), branch: GH_BRANCH };
       if (current && current.sha) commitBody.sha = current.sha;
       await githubRequest(api, {
         method: "PUT",
@@ -1313,28 +1020,42 @@ document.addEventListener("keydown",e=>{
 </script>
 
 <script>
-/* SKYNET E-SEVAI - load published Admin changes from GitHub */
+/* SKYNET E-SEVAI - validated site-data.json loader */
 (function () {
   "use strict";
-  var url = "https://raw.githubusercontent.com/skynetcomputer/skynetMusiris/main/data/site-data.json?ts=" + Date.now();
-  fetch(url, { cache: "no-store" }).then(function (r) {
-    if (!r.ok) throw new Error("No published data");
-    return r.json();
-  }).then(function (d) {
-    var map = {
-      "sk_hero": Array.isArray(d.hero) ? d.hero : [],
-      "sk_hero_hidden": Array.isArray(d.hidden) ? d.hidden : [],
-      "sk_services": Array.isArray(d.services) ? d.services : [],
-      "sk_edits": { cats: (d.edits && d.edits.cats) || {}, subs: (d.edits && d.edits.subs) || {} }
-    };
-    var changed = false;
-    Object.keys(map).forEach(function (k) {
-      var next = JSON.stringify(map[k]), old = localStorage.getItem(k);
-      if (old !== next) { localStorage.setItem(k, next); changed = true; }
-    });
-    if (changed) location.reload();
-  }).catch(function () { /* First install or no published data yet. Keep built-in site. */ });
+  var DATA_URL = "https://raw.githubusercontent.com/skynetcomputer/skyNetcomputers/main/data/site-data.json";
+  var VERSION = 1;
+  function setStatus(type, message) {
+    var el = document.getElementById("skJsonStatus");
+    if (!el) { el=document.createElement("div"); el.id="skJsonStatus"; el.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:99999;padding:12px 14px;border-radius:12px;font:600 13px/1.45 system-ui,sans-serif;box-shadow:0 8px 28px rgba(0,0,0,.18);"; document.body.appendChild(el); }
+    el.style.background=type==="ok"?"#ecfdf5":"#fff7ed"; el.style.color=type==="ok"?"#166534":"#9a3412"; el.style.border="1px solid "+(type==="ok"?"#86efac":"#fdba74"); el.textContent=message;
+    if(type==="ok") setTimeout(function(){if(el.parentNode)el.remove();},3500);
+  }
+  function isObj(x){return x&&typeof x==="object"&&!Array.isArray(x);}
+  function validate(d){
+    if(!isObj(d)) throw new Error("JSON root must be an object.");
+    if(d.version!==undefined&&Number(d.version)!==VERSION) throw new Error("Unsupported JSON version: "+d.version+". Expected version "+VERSION+".");
+    if(d.hero!==undefined&&!Array.isArray(d.hero)) throw new Error('"hero" must be an array.');
+    if(d.hidden!==undefined&&!Array.isArray(d.hidden)) throw new Error('"hidden" must be an array.');
+    if(d.services!==undefined&&!Array.isArray(d.services)) throw new Error('"services" must be an array.');
+    if(d.edits!==undefined&&!isObj(d.edits)) throw new Error('"edits" must be an object.');
+    if(d.edits&&d.edits.cats!==undefined&&!isObj(d.edits.cats)) throw new Error('"edits.cats" must be an object.');
+    if(d.edits&&d.edits.subs!==undefined&&!isObj(d.edits.subs)) throw new Error('"edits.subs" must be an object.');
+  }
+  function normalize(d){return {hero:Array.isArray(d.hero)?d.hero:[],hidden:Array.isArray(d.hidden)?d.hidden:[],services:Array.isArray(d.services)?d.services:[],edits:{cats:isObj(d.edits&&d.edits.cats)?d.edits.cats:{},subs:isObj(d.edits&&d.edits.subs)?d.edits.subs:{}}};}
+  function saveAndReload(d){
+    var n=normalize(d), map={sk_hero:n.hero,sk_hero_hidden:n.hidden,sk_services:n.services,sk_edits:n.edits}, changed=false;
+    Object.keys(map).forEach(function(k){var next=JSON.stringify(map[k]);if(localStorage.getItem(k)!==next){localStorage.setItem(k,next);changed=true;}});
+    setStatus("ok","✓ site-data.json matched and loaded successfully.");
+    if(changed) setTimeout(function(){location.reload();},250);
+  }
+  setStatus("ok","Loading latest site-data.json…");
+  fetch(DATA_URL+"?ts="+Date.now(),{cache:"no-store",headers:{Accept:"application/json"}})
+    .then(function(r){if(!r.ok)throw new Error("GitHub returned HTTP "+r.status+" for site-data.json.");return r.text();})
+    .then(function(text){var d;try{d=JSON.parse(text);}catch(e){throw new Error("site-data.json contains invalid JSON.");}validate(d);saveAndReload(d);})
+    .catch(function(err){console.error("SKYNET site-data.json:",err);setStatus("error","⚠ site-data.json not matched: "+err.message+" Built-in site data is being kept.");});
 })();
 </script>
+
 </body>
 </html>
